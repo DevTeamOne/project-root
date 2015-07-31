@@ -21,13 +21,13 @@ public class XMLManager {
   }
     
 
-  public static XMLManager getXML() {
+  private static XMLManager getXML() {
     return self_;
   }
   
     
   public void initialize() {
-    String fileName = AppProperties.getInstance().getProperties()
+    String fileName = ApplicationProperties.getInstance().getProperties()
         .getProperty("XMLFILE");
     
     try {
@@ -56,7 +56,7 @@ public class XMLManager {
   
   
   public void saveDocument() {
-    String xmlFile = AppProperties.getInstance().getProperties()
+    String xmlFile = ApplicationProperties.getInstance().getProperties()
         .getProperty("XMLFILE");
     
     try (FileWriter outputFile = new FileWriter(xmlFile)) {
