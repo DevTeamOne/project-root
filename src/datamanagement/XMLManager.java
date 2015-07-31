@@ -15,20 +15,17 @@ public class XMLManager {
   private static XMLManager self_ = new XMLManager();
   private Document document_;
   
-  
 
   public XMLManager() {
     initialize();
   }
-  
-  
-  
+    
+
   public static XMLManager getXML() {
     return self_;
   }
   
-  
-  
+    
   public void initialize() {
     String fileName = AppProperties.getInstance().getProperties()
         .getProperty("XMLFILE");
@@ -53,12 +50,9 @@ public class XMLManager {
   }
 
   
-  
   public Document getDocument() {
     return document_;
   }
-
-  
   
   
   public void saveDocument() {
