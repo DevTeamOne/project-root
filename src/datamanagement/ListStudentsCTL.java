@@ -1,16 +1,19 @@
 package datamanagement;
 
 public class ListStudentsCTL {
-  private StudentManager sm;
+  private StudentManager studentManager;
 
   public ListStudentsCTL() {
-    sm = StudentManager.get();
+    studentManager = StudentManager.get();
   }
 
+  
   public void listStudents(IStudentLister lister, String unitCode) {
     lister.clearStudents();
-    StudentMap students = sm.getStudentsByUnit(unitCode);
-    for (Integer id : students.keySet())
-      lister.addStudent(students.get(id));
+    
+    StudentMap students = studentManager.getStudentsByUnit(unitCode);
+    
+    for (Integer studentNumber : students.keySet())
+      lister.addStudent(students.get(studentNumber));
   }
 }
