@@ -6,8 +6,8 @@ import java.util.List;
 public class StudentManager {
   private static StudentManager self = null;
 
-  private StudentMap sm;
-  private java.util.HashMap<String, StudentMap> um;
+  private StudentMap studentManager;
+  private java.util.HashMap<String, StudentMap> unitManager;
 
   public static StudentManager get() {
     if (self == null)
@@ -17,13 +17,12 @@ public class StudentManager {
   }
 
   private StudentManager() {
-
-    
-            sm = new StudentMap();
-        um = new java.util.HashMap<>();}
+    studentManager = new StudentMap();
+    unitManager = new java.util.HashMap<>();
+  }
 
   public IStudent getStudent(Integer id) {
-    IStudent is = sm.get(id);
+    IStudent is = studentManager.get(id);
     return is != null ? is : createStudent(id);
   }
 
@@ -44,7 +43,7 @@ public class StudentManager {
       is = new Student(new Integer(el.getAttributeValue("sid")),
           el.getAttributeValue("fname"), el.getAttributeValue("lname"), rlist);
 
-      sm.put(is.getID(), is);
+      studentManager.put(is.getID(), is);
       return is;
     }
     throw new RuntimeException("DBMD: createStudent : student not in file");
@@ -60,7 +59,7 @@ public class StudentManager {
   }
 
   public StudentMap getStudentsByUnit(String uc) {
-    StudentMap s = um.get(uc);
+    StudentMap s = unitManager.get(uc);
     if (s != null) {
 
       return s;
@@ -75,7 +74,7 @@ public class StudentManager {
       is = createStudentProxy(new Integer(S.getStudentID()));
       s.put(is.getID(), is);
     }
-    um.put(uc, s);
+    unitManager.put(uc, s);
     return s;
   }
 }
