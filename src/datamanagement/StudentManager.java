@@ -23,17 +23,17 @@ public class StudentManager {
     return self;
   }
 
-  public IStudent getStudent(Integer id) {
-    IStudent individualStudent = studentManager.get(id);
+  public IStudent getStudent(Integer studentNumber) {
+    IStudent individualStudent = studentManager.get(studentNumber);
     
-    return individualStudent != null ? individualStudent : createStudent(id);
+    return individualStudent != null ? individualStudent : createStudent(studentNumber);
   }
   
-  private Element getStudentElement(Integer id) {
+  private Element getStudentElement(Integer studentNumber) {
     for (Element element : (List<Element>) XMLManager.getXML().getDocument()
         .getRootElement().getChild("studentTable").getChildren("student"))
       
-      if (id.toString().equals(element.getAttribute("Student Number"))) {
+      if (studentNumber.toString().equals(element.getAttribute("Student Number"))) {
         return element;
       }
     return null;
@@ -67,10 +67,10 @@ public class StudentManager {
     Element element = getStudentElement(studentNumber);
     
     if (element != null) {
-      StudentUnitRecordList rlist = StudentUnitRecordManager.instance().getRecordsByStudent(studentNumber);
+      StudentUnitRecordList recordList = StudentUnitRecordManager.instance().getRecordsByStudent(studentNumber);
       
       individualStudent = new Student(new Integer(element.getAttribute("Student Number")),
-          element.getAttribute("First Name"), element.getAttribute("Last Name"), rlist);
+          element.getAttribute("First Name"), element.getAttribute("Last Name"), recordList);
 
       studentManager.put(individualStudent.getStudentNumber(), individualStudent);
       
