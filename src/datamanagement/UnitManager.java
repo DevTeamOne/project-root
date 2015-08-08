@@ -1,71 +1,71 @@
 package datamanagement;
 
 import java.util.List;
-import org.jdom.*;
+
+import org.w3c.dom.Element;
 
 public class UnitManager {
 
   private static UnitManager self = null;
 
-  private UnitMap UM;
+  private UnitMap UNIT_MANAGER;
 
-  public static UnitManager UM() {
+  public static UnitManager UNIT_MANAGER() {
     if (self == null)
       self = new UnitManager();
     return self;
   }
 
   private UnitManager() {
-    UM = new UnitMap();
+    UNIT_MANAGER = new UnitMap();
   }
 
-  public IUnit getUnit(String uc) {
-    IUnit iu = UM.get(uc);
-    return iu != null ? iu : createUnit(uc);
+  public IUnit getUnit(String unitCode) {
+    IUnit iu = UNIT_MANAGER.get(unitCode);
+    return iu != null ? iu : createUnit(unitCode);
 
+  }
+
+  public UnitMap getUnits() {
+
+    UnitMap unitManger;
+    IUnit iu;
+
+    unitManger = new UnitMap();
+    for (Element element : (List<Element>) XMLManager.getXML().getDocument()
+        .getRootElement().getChild("unitTable").getChildren("Unit")) {
+      iu = new UnitProxy(element.getAttribute("Unit ID"),
+          element.getAttribute("Name"));
+      unitManger.put(iu.getUnitCode(), iu);
+    } // unit maps are filled with PROXY units
+    return unitManger;
   }
 
   private IUnit createUnit(String unitCode) {
 
     IUnit iu;
 
-    for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+    for (Element element : (List<Element>) XMLManager.getXML().getDocument()
         .getRootElement().getChild("unitTable").getChildren("unit"))
-      if (unitCode.equals(el.getAttributeValue("uid"))) {
-        StudentUnitRecordList slist;
+      if (unitCode.equals(element.getAttribute("uid"))) {
+        StudentUnitRecordList studentList;
 
-        slist = null;
-        iu = new Unit(el.getAttributeValue("uid"),
-            el.getAttributeValue("name"), Float.valueOf(
-                el.getAttributeValue("ps")).floatValue(), Float.valueOf(
-                el.getAttributeValue("cr")).floatValue(), Float.valueOf(
-                el.getAttributeValue("di")).floatValue(), Float.valueOf(
-                el.getAttributeValue("hd")).floatValue(), Float.valueOf(
-                el.getAttributeValue("ae")).floatValue(), Integer.valueOf(
-                el.getAttributeValue("asg1wgt")).intValue(), Integer.valueOf(
-                el.getAttributeValue("asg2wgt")).intValue(), Integer.valueOf(
-                el.getAttributeValue("examwgt")).intValue(),
+        studentList = null;
+        iu = new Unit(element.getAttribute("uid"),
+            element.getAttribute("name"), Float.valueOf(
+                element.getAttribute("ps")).floatValue(), Float.valueOf(
+                element.getAttribute("cr")).floatValue(), Float.valueOf(
+                element.getAttribute("di")).floatValue(), Float.valueOf(
+                element.getAttribute("hd")).floatValue(), Float.valueOf(
+                element.getAttribute("ae")).floatValue(), Integer.valueOf(
+                element.getAttribute("asg1wgt")).intValue(), Integer
+                .valueOf(element.getAttribute("asg2wgt")).intValue(),
+            Integer.valueOf(element.getAttribute("examwgt")).intValue(),
             StudentUnitRecordManager.instance().getRecordsByUnit(unitCode));
-        UM.put(iu.getUnitCode(), iu);
+        UNIT_MANAGER.put(iu.getUnitCode(), iu);
         return iu;
       }
 
     throw new RuntimeException("DBMD: createUnit : unit not in file");
   }
-
-  public UnitMap getUnits() {
-
-    UnitMap uM;
-    IUnit iu;
-
-    uM = new UnitMap();
-    for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-        .getRootElement().getChild("unitTable").getChildren("unit")) {
-      iu = new UnitProxy(el.getAttributeValue("uid"),
-          el.getAttributeValue("name"));
-      uM.put(iu.getUnitCode(), iu);
-    } // unit maps are filled with PROXY units
-    return uM;
-  }
-
 }
