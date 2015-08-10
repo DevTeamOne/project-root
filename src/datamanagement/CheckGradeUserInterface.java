@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class StudentManagementUserInterface extends javax.swing.JFrame implements IUnitLister,
+public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnitLister,
     IStudentLister {
   private StudentControl ctl;
   private javax.swing.DefaultComboBoxModel uM;
@@ -19,13 +19,13 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
   float f3;
   Integer sid;
 
-  public StudentManagementUserInterface(StudentControl ctl) {
+  public CheckGradeUserInterface(StudentControl ctl) {
     this.ctl = ctl;
     uM = new javax.swing.DefaultComboBoxModel(new String[0]);
     rM = new javax.swing.DefaultComboBoxModel(new String[0]);
     initComponents();
-    jComboBox1.setModel(uM);
-    jComboBox2.setModel(rM);
+    unit.setModel(uM);
+    student.setModel(rM);
     jlabel6.setText("");
   }
 
@@ -40,9 +40,9 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
 
     jLabel1 = new javax.swing.JLabel();
     jPanel1 = new javax.swing.JPanel();
-    jComboBox1 = new javax.swing.JComboBox();
+    unit = new javax.swing.JComboBox();
     jPanel2 = new javax.swing.JPanel();
-    jComboBox2 = new javax.swing.JComboBox();
+    student = new javax.swing.JComboBox();
     jPanel3 = new javax.swing.JPanel();
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
@@ -61,38 +61,33 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
 
     jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
 
-    jComboBox1.setModel(uM);
-    jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+    unit.setModel(uM);
+    unit.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox1ItemStateChanged(evt);
       }
     });
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+          .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(unit, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+          .addContainerGap())
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup()
+          .addComponent(unit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+          .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
     jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(
-        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-        jPanel1Layout
-            .createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                185, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                Short.MAX_VALUE)));
-    jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(
-        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-        jPanel1Layout
-            .createSequentialGroup()
-            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                javax.swing.GroupLayout.DEFAULT_SIZE,
-                javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                Short.MAX_VALUE)));
 
     jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Student"));
 
-    jComboBox2.setModel(rM);
-    jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+    student.setModel(rM);
+    student.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox2ItemStateChanged(evt);
       }
@@ -105,7 +100,7 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
         jPanel2Layout
             .createSequentialGroup()
             .addContainerGap()
-            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE,
+            .addComponent(student, javax.swing.GroupLayout.PREFERRED_SIZE,
                 185, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
                 Short.MAX_VALUE)));
@@ -113,7 +108,7 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
         javax.swing.GroupLayout.Alignment.LEADING).addGroup(
         jPanel2Layout
             .createSequentialGroup()
-            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE,
+            .addComponent(student, javax.swing.GroupLayout.PREFERRED_SIZE,
                 javax.swing.GroupLayout.DEFAULT_SIZE,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -360,11 +355,11 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
   }// </editor-fold>//GEN-END:initComponents
 
   private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
-    String cU = (String) jComboBox1.getSelectedItem();
+    String cU = (String) unit.getSelectedItem();
     Refresh3();
     clearStudents();
     if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cU.equals((String) jComboBox1.getItemAt(0))) {
+      if (cU.equals((String) unit.getItemAt(0))) {
         cU = "NONE";
       }
       ctl.unitSelected(cU);
@@ -373,9 +368,9 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
 
   private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox2ItemStateChanged
     Refresh3();
-    String cS = (String) jComboBox2.getSelectedItem();
+    String cS = (String) student.getSelectedItem();
     if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cS.equals((String) jComboBox2.getItemAt(0))) {
+      if (cS.equals((String) student.getItemAt(0))) {
         sid = new Integer(0);
         ctl.studentSelected(sid);
       } else {
@@ -433,7 +428,7 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
   }
 
   public void setState1(boolean b) {
-    jComboBox1.setEnabled(b);
+    unit.setEnabled(b);
     jlabel6.setText("");
   }
 
@@ -448,14 +443,14 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
   }
 
   public void setState2(boolean b) {
-    jComboBox2.setEnabled(b);
+    student.setEnabled(b);
     jlabel6.setText("");
   }
 
   public void setRecord(IStudentUnitRecord record) {
-    jTextField1.setText(new Float(record.getAsg1()).toString());
-    jTextField2.setText(new Float(record.getAsg2()).toString());
-    jTextField3.setText(new Float(record.getExam()).toString());
+    jTextField1.setText(new Float(record.getAssignment1Result()).toString());
+    jTextField2.setText(new Float(record.getAssignment2Result()).toString());
+    jTextField3.setText(new Float(record.getExamResult()).toString());
     jLabel5.setText("");
   }
 
@@ -493,8 +488,8 @@ public class StudentManagementUserInterface extends javax.swing.JFrame implement
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
-  private javax.swing.JComboBox jComboBox1;
-  private javax.swing.JComboBox jComboBox2;
+  private javax.swing.JComboBox unit;
+  private javax.swing.JComboBox student;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;

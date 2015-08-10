@@ -6,17 +6,17 @@ public interface IStudentUnitRecord {
 
 	public String getUnitCode();
 
-	public void setAsg1(float mark);
+	public void setAssignment1Result(float mark);
 
-	public float getAsg1();
+	public float getAssignment1Result();
 
-	public void setAsg2(float mark);
+	public void setAssignment2Result(float mark);
 
-	public float getAsg2();
+	public float getAssignment2Result();
 
-	public void setExam(float mark);
+	public void setExamResult(float mark);
 
-	public float getExam();
+	public float getExamResult();
 
 	public float getTotal();
 }

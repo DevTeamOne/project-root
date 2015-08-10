@@ -19,28 +19,28 @@ public class StudentUnitRecordProxy implements IStudentUnitRecord {
 		return unitCode;
 	}
 
-	public void setAsg1(float mark) {
-		mngr.getStudentUnitRecord(studentID, unitCode).setAsg1(mark);
+	public void setAssignment1Result(float mark) {
+		mngr.getStudentUnitRecord(studentID, unitCode).setAssignment1Result(mark);
 	}
 
-	public float getAsg1() {
-		return mngr.getStudentUnitRecord(studentID, unitCode).getAsg1();
+	public float getAssignment1Result() {
+		return mngr.getStudentUnitRecord(studentID, unitCode).getAssignment1Result();
 	}
 
-	public void setAsg2(float mark) {
-		mngr.getStudentUnitRecord(studentID, unitCode).setAsg2(mark);
+	public void setAssignment2Result(float mark) {
+		mngr.getStudentUnitRecord(studentID, unitCode).setAssignment2Result(mark);
 	}
 
-	public float getAsg2() {
-		return mngr.getStudentUnitRecord(studentID, unitCode).getAsg2();
+	public float getAssignment2Result() {
+		return mngr.getStudentUnitRecord(studentID, unitCode).getAssignment2Result();
 	}
 
-	public void setExam(float mark) {
-		mngr.getStudentUnitRecord(studentID, unitCode).setExam(mark);
+	public void setExamResult(float mark) {
+		mngr.getStudentUnitRecord(studentID, unitCode).setExamResult(mark);
 	}
 
-	public float getExam() {
-		return mngr.getStudentUnitRecord(studentID, unitCode).getExam();
+	public float getExamResult() {
+		return mngr.getStudentUnitRecord(studentID, unitCode).getExamResult();
 	}
 
 	public float getTotal() {

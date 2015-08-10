@@ -2,7 +2,7 @@ package datamanagement;
 
 public class StudentControl {
 
-  StudentManagementUserInterface studentManagementUserInterface;
+  CheckGradeUserInterface studentManagementUserInterface;
   String unitCode = null;
   Integer currentStudentID = null;
   boolean changed = false;
@@ -11,7 +11,7 @@ public class StudentControl {
   }
 
   public void execute() {
-    studentManagementUserInterface = new StudentManagementUserInterface(this);
+    studentManagementUserInterface = new CheckGradeUserInterface(this);
     studentManagementUserInterface.setState1(false);
 
     studentManagementUserInterface.setState2(false);
@@ -89,9 +89,9 @@ public class StudentControl {
     IStudent s = StudentManager.get().getStudent(currentStudentID);
 
     IStudentUnitRecord r = s.getUnitRecord(unitCode);
-    r.setAsg1(asg1);
-    r.setAsg2(asg2);
-    r.setExam(exam);
+    r.setAssignment1Result(asg1);
+    r.setAssignment2Result(asg2);
+    r.setExamResult(exam);
     StudentUnitRecordManager.instance().saveRecord(r);
     studentManagementUserInterface.setState4(true);
     studentManagementUserInterface.setState5(false);

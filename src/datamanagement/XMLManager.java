@@ -21,7 +21,7 @@ public class XMLManager {
   }
     
 
-  private static XMLManager getXML() {
+  static XMLManager getXML() {
     return self_;
   }
   
