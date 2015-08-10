@@ -1,11 +1,9 @@
 package datamanagement;
 
 import java.util.List;
-
 import org.w3c.dom.Element;
 
 public class UnitManager {
-
   private static UnitManager self = null;
   private UnitMap unitManager;
 
@@ -20,6 +18,8 @@ public class UnitManager {
   private UnitManager() {
     unitManager = new UnitMap();
   }
+  
+  
 
   public IUnit getUnit(String unitCode) {
     IUnit iu = unitManager.get(unitCode);
@@ -35,8 +35,7 @@ public class UnitManager {
     IUnit iu;
 
     unitManger = new UnitMap();
-    for (Element element : (List<Element>) XMLManager.getXML().getDocument()
-        .getRootElement().getChild("unitTable").getChildren("Unit")) {
+    for (Element element : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("unitTable").getChildren("Unit")) {
       iu = new UnitProxy(element.getAttribute("Unit ID"),
           element.getAttribute("Name"));
       unitManger.put(iu.getUnitCode(), iu);
@@ -50,8 +49,7 @@ public class UnitManager {
 
     IUnit iu;
 
-    for (Element element : (List<Element>) XMLManager.getXML().getDocument()
-        .getRootElement().getChild("unitTable").getChildren("unit"))
+    for (Element element : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("unitTable").getChildren("unit"))
       if (unitCode.equals(element.getAttribute("uid"))) {
         StudentUnitRecordList studentList;
 

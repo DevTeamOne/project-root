@@ -1,59 +1,67 @@
 package datamanagement;
 
 public class Student implements IStudent {
-  private Integer id;
-  private String fn;
-  private String ln;
-  private StudentUnitRecordList su;
+  private Integer studentNumber;
+  private String firstName;
+  private String lastName;
+  private StudentUnitRecordList studentUnit;
 
   public Student(Integer id, String fn, String ln, StudentUnitRecordList su) {
-    this.id = id;
-    this.fn = fn;
-    this.ln = ln;
-    this.su = su == null ? new StudentUnitRecordList() : su;
+    this.studentNumber = id;
+    this.firstName = fn;
+    this.lastName = ln;
+    this.studentUnit = su == null ? new StudentUnitRecordList() : su;
   }
 
-  public Integer getID() {
-    return this.id;
+  
+  
+  public Integer getStudentNumber() {
+    return this.studentNumber;
   }
 
+  
+  
   public String getFirstName() {
-    return fn;
+    return firstName;
   }
 
-  public void setFirstName(String firstName) {
-    this.fn = firstName;
-  }
-
+  
+  
   public String getLastName() {
-    return ln;
+    return lastName;
   }
 
-  public void setLastName(String lastName) {
-
-    this.ln = lastName;
-  }
-
-  public void addUnitRecord(IStudentUnitRecord record) {
-    su.add(record);
-  }
-
-  public IStudentUnitRecord getUnitRecord(String unitCode) {
-    for (IStudentUnitRecord r : su)
-      if (r.getUnitCode().equals(unitCode))
-        return r;
-
-    return null;
-
-  }
+    
 
   public StudentUnitRecordList getUnitRecords() {
-    return su;
+    return studentUnit;
+  }
+  
+  
+  
+  public IStudentUnitRecord getUnitRecord(String uc) {
+    for (IStudentUnitRecord record : studentUnit) {
+      if (record.getUnitCode().equals(uc))
+        return record;
+    }
+    return null;
+  }
+  
+  
+  
+  public void setFirstName(String fn) {
+    this.firstName = fn;
+  }
+  
+  
+
+  public void setLastName(String ln) {
+    this.lastName = ln;
   }
 
-  @Override
-  public Integer getStudentNumber() {
-    // TODO Auto-generated method stub
-    return null;
+  
+  
+  public void addUnitRecord(IStudentUnitRecord r) {
+    studentUnit.add(r);
   }
 }

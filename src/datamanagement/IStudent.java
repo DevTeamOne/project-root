@@ -5,23 +5,30 @@ public interface IStudent {
   public Integer getStudentNumber();
 
   
+  
   public String getFirstName();
 
+  
   
   public String getLastName();
 
   
+  
   public StudentUnitRecordList getUnitRecords();
   
   
-  public IStudentUnitRecord getUnitRecord(String unitCode);
+  
+  public IStudentUnitRecord getUnitRecord(String uc);
   
   
-  public void setFirstName(String firstName);
+  
+  public void setFirstName(String fn);
 
   
-  public void setLastName(String lastName);
+  
+  public void setLastName(String ln);
 
   
-  public void addUnitRecord(IStudentUnitRecord record);
+  
+  public void addUnitRecord(IStudentUnitRecord r);
 }

@@ -14,19 +14,23 @@ public class StudentProxy implements IStudent {
   }
 
   
+  
   public Integer getStudentNumber() {
     return studentNumber;
   }
 
+  
   
   public String getFirstName() {
     return firstName;
   }
 
   
+  
   public String getLastName() {
     return lastName;
   }
+  
   
   
   public StudentUnitRecordList getUnitRecords() {
@@ -34,19 +38,23 @@ public class StudentProxy implements IStudent {
   }
 
   
+  
   public void setFirstName(String firstName) {
     student.getStudent(studentNumber).setFirstName(firstName);
   }
 
+  
   
   public void setLastName(String lastName) {
     student.getStudent(studentNumber).setLastName(lastName);
   }
   
   
+  
   public IStudentUnitRecord getUnitRecord(String unitCode) {
     return student.getStudent(studentNumber).getUnitRecord(unitCode);
   }
+  
   
   
   public void addUnitRecord(IStudentUnitRecord record) {
