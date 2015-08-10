@@ -7,8 +7,7 @@ import org.w3c.dom.Element;
 public class UnitManager {
 
   private static UnitManager self = null;
-
-  private UnitMap UNIT_MANAGER;
+  private UnitMap unitManager;
 
   public static UnitManager UNIT_MANAGER() {
     if (self == null)
@@ -16,16 +15,20 @@ public class UnitManager {
     return self;
   }
 
+  
+  
   private UnitManager() {
-    UNIT_MANAGER = new UnitMap();
+    unitManager = new UnitMap();
   }
 
   public IUnit getUnit(String unitCode) {
-    IUnit iu = UNIT_MANAGER.get(unitCode);
+    IUnit iu = unitManager.get(unitCode);
     return iu != null ? iu : createUnit(unitCode);
 
   }
 
+  
+  
   public UnitMap getUnits() {
 
     UnitMap unitManger;
@@ -41,6 +44,8 @@ public class UnitManager {
     return unitManger;
   }
 
+  
+  
   private IUnit createUnit(String unitCode) {
 
     IUnit iu;
@@ -62,7 +67,7 @@ public class UnitManager {
                 .valueOf(element.getAttribute("asg2wgt")).intValue(),
             Integer.valueOf(element.getAttribute("examwgt")).intValue(),
             StudentUnitRecordManager.instance().getRecordsByUnit(unitCode));
-        UNIT_MANAGER.put(iu.getUnitCode(), iu);
+        unitManager.put(iu.getUnitCode(), iu);
         return iu;
       }
 

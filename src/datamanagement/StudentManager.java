@@ -16,6 +16,8 @@ public class StudentManager {
     unitManager = new java.util.HashMap<>();
   }
   
+  
+  
   public static StudentManager get() {
     if (self == null) {
       self = new StudentManager();
@@ -23,11 +25,15 @@ public class StudentManager {
     return self;
   }
 
+  
+  
   public IStudent getStudent(Integer studentNumber) {
     IStudent individualStudent = studentManager.get(studentNumber);
     
     return individualStudent != null ? individualStudent : createStudent(studentNumber);
   }
+  
+  
   
   private Element getStudentElement(Integer studentNumber) {
     for (Element element : (List<Element>) XMLManager.getXML().getDocument()
@@ -38,6 +44,8 @@ public class StudentManager {
       }
     return null;
   }
+  
+  
   
   public StudentMap getStudentsByUnit(String unitCode) {
     StudentMap student = unitManager.get(unitCode);
@@ -62,6 +70,8 @@ public class StudentManager {
     return student;
   }
 
+  
+  
   private IStudent createStudent(Integer studentNumber) {
     IStudent individualStudent;
     Element element = getStudentElement(studentNumber);
@@ -80,6 +90,8 @@ public class StudentManager {
     throw new RuntimeException("DBMD: createStudent : student not in file");
   }
 
+  
+  
   private IStudent createStudentProxy(Integer studentNumber) {
     Element element = getStudentElement(studentNumber);
 

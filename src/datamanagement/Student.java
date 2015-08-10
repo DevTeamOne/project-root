@@ -50,4 +50,10 @@ public class Student implements IStudent {
   public StudentUnitRecordList getUnitRecords() {
     return su;
   }
+
+  @Override
+  public Integer getStudentNumber() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }
