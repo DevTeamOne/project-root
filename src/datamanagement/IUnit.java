@@ -1,3 +1,10 @@
+/**
+ * Author: Evan Watkins
+ * Student Number: 11537439
+ * Class: ITC515
+ * Assessment: Assignment 2
+ * Description: This class 
+ */
 package datamanagement;
 
 public interface IUnit {
@@ -38,7 +45,7 @@ public interface IUnit {
 
   public void addStudentRecord(IStudentUnitRecord record);
 
-  public IStudentUnitRecord getStudentRecord(int studentID);
+  public IStudentUnitRecord getStudentRecord(int studentNumber);
 
   public StudentUnitRecordList listStudentRecords();
 }

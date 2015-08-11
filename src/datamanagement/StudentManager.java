@@ -1,3 +1,10 @@
+/**
+ * Author: Evan Watkins
+ * Student Number: 11537439
+ * Class: ITC515
+ * Assessment: Assignment 2
+ * Description: This class 
+ */
 package datamanagement;
 
 import java.util.List;
@@ -25,10 +32,10 @@ public class StudentManager {
 
   
   
-  public IStudent getStudent(Integer sn) {
-    IStudent individualStudent = studentManager.get(sn);
+  public IStudent getStudent(Integer number) {
+    IStudent individualStudent = studentManager.get(number);
     
-    return individualStudent != null ? individualStudent : createStudent(sn);
+    return individualStudent != null ? individualStudent : createStudent(number);
   }
   
   
@@ -43,8 +50,8 @@ public class StudentManager {
   
   
   
-  public StudentMap getStudentsByUnit(String uc) {
-    StudentMap student = unitManager.get(uc);
+  public StudentMap getStudentsByUnit(String code) {
+    StudentMap student = unitManager.get(code);
     
     if (student != null) {
       return student;
@@ -54,26 +61,26 @@ public class StudentManager {
     
     IStudent individualStudent;
     
-    StudentUnitRecordList unitRecord = StudentUnitRecordManager.instance().getRecordsByUnit(uc);
+    StudentUnitRecordList unitRecord = StudentUnitRecordManager.instance().getRecordsByUnit(code);
     
     for (IStudentUnitRecord s : unitRecord) {
       individualStudent = createStudentProxy(new Integer(s.getStudentID()));
       student.put(individualStudent.getStudentNumber(), individualStudent);
     }
 
-    unitManager.put(uc, student);
+    unitManager.put(code, student);
     
     return student;
   }
 
   
   
-  private IStudent createStudent(Integer sn) {
+  private IStudent createStudent(Integer number) {
     IStudent individualStudent;
-    Element element = getStudentElement(sn);
+    Element element = getStudentElement(number);
     
     if (element != null) {
-      StudentUnitRecordList recordList = StudentUnitRecordManager.instance().getRecordsByStudent(sn);
+      StudentUnitRecordList recordList = StudentUnitRecordManager.instance().getRecordsByStudent(number);
       
       individualStudent = new Student(new Integer(element.getAttribute("Student Number")),
           element.getAttribute("First Name"), element.getAttribute("Last Name"), recordList);
@@ -88,11 +95,11 @@ public class StudentManager {
 
   
   
-  private IStudent createStudentProxy(Integer sn) {
-    Element element = getStudentElement(sn);
+  private IStudent createStudentProxy(Integer number) {
+    Element element = getStudentElement(number);
 
     if (element != null) {
-      return new StudentProxy(sn, element.getAttribute("First Name"), element.getAttribute("Last Name"));
+      return new StudentProxy(number, element.getAttribute("First Name"), element.getAttribute("Last Name"));
     }
     throw new RuntimeException("DBMD: createStudent : student not in file");
   }
