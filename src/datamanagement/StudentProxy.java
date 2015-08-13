@@ -3,70 +3,91 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class retrieves information on a student based on their individual student number
+ * Description: This class creates a student object based on the individual student details
  */
 package datamanagement;
 
 public class StudentProxy implements IStudent {
-  // Private variables for class StudentProxy
+  /**
+   * Private variables for class StudentProxy
+   */ 
   private Integer studentNumber;
   private String firstName;
   private String lastName;
   private StudentManager student;
 
-  
-  // Constructor for class StudentProxy
+  /**
+   * Constructor for class StudentProxy
+   */ 
   public StudentProxy(Integer number, String first, String last) {
     this.studentNumber = number;
     this.firstName = first;
     this.lastName = last;
     this.student = StudentManager.get();
   }
-
   
-  //Getter method returning the student number
+  /**
+   * Retrieve a student number.
+   * @return The student number.
+   */ 
   public Integer getStudentNumber() {
     return studentNumber;
   }
-
   
-  // Getter method returning the first name of the Student  
+  /**
+   * Retrieve student first name.
+   * @return The student first name.
+   */ 
   public String getFirstName() {
     return firstName;
   }
-
   
-  // Getter method returning the last name of the Student  
+  /**
+   * Retrieve student last name.
+   * @return The student last name.
+   */
   public String getLastName() {
     return lastName;
   }
-  
-  
-  // Getter method returning a student and list of unit records
+    
+  /**
+   * Retrieve student unit record.
+   * @return The student unit record.
+   */ 
   public StudentUnitRecordList getUnitRecords() {
     return student.getStudent(studentNumber).getUnitRecords();
   }
 
-  
-  // Getter method returning student and unit record based on specified unit code
+  /**
+   * Retrieve student record from class student.
+   * @param code: The unit code to be retrieved.
+   * @return Retrieve unit record based on value of student number.
+   */ 
   public IStudentUnitRecord getUnitRecord(String code) {
     return student.getStudent(studentNumber).getUnitRecord(code);
   }
+ 
   
-  
-  // Setter method to store the first name of the student 
+  /**
+   * Set student first name.
+   * @param first: The first name of the student to set.
+   */
   public void setFirstName(String first) {
     student.getStudent(studentNumber).setFirstName(first);
   }
-
   
-  // Setter method to store the last name of the student
+  /**
+   * Set student last name.
+   * @param last: The last name of the student to set.
+   */
   public void setLastName(String last) {
     student.getStudent(studentNumber).setLastName(last);
   }
-    
   
-  // This method adds a new unit to the student record
+  /**
+   * Add a unit to the student record.
+   * @param record: The unit is added to the student record.
+   */
   public void addUnitRecord(IStudentUnitRecord record) {
     student.getStudent(studentNumber).addUnitRecord(record);
   }
