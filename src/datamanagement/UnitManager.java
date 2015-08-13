@@ -48,8 +48,8 @@ public class UnitManager {
 								.intValue(), Integer.valueOf(
 								el.getAttributeValue("asg2wgt")).intValue(),
 						Integer.valueOf(el.getAttributeValue("examwgt"))
-								.intValue(), StudentUnitRecordManager
-								.instance().getRecordsByUnit(unitCode));
+								.intValue(), StudentUnitRecordAdapter
+								.getInstance().getRecordsByUnit(unitCode));
 				UM.put(iu.getUnitCode(), iu);
 				return iu;
 			}

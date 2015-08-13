@@ -92,7 +92,7 @@ public class StudentControl {
     r.setAssignment1Result(asg1);
     r.setAssignment2Result(asg2);
     r.setExamResult(exam);
-    StudentUnitRecordManager.instance().saveRecord(r);
+    StudentUnitRecordAdapter.getInstance().saveRecord(r);
     studentManagementUserInterface.setState4(true);
     studentManagementUserInterface.setState5(false);
     studentManagementUserInterface.setState6(false);

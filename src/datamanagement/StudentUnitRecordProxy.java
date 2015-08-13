@@ -3,12 +3,12 @@ package datamanagement;
 public class StudentUnitRecordProxy implements IStudentUnitRecord {
 	private Integer studentID;
 	private String unitCode;
-	private StudentUnitRecordManager mngr;
+	private StudentUnitRecordAdapter mngr;
 
 	public StudentUnitRecordProxy(Integer id, String code) {
 		this.studentID = id;
 		this.unitCode = code;
-		this.mngr = StudentUnitRecordManager.instance();
+		this.mngr = StudentUnitRecordAdapter.getInstance();
 	}
 
 	public Integer getStudentID() {

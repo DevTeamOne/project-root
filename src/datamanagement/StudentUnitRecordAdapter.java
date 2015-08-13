@@ -1,37 +1,47 @@
 package datamanagement;
 
+import org.jdom.Element;
 import java.util.List;
 
-import org.jdom.Element;
 
+/**
+ * StudentUnitRecordAdapter performs the function of an Adapter 
+ * (persistance and hydration) between an XML file and
+ * a StudentUnitRecord.
+ */
 public class StudentUnitRecordAdapter {
   private static final String ASSIGNMENT1_ATTRIBUTE = "asg1";
   private static final String ASSIGNMENT2_ATTRIBUTE = "asg2";
   private static final String EXAM_ATTRIBUTE = "exam";
-  private static final String SID_ATTRIBUTE = "sid";
-  private static final String UID_ATTRIBUTE = "uid";
+  private static final String STUDENT_ID_ATTRIBUTE = "sid";
+  private static final String UNIT_CODE_ATTRIBUTE = "uid";
   private static final String STUDENT_UNIT_RECORD_NODE = "studentUnitRecordTable";
   private static final String RECORD_NODE = "studentUnitRecordTable";
 
   private static StudentUnitRecordAdapter studentUnitRecordManager_ = null;
-  private StudentUnitRecordMap studentRecordMap_;
-  private java.util.HashMap<String, StudentUnitRecordList> studentUnitRecordsByName;
-  private java.util.HashMap<Integer, StudentUnitRecordList> studentUnitRecordsById;
 
-  public static StudentUnitRecordAdapter instance() {
+  private StudentUnitRecordMap studentRecordMap_;
+  private java.util.HashMap<String, StudentUnitRecordList> studentUnitRecordsByName_;
+  private java.util.HashMap<Integer, StudentUnitRecordList> studentUnitRecordsById_;
+
+    
+  private StudentUnitRecordAdapter() {
+    studentRecordMap_ = new StudentUnitRecordMap();
+    studentUnitRecordsByName_ = new java.util.HashMap<>();
+    studentUnitRecordsById_ = new java.util.HashMap<>();
+  }
+  
+
+  public static StudentUnitRecordAdapter getInstance() {
     if (studentUnitRecordManager_ == null)
       studentUnitRecordManager_ = new StudentUnitRecordAdapter();
     return studentUnitRecordManager_;
   }
-
-  private StudentUnitRecordAdapter() {
-    studentRecordMap_ = new StudentUnitRecordMap();
-    studentUnitRecordsByName = new java.util.HashMap<>();
-    studentUnitRecordsById = new java.util.HashMap<>();
-  }
-
+  
+  
   /**
    * Retrieve a student unit record, based on a key of both student id and unit code.
+   * 
    * @param studentID: The student Id to retrieve.
    * @param unitCode: The unit code to retrieve
    * @return A matching or empty student unit record.
@@ -49,9 +59,11 @@ public class StudentUnitRecordAdapter {
     return studentUnitRecord;
   }
   
+  
   /**
    * Return a student unit record based on the given composite key of 
    * Student Id and Unit Code Id.
+   * 
    * @param studentId: The student Id to find.
    * @param unitCodeId: Then unit code id to find.
    * @return: ISTudentRecord - the record represented by
@@ -71,10 +83,11 @@ public class StudentUnitRecordAdapter {
 
     // For each element where the given UID and SID matches the XML node.
     for (Element element : studentUnitRecords) {
-      if (recordMatch(element, studentId, unitCodeId)) {
+      if (isMatch(element, studentId, unitCodeId)) {
         
         studentUnitRecord = mapStudentUnitRecordFromElement(element);
-        studentRecordMap_.put(buildCompositeKey(studentUnitRecord), studentUnitRecord);
+        studentRecordMap_.put(buildCompositeKeyAsString(studentUnitRecord), 
+            studentUnitRecord);
         
         return studentUnitRecord;
       }
@@ -83,47 +96,57 @@ public class StudentUnitRecordAdapter {
         "DBMD: createStudent : student unit record not in file");
   }
   
+  
   /**
    * Returns a composite key built from the Student Id and Unit Code.
    * This can be used to uniquely identify a record.
+   * 
    * @param studentUnitRecord: The record from which to construct a
    *  composite key.
    * @return : String - The composite key.
    */
-  private String buildCompositeKey (IStudentUnitRecord studentUnitRecord) {
-      return studentUnitRecord.getStudentID().toString()
-          + studentUnitRecord.getUnitCode();
+  private String buildCompositeKeyAsString (
+      IStudentUnitRecord studentUnitRecord) {
+    
+      return studentUnitRecord.getStudentID().toString() +
+           studentUnitRecord.getUnitCode();
   }
 
   /**
    * Loads the student unit record element from the XML file.
+   * 
    * @return: List of XML Elements.
    */
   private List<Element> loadStudentUnitRecordElementsFromFile() {
-    return (List<Element>) XMLManager
-        .getXML()
-        .getDocument()
-        .getRootElement()
-        .getChild(STUDENT_UNIT_RECORD_NODE)
-        .getChildren(RECORD_NODE);
+    return (List<Element>) XMLManager.
+        getXML().
+        getDocument().
+        getRootElement().
+        getChild(STUDENT_UNIT_RECORD_NODE).
+        getChildren(RECORD_NODE);
   }
+  
 
   /**
-   * Checks if the given element matches the Student ID and Unit Code
+   * Checks if the given element matches the Student ID and Unit Code.
+   * 
    * @param element: The element under test.
    * @param studentId: The student ID to compare.
    * @param unitCodeId: The Unit Code to compare.
    * @return: Boolean, True if the element matches the given code.
    */
-  private boolean recordMatch(Element element, Integer studentId,
+  private boolean isMatch(Element element, Integer studentId,
       String unitCodeId) {
-    return unitCodeId.equals(getAttributeAsString(element, UID_ATTRIBUTE))
-        && studentId.equals(getAttributeAsInteger(element, SID_ATTRIBUTE));
+    return 
+        unitCodeId.equals(getAttributeAsString(element, UNIT_CODE_ATTRIBUTE)) &&
+        studentId.equals(getAttributeAsInteger(element, STUDENT_ID_ATTRIBUTE));
   }
+  
 
   /**
    * Returns the value of the requested attribute, from the given element 
-   * as a float
+   * as a float.
+   * 
    * @param element: An element node, containing the given attributeName.
    * @param attributeName: The name of the attribute value
    * @return: The value of of the requested attribute as a Float. 
@@ -135,7 +158,8 @@ public class StudentUnitRecordAdapter {
 
   /**
    * Returns the value of the requested attribute, from the given element 
-   * as a Integer
+   * as a Integer.
+   * 
    * @param element: An element node, containing the given attributeName.
    * @param attributeName: The name of the attribute value
    * @return: The value of of the requested attribute as a Integer. 
@@ -147,7 +171,8 @@ public class StudentUnitRecordAdapter {
 
   /**
    * Returns the value of the requested attribute, from the given element 
-   * as a String
+   * as a String.
+   * 
    * @param element: An element node, containing the given attributeName.
    * @param attributeName: The name of the attribute value
    * @return: The value of of the requested attribute as a String. 
@@ -155,22 +180,24 @@ public class StudentUnitRecordAdapter {
   private String getAttributeAsString(Element element, String attributeName) {
     return new String(element.getAttributeValue(attributeName));
   }
+  
 
   /**
    * Hydrates a student record element node from the CML document to a
-   * StudentUnitRecord
+   * StudentUnitRecord.
    * 
    * @param element: Student element node
    * @return StudentUnitRecord: record mapped from an element.
    */
   private StudentUnitRecord mapStudentUnitRecordFromElement(Element element) {
     return new StudentUnitRecord(
-        getAttributeAsInteger(element, SID_ATTRIBUTE),
-        getAttributeAsString(element, UID_ATTRIBUTE), 
+        getAttributeAsInteger(element, STUDENT_ID_ATTRIBUTE),
+        getAttributeAsString(element, UNIT_CODE_ATTRIBUTE), 
         getAttributeAsFloat(element, ASSIGNMENT1_ATTRIBUTE), 
         getAttributeAsFloat(element, ASSIGNMENT2_ATTRIBUTE),
         getAttributeAsFloat(element, EXAM_ATTRIBUTE));
   }
+  
 
   /**
    * Retrieves a list of StudentUnitRecords with the given unit code.
@@ -183,7 +210,7 @@ public class StudentUnitRecordAdapter {
 
     // Return any existing student records having the given unit code.
     StudentUnitRecordList studentUnitRecords = 
-        studentUnitRecordsByName.get(unitCode);
+        studentUnitRecordsByName_.get(unitCode);
     
     if (studentUnitRecords != null)
       return studentUnitRecords;
@@ -194,8 +221,8 @@ public class StudentUnitRecordAdapter {
     List<Element> studentUnitElements = loadStudentUnitRecordElementsFromFile();
     for (Element element : studentUnitElements) {
 
-      String unitCodeId = getAttributeAsString(element, UID_ATTRIBUTE);
-      Integer studentId = getAttributeAsInteger(element, SID_ATTRIBUTE);
+      String unitCodeId = getAttributeAsString(element, UNIT_CODE_ATTRIBUTE);
+      Integer studentId = getAttributeAsInteger(element, STUDENT_ID_ATTRIBUTE);
 
       // Add proxy records for students having a matching unit code.
       if (unitCode.equals(unitCodeId)) {
@@ -207,25 +234,23 @@ public class StudentUnitRecordAdapter {
 
     // Add the list of proxy objects to the studentUnitRecordsByName hashmap.
     if (studentUnitRecords.size() > 0)
-      studentUnitRecordsByName.put(unitCode, studentUnitRecords); // be careful
-                                                                  // - this
-                                                                  // could be
-                                                                  // empty
+      studentUnitRecordsByName_.put(unitCode, studentUnitRecords);
+    
     return studentUnitRecords;
   }
 
+  
   /**
    * Retrieves a list of StudentRecords by Student Id.
    * 
-   * @param studentID
-   *          : The student Id indicating records to be returned.
+   * @param studentID: The student Id indicating records to be returned.
    * @return: StudentUnitRecords list of records for the given student Id.
    */
-  public StudentUnitRecordList getRecordsByStudent(Integer student) {
+  public StudentUnitRecordList findStudentUnitRevordsById(Integer studentIDToFind) {
 
     // Return any existing studentUnitRecords for the given student ID.
-    StudentUnitRecordList studentUnitRecords = studentUnitRecordsById
-        .get(student);
+    StudentUnitRecordList studentUnitRecords = 
+        studentUnitRecordsById_.get(studentIDToFind);
     if (studentUnitRecords != null)
       return studentUnitRecords;
 
@@ -234,24 +259,23 @@ public class StudentUnitRecordAdapter {
     // Otherwise iterate through all of the student records from the XML file.
     for (Element element : loadStudentUnitRecordElementsFromFile()) {
 
-      String unitCodeId = getAttributeAsString(element, UID_ATTRIBUTE);
-      Integer studentId = getAttributeAsInteger(element, SID_ATTRIBUTE);
+      String unitCode = getAttributeAsString(element, UNIT_CODE_ATTRIBUTE);
+      Integer studentId = getAttributeAsInteger(element, STUDENT_ID_ATTRIBUTE);
 
-      if (student.toString().equals(studentId)) {
+      if (studentIDToFind.toString().equals(studentId)) {
 
-        StudentUnitRecordProxy studentUnitRecordProxy = new StudentUnitRecordProxy(
-            studentId, unitCodeId);
+        StudentUnitRecordProxy studentUnitRecordProxy = 
+            new StudentUnitRecordProxy(studentId, unitCode);
         studentUnitRecords.add(studentUnitRecordProxy);
       }
     }
 
     // Add the list of proxy objects to the studentUnitRecordsById hashmap.
     if (studentUnitRecords.size() > 0)
-      studentUnitRecordsById.put(student, studentUnitRecords); // be careful -
-                                                               // this could be
-                                                               // empty
+      studentUnitRecordsById_.put(studentIDToFind, studentUnitRecords); 
     return studentUnitRecords;
   }
+  
 
   /**
    * Save a record to the XML file.
@@ -263,7 +287,7 @@ public class StudentUnitRecordAdapter {
   public void saveRecord(IStudentUnitRecord studentUnitRecord) {
     for (Element element : loadStudentUnitRecordElementsFromFile()) {
 
-      if (recordMatch(element, studentUnitRecord.getStudentID(),
+      if (isMatch(element, studentUnitRecord.getStudentID(),
           studentUnitRecord.getUnitCode())) {
 
         element.setAttribute(ASSIGNMENT1_ATTRIBUTE,
