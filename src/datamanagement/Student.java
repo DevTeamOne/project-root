@@ -11,10 +11,10 @@ public class Student implements IStudent {
   /** 
    * Private variables for class Student
    */
-  private Integer studentNumber;
-  private String firstName;
-  private String lastName;
-  private StudentUnitRecordList studentUnit;
+  private Integer studentNumber_;
+  private String firstName_;
+  private String lastName_;
+  private StudentUnitRecordList studentUnit_;
   
   /**
    * Retrieve a student unit record, based on a key of both student id and unit code.
@@ -25,10 +25,10 @@ public class Student implements IStudent {
    * @return A matching or empty student unit record.
    */
   public Student(Integer number, String first, String last, StudentUnitRecordList record) {
-    this.studentNumber = number;
-    this.firstName = first;
-    this.lastName = last;
-    this.studentUnit = record == null ? new StudentUnitRecordList() : record;
+    this.studentNumber_ = number;
+    this.firstName_ = first;
+    this.lastName_ = last;
+    this.studentUnit_ = record == null ? new StudentUnitRecordList() : record;
   }
   
   /**
@@ -36,7 +36,7 @@ public class Student implements IStudent {
    * @return The student number.
    */ 
   public Integer getStudentNumber() {
-    return this.studentNumber;
+    return this.studentNumber_;
   }
   
   /**
@@ -44,7 +44,7 @@ public class Student implements IStudent {
    * @return The student first name.
    */ 
   public String getFirstName() {
-    return firstName;
+    return firstName_;
   }
   
   /**
@@ -52,7 +52,7 @@ public class Student implements IStudent {
    * @return The student last name.
    */ 
   public String getLastName() {
-    return lastName;
+    return lastName_;
   }
     
   /**
@@ -60,7 +60,7 @@ public class Student implements IStudent {
    * @return The student unit record.
    */ 
   public StudentUnitRecordList getUnitRecords() {
-    return studentUnit;
+    return studentUnit_;
   }
   
   /**
@@ -72,7 +72,7 @@ public class Student implements IStudent {
    * @return Null.
    */ 
   public IStudentUnitRecord getUnitRecord(String code) {
-    for (IStudentUnitRecord record : studentUnit) {
+    for (IStudentUnitRecord record : studentUnit_) {
       if (record.getUnitCode().equals(code))
         return record;
     }
@@ -84,7 +84,7 @@ public class Student implements IStudent {
    * @param first: The first name of the student to set.
    */
   public void setFirstName(String first) {
-    this.firstName = first;
+    this.firstName_ = first;
   }
   
   /**
@@ -92,7 +92,7 @@ public class Student implements IStudent {
    * @param last: The last name of the student to set.
    */
   public void setLastName(String last) {
-    this.lastName = last;
+    this.lastName_ = last;
   }
   
   /**
@@ -100,6 +100,6 @@ public class Student implements IStudent {
    * @param record: The unit is added to the student record.
    */
   public void addUnitRecord(IStudentUnitRecord record) {
-    studentUnit.add(record);
+    studentUnit_.add(record);
   }
 }

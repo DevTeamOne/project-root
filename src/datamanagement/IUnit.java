@@ -13,39 +13,39 @@ public interface IUnit {
 
   public String getUnitName();
 
-  public float getPsCutoff();
+  public float getPassRange();
+  
+  public float getCreditRange();  
+  
+  public float getDistinctionRange(); 
+  
+  public float getHighDistinctionRange(); 
+  
+  public float getAlternativeExitRange();
+  
+  public int getFirstAssignmentWeight();
 
-  public void setPsCutoff1(float cutoff);
-
-  public float getCrCutoff();
-
-  public void setCrCutoff(float cutoff);
-
-  public float getDiCuttoff();
-
-  public void setDiCutoff(float cutoff);
-
-  public float getHdCutoff();
-
-  public void setHdCutoff(float cutoff);
-
-  public float getAeCutoff();
-
-  public void setAeCutoff(float cutoff);
-
-  public int getAsg1Weight();
-
-  public int getAsg2Weight();
+  public int getSecondAssignmentWeight();
 
   public int getExamWeight();
+  
+  public String getGrade(float assignment1, float assignment2, float exam);
+  
+  public IStudentUnitRecord getStudentRecord(int studentNumber);
+  
+  public void setPassRange(float range);
 
-  public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt);
+  public void setCreditRange(float range);
 
-  public String getGrade(float asg1, float asg2, float exam);
+  public void setDistinctionRange(float range);
+
+  public void setHighDistinctionRange(float range);
+
+  public void setAlternativeExitRange(float range);
+
+  public void setAssessmentWeights(int assessment1, int assessment2, int assessmentExam);
 
   public void addStudentRecord(IStudentUnitRecord record);
-
-  public IStudentUnitRecord getStudentRecord(int studentNumber);
 
   public StudentUnitRecordList listStudentRecords();
 }

@@ -35,99 +35,50 @@ public class UnitProxy implements IUnit {
 
   
   
-  public void setPsCutoff1(float cutoff) {
-    unitManager.getUnit(unitCode).setPsCutoff1(cutoff);
+  public float getPassRange() {
+    return unitManager.getUnit(unitCode).getPassRange();
+  }
+  
+  
+  public float getCreditRange() {
+    return unitManager.getUnit(unitCode).getCreditRange();
+  }
+  
+  
+  public float getDistinctionRange() {
+    return unitManager.getUnit(unitCode).getDistinctionRange();
   }
 
   
-  
-  public float getPsCutoff() {
-    return unitManager.getUnit(unitCode).getPsCutoff();
+  public float getHighDistinctionRange() {
+
+    return unitManager.getUnit(unitCode).getHighDistinctionRange();
   }
-
   
   
-  public void setCrCutoff(float cutoff) {
-    unitManager.getUnit(unitCode).setCrCutoff(cutoff);
+  public float getAlternativeExitRange() {
+    return unitManager.getUnit(unitCode).getAlternativeExitRange();
   }
-
-  
-  
-  public float getCrCutoff() {
-    return unitManager.getUnit(unitCode).getCrCutoff();
-  }
-
-  
-  
-  public void setDiCutoff(float cutoff) {
-    unitManager.getUnit(unitCode).setDiCutoff(cutoff);
-  }
-
-  
-  
-  public float getDiCuttoff() {
-    return unitManager.getUnit(unitCode).getDiCuttoff();
-  }
-
-  
-  
-  public void setHdCutoff(float cutoff) {
-    unitManager.getUnit(unitCode).setHdCutoff(cutoff);
-  }
-
-  
-  
-  public float getHdCutoff() {
-
-    return unitManager.getUnit(unitCode).getHdCutoff();
-  }
-
-  
-  
-  public void setAeCutoff(float cutoff) {
-    unitManager.getUnit(unitCode).setAeCutoff(cutoff);
-  }
-
-  
-  
-  public float getAeCutoff() {
-    return unitManager.getUnit(unitCode).getAeCutoff();
-  }
-
   
   
   public String getGrade(float f1, float f2, float f3) {
     return unitManager.getUnit(unitCode).getGrade(f1, f2, f3);
   }
-
-  
-  
-  public void addStudentRecord(IStudentUnitRecord record) {
-    unitManager.getUnit(unitCode).addStudentRecord(record);
-  }
-
   
   
   public IStudentUnitRecord getStudentRecord(int s) {
     return unitManager.getUnit(unitCode).getStudentRecord(s);
   }
-
   
   
-  public StudentUnitRecordList listStudentRecords() {
-    return unitManager.getUnit(unitCode).listStudentRecords();
+  public int getFirstAssignmentWeight() {
+    return unitManager.getUnit(unitCode).getFirstAssignmentWeight();
   }
 
   
   
-  public int getAsg1Weight() {
-    return unitManager.getUnit(unitCode).getAsg1Weight();
-  }
-
-  
-  
-  public int getAsg2Weight() {
-    return unitManager.getUnit(unitCode).getAsg2Weight();
+  public int getSecondAssignmentWeight() {
+    return unitManager.getUnit(unitCode).getSecondAssignmentWeight();
   }
 
   
@@ -135,10 +86,43 @@ public class UnitProxy implements IUnit {
   public int getExamWeight() {
     return unitManager.getUnit(unitCode).getExamWeight();
   }
+  
+  
+  
+  public void setPassRange(float range) {
+    unitManager.getUnit(unitCode).setPassRange(range);
+  }
 
+    
+  public void setCreditRange(float range) {
+    unitManager.getUnit(unitCode).setCreditRange(range);
+  }
+  
+  public void setDistinctionRange(float range) {
+    unitManager.getUnit(unitCode).setDistinctionRange(range);
+  }
+  
+  public void setHighDistinctionRange(float range) {
+    unitManager.getUnit(unitCode).setHighDistinctionRange(range);
+  }
+
+    
+  public void setAlternativeExitRange(float range) {
+    unitManager.getUnit(unitCode).setAlternativeExitRange(range);
+  }  
+   
+  
+  public void setAssessmentWeights(int assessment1, int assessment2, int assessmentExam) {
+    unitManager.getUnit(unitCode).setAssessmentWeights(assessment1, assessment2, assessmentExam);
+  }
   
   
-  public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt) {
-    unitManager.getUnit(unitCode).setAssessmentWeights(asg1Wgt, asg2Wgt, examWgt);
+  public void addStudentRecord(IStudentUnitRecord record) {
+    unitManager.getUnit(unitCode).addStudentRecord(record);
+  }
+  
+  
+  public StudentUnitRecordList listStudentRecords() {
+    return unitManager.getUnit(unitCode).listStudentRecords();
   }
 }

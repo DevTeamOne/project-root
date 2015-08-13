@@ -8,8 +8,8 @@
 package datamanagement;
 
 public class Unit implements IUnit {
-  private String uc;
-  private String UN;
+  private String unitCode;
+  private String unitNumber;
   private float co2;
   private float co1;
   private float co4;
@@ -17,99 +17,70 @@ public class Unit implements IUnit {
   private float co5;
   private int a1, a2, ex;
 
-  private StudentUnitRecordList rs;
+  private StudentUnitRecordList recordStudent;
 
   public Unit(String UC, String un, float f1, float f2, float f3, float f4,
       float f5, int i1, int i2, int i3, StudentUnitRecordList rl) {
 
-    uc = UC;
-    UN = un;
+    unitCode = UC;
+    unitNumber = un;
     co2 = f1;
     co1 = f2;
     this.co4 = f3;
     co3 = f4;
     this.co5 = f5;
     this.setAssessmentWeights(i1, i2, i3);
-    rs = rl == null ? new StudentUnitRecordList() : rl;
+    recordStudent = rl == null ? new StudentUnitRecordList() : rl;
   }
 
   public String getUnitCode() {
-    return this.uc;
+    return this.unitCode;
   }
 
   public String getUnitName() {
 
-    return this.UN;
+    return this.unitNumber;
   }
-
-  public void setPsCutoff1(float cutoff) {
-    this.co2 = cutoff;
-  }
-
-  public float getPsCutoff() {
+  
+  public float getPassRange() {
     return this.co2;
   }
 
-  public void setCrCutoff(float cutoff) {
-    this.co1 = cutoff;
-  }
-
-  public float getCrCutoff() {
+  public float getCreditRange() {
     return this.co1;
   }
-
-  public void setDiCutoff(float cutoff) {
-    this.co4 = cutoff;
-  }
-
-  public float getDiCuttoff() {
+  
+  public float getDistinctionRange() {
     return this.co4;
   }
-
-  public void HDCutoff(float cutoff) {
-    this.co3 = cutoff;
+  
+  public void getHighDistinctionRange(float range) {
+    this.co3 = range;
   }
-
-  public void setHdCutoff(float cutoff) {
-    this.co3 = cutoff;
-  }
-
-  public float getHdCutoff() {
+  
+  public float getHighDistinctionRange() {
     return this.co3;
-
   }
-
-  public void setAeCutoff(float cutoff) {
-    this.co5 = cutoff;
-  }
-
-  public float getAeCutoff() {
+  
+  public float getAlternativeExitRange() {
     return this.co5;
   }
-
-  public void addStudentRecord(IStudentUnitRecord record) {
-    rs.add(record);
-  }
-
+  
   public IStudentUnitRecord getStudentRecord(int studentID) {
-    for (IStudentUnitRecord r : rs) {
+    for (IStudentUnitRecord r : recordStudent) {
       if (r.getStudentID() == studentID)
         return r;
     }
     return null;
   }
-
-  public StudentUnitRecordList listStudentRecords() {
-    return rs;
-  }
-
+  
   @Override
-  public int getAsg1Weight() {
+  public int getFirstAssignmentWeight() {
     return a1;
   }
 
   @Override
-  public int getAsg2Weight() {
+  public int getSecondAssignmentWeight() {
     return a2;
   }
 
@@ -117,42 +88,7 @@ public class Unit implements IUnit {
   public int getExamWeight() {
     return ex;
   }
-
-  @Override
-  public void setAssessmentWeights(int a1, int a2, int ex) {
-    if (a1 < 0 || a1 > 100 || a2 < 0 || a2 > 100 || ex < 0 || ex > 100) {
-      throw new RuntimeException(
-          "Assessment weights cant be less than zero or greater than 100");
-    }
-    if (a1 + a2 + ex != 100) {
-      throw new RuntimeException("Assessment weights must add to 100");
-    }
-    this.a1 = a1;
-    this.a2 = a2;
-    this.ex = ex;
-  }
-
-  private void setCutoffs(float ps, float cr, float di, float hd, float ae) {
-    if (ps < 0 || ps > 100 || cr < 0 || cr > 100 || di < 0 || di > 100
-        || hd < 0 || hd > 100 || ae < 0 || ae > 100) {
-      throw new RuntimeException(
-          "Assessment cutoffs cant be less than zero or greater than 100");
-    }
-    if (ae >= ps) {
-      throw new RuntimeException("AE cutoff must be less than PS cutoff");
-    }
-    if (ps >= cr) {
-      throw new RuntimeException("PS cutoff must be less than CR cutoff");
-    }
-    if (cr >= di) {
-      throw new RuntimeException("CR cutoff must be less than DI cutoff");
-    }
-    if (di >= hd) {
-      throw new RuntimeException("DI cutoff must be less than HD cutoff");
-    }
-
-  }
-
+  
   public String getGrade(float f1, float f2, float f3) {
     float t = f1 + f2 + f3;
 
@@ -173,6 +109,69 @@ public class Unit implements IUnit {
       return "DI";
     else
       return "HD";
+  }
+  
+  public void setPassRange(float range) {
+    this.co2 = range;
+  }
+
+  public void setCreditRange(float range) {
+    this.co1 = range;
+  }
+
+
+  public void setDistinctionRange(float range) {
+    this.co4 = range;
+  }
+
+  public void setHighDistinctionRange(float range) {
+    this.co3 = range;
+  }
+
+  public void setAlternativeExitRange(float range) {
+    this.co5 = range;
+  }
+
+  @Override
+  public void setAssessmentWeights(int assessment1, int assessment2, int assessmentExam) {
+    if (assessment1 < 0 || assessment1 > 100 || assessment2 < 0 || assessment2 > 100 || assessmentExam < 0 || assessmentExam > 100) {
+      throw new RuntimeException(
+          "Assessment weights cant be less than zero or greater than 100");
+    }
+    if (assessment1 + assessment2 + assessmentExam != 100) {
+      throw new RuntimeException("Assessment weights must add to 100");
+    }
+    this.a1 = assessment1;
+    this.a2 = assessment2;
+    this.ex = assessmentExam;
+  }
+
+  private void setAssignmentRange(float pass, float credit, float distinction, float highDistinction, float alternativeExit) {
+    if (pass < 0 || pass > 100 || credit < 0 || credit > 100 || distinction < 0 || distinction > 100
+        || highDistinction <= 0 || highDistinction > 100 || alternativeExit < 0 || alternativeExit > 100) {
+      throw new RuntimeException(
+          "Assessment range cant be less than zero or greater than 100");
+    }
+    if (alternativeExit >= pass) {
+      throw new RuntimeException("Alternative Exit range must be less than Pass range");
+    }
+    if (pass >= credit) {
+      throw new RuntimeException("Pass range must be less than Credit range");
+    }
+    if (credit >= distinction) {
+      throw new RuntimeException("Credit range must be less than Distinction range");
+    }
+    if (distinction >= highDistinction) {
+      throw new RuntimeException("Distinction range must be less than HighDistinction range");
+    }
+  }
+
+  public void addStudentRecord(IStudentUnitRecord record) {
+    recordStudent.add(record);
+  }
+
+  public StudentUnitRecordList listStudentRecords() {
+    return recordStudent;
   }
 
 }

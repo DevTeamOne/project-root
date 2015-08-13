@@ -8,11 +8,12 @@
 package datamanagement;
 
 import java.util.List;
+
 import org.w3c.dom.Element;
 
 public class UnitManager {
   private static UnitManager self = null;
-  private UnitMap unitManager;
+  private UnitMap unitManager_;
 
   public static UnitManager UNIT_MANAGER() {
     if (self == null)
@@ -23,13 +24,13 @@ public class UnitManager {
   
   
   private UnitManager() {
-    unitManager = new UnitMap();
+    unitManager_ = new UnitMap();
   }
   
   
 
   public IUnit getUnit(String unitCode) {
-    IUnit unit = unitManager.get(unitCode);
+    IUnit unit = unitManager_.get(unitCode);
     return unit != null ? unit : createUnit(unitCode);
 
   }
@@ -52,28 +53,33 @@ public class UnitManager {
 
   
   
+  @SuppressWarnings("unchecked")
   private IUnit createUnit(String unitCode) {
 
-    IUnit unit;
+    IUnit unit_;
 
-    for (Element element : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("unitTable").getChildren("unit"))
-      if (unitCode.equals(element.getAttribute("uid"))) {
+    for (Element element : (List<Element>) XMLManager.getXML().
+        getDocument().
+        getRootElement().
+        getChild("Unit Table").
+        getChildren("Unit"))
+      if (unitCode.equals(element.getAttribute("Unit ID"))) {
         StudentUnitRecordList studentList;
 
         studentList = null;
-        unit = new Unit(element.getAttribute("uid"),
-            element.getAttribute("name"), Float.valueOf(
-                element.getAttribute("ps")).floatValue(), Float.valueOf(
-                element.getAttribute("cr")).floatValue(), Float.valueOf(
-                element.getAttribute("di")).floatValue(), Float.valueOf(
-                element.getAttribute("hd")).floatValue(), Float.valueOf(
-                element.getAttribute("ae")).floatValue(), Integer.valueOf(
-                element.getAttribute("asg1wgt")).intValue(), Integer
-                .valueOf(element.getAttribute("asg2wgt")).intValue(),
-            Integer.valueOf(element.getAttribute("examwgt")).intValue(),
-            StudentUnitRecordManager.instance().getRecordsByUnit(unitCode));
-        unitManager.put(unit.getUnitCode(), unit);
-        return unit;
+        unit_ = new Unit(element.getAttribute("Unit ID"),
+            element.getAttribute("Name"), Float.valueOf(
+                element.getAttribute("Pass")).floatValue(), Float.valueOf(
+                element.getAttribute("Credit")).floatValue(), Float.valueOf(
+                element.getAttribute("Distinction")).floatValue(), Float.valueOf(
+                element.getAttribute("High Distinction")).floatValue(), Float.valueOf(
+                element.getAttribute("Alternative Exit")).floatValue(), Integer.valueOf(
+                element.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
+                element.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
+                element.getAttribute("Exam weight")).intValue(), StudentUnitRecordManager.instance().
+                getRecordsByUnit(unitCode));
+        unitManager_.put(unit_.getUnitCode(), unit_);
+        return unit_;
       }
 
     throw new RuntimeException("DBMD: createUnit : unit not in file");

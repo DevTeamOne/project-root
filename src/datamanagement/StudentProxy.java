@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class creates a student object based on the individual student details
+ * Description: This class either creates or returns a student object based on the individual student details
  */
 package datamanagement;
 
@@ -11,19 +11,19 @@ public class StudentProxy implements IStudent {
   /**
    * Private variables for class StudentProxy
    */ 
-  private Integer studentNumber;
-  private String firstName;
-  private String lastName;
-  private StudentManager student;
+  private Integer studentNumber_;
+  private String firstName_;
+  private String lastName_;
+  private StudentManager student_;
 
   /**
    * Constructor for class StudentProxy
    */ 
   public StudentProxy(Integer number, String first, String last) {
-    this.studentNumber = number;
-    this.firstName = first;
-    this.lastName = last;
-    this.student = StudentManager.get();
+    this.studentNumber_ = number;
+    this.firstName_ = first;
+    this.lastName_ = last;
+    this.student_ = StudentManager.get();
   }
   
   /**
@@ -31,7 +31,7 @@ public class StudentProxy implements IStudent {
    * @return The student number.
    */ 
   public Integer getStudentNumber() {
-    return studentNumber;
+    return studentNumber_;
   }
   
   /**
@@ -39,7 +39,7 @@ public class StudentProxy implements IStudent {
    * @return The student first name.
    */ 
   public String getFirstName() {
-    return firstName;
+    return firstName_;
   }
   
   /**
@@ -47,7 +47,7 @@ public class StudentProxy implements IStudent {
    * @return The student last name.
    */
   public String getLastName() {
-    return lastName;
+    return lastName_;
   }
     
   /**
@@ -55,7 +55,7 @@ public class StudentProxy implements IStudent {
    * @return The student unit record.
    */ 
   public StudentUnitRecordList getUnitRecords() {
-    return student.getStudent(studentNumber).getUnitRecords();
+    return student_.getStudent(studentNumber_).getUnitRecords();
   }
 
   /**
@@ -64,7 +64,7 @@ public class StudentProxy implements IStudent {
    * @return Retrieve unit record based on value of student number.
    */ 
   public IStudentUnitRecord getUnitRecord(String code) {
-    return student.getStudent(studentNumber).getUnitRecord(code);
+    return student_.getStudent(studentNumber_).getUnitRecord(code);
   }
  
   
@@ -73,7 +73,7 @@ public class StudentProxy implements IStudent {
    * @param first: The first name of the student to set.
    */
   public void setFirstName(String first) {
-    student.getStudent(studentNumber).setFirstName(first);
+    student_.getStudent(studentNumber_).setFirstName(first);
   }
   
   /**
@@ -81,7 +81,7 @@ public class StudentProxy implements IStudent {
    * @param last: The last name of the student to set.
    */
   public void setLastName(String last) {
-    student.getStudent(studentNumber).setLastName(last);
+    student_.getStudent(studentNumber_).setLastName(last);
   }
   
   /**
@@ -89,6 +89,6 @@ public class StudentProxy implements IStudent {
    * @param record: The unit is added to the student record.
    */
   public void addUnitRecord(IStudentUnitRecord record) {
-    student.getStudent(studentNumber).addUnitRecord(record);
+    student_.getStudent(studentNumber_).addUnitRecord(record);
   }
 }

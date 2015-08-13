@@ -12,17 +12,28 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 public class StudentManager {
+  /** 
+   * Private variables for class StudentManager
+   */
   private static StudentManager self = null;
-  private StudentMap studentManager;
-  private java.util.HashMap<String, StudentMap> unitManager;
+  private StudentMap studentManager_;
+  private java.util.HashMap<String, StudentMap> unitManager_;
 
+  /**
+   * Constructor for class StudentManager
+   */ 
   private StudentManager() {
-    studentManager = new StudentMap();
-    unitManager = new java.util.HashMap<>();
+    studentManager_ = new StudentMap();
+    unitManager_ = new java.util.HashMap<>();
   }
   
-  
-  
+  /**
+   * Retrieve student unit record.   
+   * If self is null
+   * @return create new self.
+   * else
+   * @return self.
+   */ 
   public static StudentManager get() {
     if (self == null) {
       self = new StudentManager();
@@ -30,20 +41,32 @@ public class StudentManager {
     return self;
   }
 
-  
-  
+  /**
+   * Retrieve individual student using their student number.   
+   * @param number: The student number to retrieve.
+   * @return individual student or create new student if null.
+   */   
   public IStudent getStudent(Integer number) {
-    IStudent individualStudent = studentManager.get(number);
+    IStudent individualStudent = studentManager_.get(number);
     
     return individualStudent != null ? individualStudent : createStudent(number);
   }
   
-  
-  
-  private Element getStudentElement(Integer sn) {
-    for (Element e : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentTable").getChildren("student"))
-      if (sn.toString().equals(e.getAttribute("Student Number"))) {
-        return e;
+  /**
+   * Retrieve individual student using their student number.   
+   * @param number: The student number to retrieve.
+   * @return individual student or create new student if null.
+   */   
+  @SuppressWarnings("unchecked")
+  private Element getStudentElement(Integer studentNumber) {
+    for (Element element : (List<Element>) XMLManager.getXML().
+        getDocument().
+        getRootElement().
+        getChild("studentTable").
+        getChildren("student"))
+      
+      if (studentNumber.toString().equals(element.getAttribute("Student Number"))) {
+        return element;
       }
     return null;
   }
@@ -51,7 +74,7 @@ public class StudentManager {
   
   
   public StudentMap getStudentsByUnit(String code) {
-    StudentMap student = unitManager.get(code);
+    StudentMap student = unitManager_.get(code);
     
     if (student != null) {
       return student;
@@ -68,7 +91,7 @@ public class StudentManager {
       student.put(individualStudent.getStudentNumber(), individualStudent);
     }
 
-    unitManager.put(code, student);
+    unitManager_.put(code, student);
     
     return student;
   }
@@ -76,18 +99,19 @@ public class StudentManager {
   
   
   private IStudent createStudent(Integer number) {
-    IStudent individualStudent;
-    Element element = getStudentElement(number);
+    IStudent individualStudent_;
+    Element element_ = getStudentElement(number);
     
-    if (element != null) {
+    if (element_ != null) {
       StudentUnitRecordList recordList = StudentUnitRecordManager.instance().getRecordsByStudent(number);
       
-      individualStudent = new Student(new Integer(element.getAttribute("Student Number")),
-          element.getAttribute("First Name"), element.getAttribute("Last Name"), recordList);
+      individualStudent_ = new Student(new Integer(element_.getAttribute("Student Number")),
+          element_.getAttribute("First Name"), 
+          element_.getAttribute("Last Name"), recordList);
 
-      studentManager.put(individualStudent.getStudentNumber(), individualStudent);
+      studentManager_.put(individualStudent_.getStudentNumber(), individualStudent_);
       
-      return individualStudent;
+      return individualStudent_;
     }
     
     throw new RuntimeException("DBMD: createStudent : student not in file");
@@ -96,10 +120,12 @@ public class StudentManager {
   
   
   private IStudent createStudentProxy(Integer number) {
-    Element element = getStudentElement(number);
+    Element element_ = getStudentElement(number);
 
-    if (element != null) {
-      return new StudentProxy(number, element.getAttribute("First Name"), element.getAttribute("Last Name"));
+    if (element_ != null) {
+      return new StudentProxy(number, 
+          element_.getAttribute("First Name"), 
+          element_.getAttribute("Last Name"));
     }
     throw new RuntimeException("DBMD: createStudent : student not in file");
   }
