@@ -121,14 +121,37 @@ public class StudentUnitRecordAdapter {
         && studentId.equals(getAttributeAsInteger(element, SID_ATTRIBUTE));
   }
 
+  /**
+   * Returns the value of the requested attribute, from the given element 
+   * as a float
+   * @param element: An element node, containing the given attributeName.
+   * @param attributeName: The name of the attribute value
+   * @return: The value of of the requested attribute as a Float. 
+   */
   private Float getAttributeAsFloat(Element element, String attributeName) {
     return new Float(element.getAttributeValue(attributeName));
   }
 
+
+  /**
+   * Returns the value of the requested attribute, from the given element 
+   * as a Integer
+   * @param element: An element node, containing the given attributeName.
+   * @param attributeName: The name of the attribute value
+   * @return: The value of of the requested attribute as a Integer. 
+   */
   private Integer getAttributeAsInteger(Element element, String attributeName) {
     return new Integer(element.getAttributeValue(attributeName));
   }
 
+
+  /**
+   * Returns the value of the requested attribute, from the given element 
+   * as a String
+   * @param element: An element node, containing the given attributeName.
+   * @param attributeName: The name of the attribute value
+   * @return: The value of of the requested attribute as a String. 
+   */
   private String getAttributeAsString(Element element, String attributeName) {
     return new String(element.getAttributeValue(attributeName));
   }
@@ -137,31 +160,31 @@ public class StudentUnitRecordAdapter {
    * Hydrates a student record element node from the CML document to a
    * StudentUnitRecord
    * 
-   * @param element
-   *          : Student recode element node
+   * @param element: Student element node
    * @return StudentUnitRecord: record mapped from an element.
    */
   private StudentUnitRecord mapStudentUnitRecordFromElement(Element element) {
-    return new StudentUnitRecord(getAttributeAsInteger(element, SID_ATTRIBUTE),
-        getAttributeAsString(element, UID_ATTRIBUTE), getAttributeAsFloat(
-            element, ASSIGNMENT1_ATTRIBUTE), getAttributeAsFloat(element,
-            ASSIGNMENT2_ATTRIBUTE),
+    return new StudentUnitRecord(
+        getAttributeAsInteger(element, SID_ATTRIBUTE),
+        getAttributeAsString(element, UID_ATTRIBUTE), 
+        getAttributeAsFloat(element, ASSIGNMENT1_ATTRIBUTE), 
+        getAttributeAsFloat(element, ASSIGNMENT2_ATTRIBUTE),
         getAttributeAsFloat(element, EXAM_ATTRIBUTE));
   }
 
   /**
-   * Retrieves a list of StudentUnitRecords ith the given unit code.
+   * Retrieves a list of StudentUnitRecords with the given unit code.
    * 
-   * @param unitCode
-   *          : The unit code for the student records to find.
+   * @param unitCode: The unit code for the student records to find.
    * @return: StudentRecordList - List of records for students enrolled the
    *          given unit code.
    */
   public StudentUnitRecordList getRecordsByUnit(String unitCode) {
 
     // Return any existing student records having the given unit code.
-    StudentUnitRecordList studentUnitRecords = studentUnitRecordsByName
-        .get(unitCode);
+    StudentUnitRecordList studentUnitRecords = 
+        studentUnitRecordsByName.get(unitCode);
+    
     if (studentUnitRecords != null)
       return studentUnitRecords;
 
@@ -235,6 +258,7 @@ public class StudentUnitRecordAdapter {
    * 
    * @param studentUnitRecord
    *          : Record to be saved.
+   * @throws: RuntimeException - If the xml document could not be saved.
    */
   public void saveRecord(IStudentUnitRecord studentUnitRecord) {
     for (Element element : loadStudentUnitRecordElementsFromFile()) {
