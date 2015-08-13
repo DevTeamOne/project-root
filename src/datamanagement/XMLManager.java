@@ -16,7 +16,7 @@ public class XMLManager {
   private Document document_;
   
 
-  public XMLManager() {
+  private XMLManager() {
     initialize();
   }
     
