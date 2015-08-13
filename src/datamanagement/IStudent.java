@@ -8,34 +8,54 @@
 package datamanagement;
 
 public interface IStudent {
-  //Getter method returning the student number
+  /**
+   * Retrieve student number.
+   */ 
   public Integer getStudentNumber();
 
   
-  // Getter method returning the first name of the Student
+  /**
+   * Retrieve student first name.
+   */ 
   public String getFirstName();
 
   
-  // Getter method returning the last name of the Student
+  /**
+   * Retrieve student last name.
+   */ 
   public String getLastName();
 
   
-  // Getter method returning student units
+  /**
+   * Retrieve student unit records.
+   */ 
   public StudentUnitRecordList getUnitRecords();
   
   
-  // Getter method returning unit record of student
+  /**
+   * Retrieve student record using unit code.
+   * @param code: The unit code to be retrieved.
+   */ 
   public IStudentUnitRecord getUnitRecord(String code);
   
   
-  // Setter method to store the first name of the Student
+  /**
+   * Set student first name.
+   * @param The student first name.
+   */ 
   public void setFirstName(String first);
 
   
-  // Setter method to store the last name of the student
+  /**
+   * Set student last name.
+   * @param The student last name.
+   */ 
   public void setLastName(String last);
 
   
-  // This method adds a new unit to the student
+  /**
+   * Add a unit to the student record.
+   * @param record: The unit is added to the student record.
+   */ 
   public void addUnitRecord(IStudentUnitRecord record);
 }

@@ -8,8 +8,8 @@
 package datamanagement;
 
 public class Student implements IStudent {
-  /** Private variables for class Student
-   * 
+  /** 
+   * Private variables for class Student
    */
   private Integer studentNumber;
   private String firstName;
@@ -64,7 +64,7 @@ public class Student implements IStudent {
   }
   
   /**
-   * Retrieve student last name.
+   * Retrieve student record using unit code.
    * @param code: The unit code to be retrieved.
    * If unit code is found in studentUnit then
    * @return Retrieve unit record.
