@@ -8,47 +8,69 @@
 package datamanagement;
 
 public class Student implements IStudent {
-  // Private variables for class Student
+  /** Private variables for class Student
+   * 
+   */
   private Integer studentNumber;
   private String firstName;
   private String lastName;
   private StudentUnitRecordList studentUnit;
-
   
-  // Constructor for class Student
+  /**
+   * Retrieve a student unit record, based on a key of both student id and unit code.
+   * @param number: The student number to retrieve.
+   * @param first: The first name to retrieve.
+   * @param last: The last name to retrieve.
+   * @param record: The unit record to retrieve.
+   * @return A matching or empty student unit record.
+   */
   public Student(Integer number, String first, String last, StudentUnitRecordList record) {
     this.studentNumber = number;
     this.firstName = first;
     this.lastName = last;
     this.studentUnit = record == null ? new StudentUnitRecordList() : record;
   }
-
   
-  // Getter method returning the student number  
+  /**
+   * Retrieve a student number.
+   * @return The student number.
+   */ 
   public Integer getStudentNumber() {
     return this.studentNumber;
   }
-
   
-  // Getter method returning the first name of the Student
+  /**
+   * Retrieve student first name.
+   * @return The student first name.
+   */ 
   public String getFirstName() {
     return firstName;
   }
-
   
-  // Getter method returning the last name of the Student
+  /**
+   * Retrieve student last name.
+   * @return The student last name.
+   */ 
   public String getLastName() {
     return lastName;
   }
-
     
-  // Getter method returning student units
+  /**
+   * Retrieve student unit record.
+   * @return The student unit record.
+   */ 
   public StudentUnitRecordList getUnitRecords() {
     return studentUnit;
   }
   
-  
-  // Getter method returning unit record of student
+  /**
+   * Retrieve student last name.
+   * @param code: The unit code to be retrieved.
+   * If unit code is found in studentUnit then
+   * @return Retrieve unit record.
+   * Else
+   * @return Null.
+   */ 
   public IStudentUnitRecord getUnitRecord(String code) {
     for (IStudentUnitRecord record : studentUnit) {
       if (record.getUnitCode().equals(code))
@@ -57,20 +79,26 @@ public class Student implements IStudent {
     return null;
   }
   
-  
-  // Setter method to store the first name of the Student
+  /**
+   * Set student first name.
+   * @param first: The first name of the student to set.
+   */
   public void setFirstName(String first) {
     this.firstName = first;
   }
   
-  
-  // Setter method to store the last name of the student
+  /**
+   * Set student last name.
+   * @param last: The last name of the student to set.
+   */
   public void setLastName(String last) {
     this.lastName = last;
   }
-
   
-  // This method adds a new unit to the student record
+  /**
+   * Add a unit to the student record.
+   * @param record: The unit is added to the student record.
+   */
   public void addUnitRecord(IStudentUnitRecord record) {
     studentUnit.add(record);
   }
