@@ -1,32 +1,31 @@
 package datamanagement;
 
-import javax.swing.JLabel;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.Font;
 
-public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnitLister,
-    IStudentLister {
-  private StudentControl ctl;
-  private javax.swing.DefaultComboBoxModel uM;
-  private javax.swing.DefaultComboBoxModel rM;
-  float f1;
-  float f2;
-  float f3;
-  Integer sid;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
-  public CheckGradeUserInterface(StudentControl ctl) {
-    this.ctl = ctl;
-    uM = new javax.swing.DefaultComboBoxModel(new String[0]);
-    rM = new javax.swing.DefaultComboBoxModel(new String[0]);
+public class CheckGradeUserInterface extends javax.swing.JFrame implements
+    IUnitLister, IStudentLister {
+  private StudentControl studentControl;
+  private javax.swing.DefaultComboBoxModel unitModel;
+  private javax.swing.DefaultComboBoxModel studentModel;
+  float assignment1Result;
+  float assignment2Result;
+  float assignment3Result;
+  Integer studentId;
+
+  public CheckGradeUserInterface(StudentControl studentControl) {
+    this.studentControl = studentControl;
+    unitModel = new javax.swing.DefaultComboBoxModel(new String[0]);
+    studentModel = new javax.swing.DefaultComboBoxModel(new String[0]);
     initComponents();
-    unit.setModel(uM);
-    student.setModel(rM);
-    jlabel6.setText("");
+    unitField.setModel(unitModel);
+    studentField.setModel(studentModel);
+    errorLabel.setText("");
   }
 
   /**
@@ -38,214 +37,223 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnit
   // desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jLabel1 = new javax.swing.JLabel();
-    jPanel1 = new javax.swing.JPanel();
-    unit = new javax.swing.JComboBox();
-    jPanel2 = new javax.swing.JPanel();
-    student = new javax.swing.JComboBox();
-    jPanel3 = new javax.swing.JPanel();
-    jLabel2 = new javax.swing.JLabel();
-    jLabel3 = new javax.swing.JLabel();
-    jLabel4 = new javax.swing.JLabel();
-    jTextField1 = new javax.swing.JTextField();
-    jTextField2 = new javax.swing.JTextField();
-    jTextField3 = new javax.swing.JTextField();
-    jButton1 = new javax.swing.JButton();
-    jPanel4 = new javax.swing.JPanel();
-    jLabel5 = new javax.swing.JLabel();
+    titleLabel = new javax.swing.JLabel();
+    unitPanel = new javax.swing.JPanel();
+    unitField = new javax.swing.JComboBox<String>();
+    studentPanel = new javax.swing.JPanel();
+    studentField = new javax.swing.JComboBox<String>();
+    marksPanel = new javax.swing.JPanel();
+    assignment1Label = new javax.swing.JLabel();
+    assignment2Label = new javax.swing.JLabel();
+    examLabel = new javax.swing.JLabel();
+    assignment1Field = new javax.swing.JTextField();
+    assignment2Field = new javax.swing.JTextField();
+    examField = new javax.swing.JTextField();
+    changeButton = new javax.swing.JButton();
+    gradePanel = new javax.swing.JPanel();
+    gradeLabel = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-    jLabel1.setText("Check Grade UI");
+    titleLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+    titleLabel.setText("Check Grade UI");
 
-    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
+    unitPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
 
-    unit.setModel(uM);
-    unit.addItemListener(new java.awt.event.ItemListener() {
+    unitField.setModel(unitModel);
+    unitField.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox1ItemStateChanged(evt);
       }
     });
 
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-          .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(unit, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-          .addContainerGap())
-    );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        .addGroup(jPanel1Layout.createSequentialGroup()
-          .addComponent(unit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-          .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    jPanel1.setLayout(jPanel1Layout);
+    javax.swing.GroupLayout gl_unitPanel = new javax.swing.GroupLayout(
+        unitPanel);
+    gl_unitPanel.setHorizontalGroup(gl_unitPanel.createParallelGroup(
+        Alignment.LEADING).addGroup(
+        Alignment.TRAILING,
+        gl_unitPanel
+            .createSequentialGroup()
+            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(unitField, GroupLayout.PREFERRED_SIZE, 185,
+                GroupLayout.PREFERRED_SIZE).addContainerGap()));
+    gl_unitPanel.setVerticalGroup(gl_unitPanel.createParallelGroup(
+        Alignment.LEADING).addGroup(
+        gl_unitPanel
+            .createSequentialGroup()
+            .addComponent(unitField, GroupLayout.PREFERRED_SIZE,
+                GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+    unitPanel.setLayout(gl_unitPanel);
 
-    jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Student"));
+    studentPanel.setBorder(javax.swing.BorderFactory
+        .createTitledBorder("Student"));
 
-    student.setModel(rM);
-    student.addItemListener(new java.awt.event.ItemListener() {
+    studentField.setModel(studentModel);
+    studentField.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox2ItemStateChanged(evt);
       }
     });
 
-    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-    jPanel2.setLayout(jPanel2Layout);
-    jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(
+    javax.swing.GroupLayout gl_studentPanel = new javax.swing.GroupLayout(
+        studentPanel);
+    studentPanel.setLayout(gl_studentPanel);
+    gl_studentPanel.setHorizontalGroup(gl_studentPanel.createParallelGroup(
         javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-        jPanel2Layout
+        gl_studentPanel
             .createSequentialGroup()
             .addContainerGap()
-            .addComponent(student, javax.swing.GroupLayout.PREFERRED_SIZE,
+            .addComponent(studentField, javax.swing.GroupLayout.PREFERRED_SIZE,
                 185, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
                 Short.MAX_VALUE)));
-    jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(
+    gl_studentPanel.setVerticalGroup(gl_studentPanel.createParallelGroup(
         javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-        jPanel2Layout
+        gl_studentPanel
             .createSequentialGroup()
-            .addComponent(student, javax.swing.GroupLayout.PREFERRED_SIZE,
+            .addComponent(studentField, javax.swing.GroupLayout.PREFERRED_SIZE,
                 javax.swing.GroupLayout.DEFAULT_SIZE,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
                 Short.MAX_VALUE)));
 
-    jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Marks"));
+    marksPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Marks"));
 
-    jLabel2.setText("Asg1:");
+    assignment1Label.setText("Asg1:");
 
-    jLabel3.setText("Asg2:");
+    assignment2Label.setText("Asg2:");
 
-    jLabel4.setText("Exam:");
+    examLabel.setText("Exam:");
 
-    jTextField1.setEditable(false);
-    jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+    assignment1Field.setEditable(false);
+    assignment1Field.addKeyListener(new java.awt.event.KeyAdapter() {
       public void keyTyped(java.awt.event.KeyEvent evt) {
         jTextFieldKeyTyped(evt);
       }
     });
 
-    jTextField2.setEditable(false);
-    jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+    assignment2Field.setEditable(false);
+    assignment2Field.addKeyListener(new java.awt.event.KeyAdapter() {
       public void keyTyped(java.awt.event.KeyEvent evt) {
         jTextFieldKeyTyped(evt);
       }
     });
 
-    jTextField3.setEditable(false);
-    jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+    examField.setEditable(false);
+    examField.addKeyListener(new java.awt.event.KeyAdapter() {
       public void keyTyped(java.awt.event.KeyEvent evt) {
         jTextFieldKeyTyped(evt);
       }
     });
 
-    jButton1.setText("Change");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    changeButton.setText("Change");
+    changeButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton1ActionPerformed(evt);
       }
     });
-    jButton2 = new javax.swing.JButton();
+    checkGradeButton = new javax.swing.JButton();
 
-    jButton2.setText("Check Grade");
-    jButton2.setActionCommand("checkGrade");
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
+    checkGradeButton.setText("Check Grade");
+    checkGradeButton.setActionCommand("checkGrade");
+    checkGradeButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton3ActionPerformed(evt);
       }
     });
 
-    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-    jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(
+    javax.swing.GroupLayout gl_marksPanel = new javax.swing.GroupLayout(
+        marksPanel);
+    gl_marksPanel.setHorizontalGroup(gl_marksPanel.createParallelGroup(
         Alignment.LEADING).addGroup(
-        jPanel3Layout
+        gl_marksPanel
             .createSequentialGroup()
             .addGroup(
-                jPanel3Layout
+                gl_marksPanel
                     .createParallelGroup(Alignment.LEADING)
                     .addGroup(
-                        jPanel3Layout
+                        gl_marksPanel
                             .createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jLabel2)
+                            .addComponent(assignment1Label)
                             .addPreferredGap(ComponentPlacement.RELATED)
-                            .addComponent(jTextField1,
+                            .addComponent(assignment1Field,
                                 GroupLayout.PREFERRED_SIZE, 59,
                                 GroupLayout.PREFERRED_SIZE).addGap(18)
-                            .addComponent(jLabel3))
+                            .addComponent(assignment2Label))
                     .addGroup(
-                        jPanel3Layout
+                        gl_marksPanel
                             .createSequentialGroup()
                             .addGap(85)
-                            .addComponent(jButton1, GroupLayout.PREFERRED_SIZE,
-                                84, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(changeButton,
+                                GroupLayout.PREFERRED_SIZE, 84,
+                                GroupLayout.PREFERRED_SIZE)))
             .addGap(18)
             .addGroup(
-                jPanel3Layout
+                gl_marksPanel
                     .createParallelGroup(Alignment.TRAILING)
                     .addGroup(
-                        jPanel3Layout
+                        gl_marksPanel
                             .createSequentialGroup()
-                            .addComponent(jTextField2,
+                            .addComponent(assignment2Field,
                                 GroupLayout.PREFERRED_SIZE, 59,
                                 GroupLayout.PREFERRED_SIZE).addGap(18)
-                            .addComponent(jLabel4)).addComponent(jButton2))
+                            .addComponent(examLabel))
+                    .addComponent(checkGradeButton))
             .addGap(18)
-            .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, 59,
+            .addComponent(examField, GroupLayout.PREFERRED_SIZE, 59,
                 GroupLayout.PREFERRED_SIZE).addGap(15)));
-    jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(
+    gl_marksPanel.setVerticalGroup(gl_marksPanel.createParallelGroup(
         Alignment.LEADING).addGroup(
-        jPanel3Layout
+        gl_marksPanel
             .createSequentialGroup()
             .addGroup(
-                jPanel3Layout
+                gl_marksPanel
                     .createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE,
+                    .addComponent(assignment1Label)
+                    .addComponent(assignment1Field, GroupLayout.PREFERRED_SIZE,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE,
+                    .addComponent(assignment2Label)
+                    .addComponent(assignment2Field, GroupLayout.PREFERRED_SIZE,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE,
+                    .addComponent(examLabel)
+                    .addComponent(examField, GroupLayout.PREFERRED_SIZE,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(ComponentPlacement.UNRELATED)
             .addGroup(
-                jPanel3Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jButton1).addComponent(jButton2))
+                gl_marksPanel.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(changeButton).addComponent(checkGradeButton))
             .addContainerGap()));
-    jPanel3.setLayout(jPanel3Layout);
+    marksPanel.setLayout(gl_marksPanel);
 
-    jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Grade"));
+    gradePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Grade"));
 
-    jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-    jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-    jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel5.setText("grade");
+    gradeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    gradeLabel.setForeground(new java.awt.Color(255, 0, 0));
+    gradeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    gradeLabel.setText("grade");
 
-    javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-    jPanel4.setLayout(jPanel4Layout);
-    jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup(
-        javax.swing.GroupLayout.Alignment.LEADING).addComponent(jLabel5,
+    javax.swing.GroupLayout gl_gradePanel = new javax.swing.GroupLayout(
+        gradePanel);
+    gradePanel.setLayout(gl_gradePanel);
+    gl_gradePanel.setHorizontalGroup(gl_gradePanel.createParallelGroup(
+        javax.swing.GroupLayout.Alignment.LEADING).addComponent(gradeLabel,
         javax.swing.GroupLayout.Alignment.TRAILING,
         javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE));
-    jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(
+    gl_gradePanel.setVerticalGroup(gl_gradePanel.createParallelGroup(
         javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-        jPanel4Layout.createSequentialGroup().addGap(34, 34, 34)
-            .addComponent(jLabel5).addContainerGap(43, Short.MAX_VALUE)));
+        gl_gradePanel.createSequentialGroup().addGap(34, 34, 34)
+            .addComponent(gradeLabel).addContainerGap(43, Short.MAX_VALUE)));
 
-    jlabel6 = new JLabel();
-    jlabel6.setText("Error message");
-    jlabel6.setForeground(Color.RED);
-    jlabel6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-    jButton3 = new javax.swing.JButton();
+    errorLabel = new JLabel();
+    errorLabel.setText("Error message");
+    errorLabel.setForeground(Color.RED);
+    errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+    saveButton = new javax.swing.JButton();
 
-    jButton3.setText("Save");
-    jButton3.addActionListener(new java.awt.event.ActionListener() {
+    saveButton.setText("Save");
+    saveButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton2ActionPerformed(evt);
       }
@@ -266,7 +274,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnit
                                 layout
                                     .createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(jlabel6,
+                                    .addComponent(errorLabel,
                                         GroupLayout.DEFAULT_SIZE, 400,
                                         Short.MAX_VALUE))
                             .addGroup(
@@ -277,7 +285,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnit
                                         layout
                                             .createParallelGroup(
                                                 Alignment.LEADING, false)
-                                            .addComponent(jPanel3,
+                                            .addComponent(marksPanel,
                                                 GroupLayout.DEFAULT_SIZE,
                                                 GroupLayout.DEFAULT_SIZE,
                                                 Short.MAX_VALUE)
@@ -289,29 +297,29 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnit
                                                             .createParallelGroup(
                                                                 Alignment.LEADING)
                                                             .addComponent(
-                                                                jPanel1,
+                                                                unitPanel,
                                                                 GroupLayout.PREFERRED_SIZE,
                                                                 GroupLayout.DEFAULT_SIZE,
                                                                 GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(
-                                                                jPanel2,
+                                                                studentPanel,
                                                                 GroupLayout.PREFERRED_SIZE,
                                                                 GroupLayout.DEFAULT_SIZE,
                                                                 GroupLayout.PREFERRED_SIZE))
                                                     .addGap(18)
                                                     .addComponent(
-                                                        jPanel4,
+                                                        gradePanel,
                                                         GroupLayout.PREFERRED_SIZE,
                                                         GroupLayout.DEFAULT_SIZE,
                                                         GroupLayout.PREFERRED_SIZE))))
                             .addGroup(
                                 layout.createSequentialGroup().addGap(157)
-                                    .addComponent(jLabel1))
+                                    .addComponent(titleLabel))
                             .addGroup(
                                 layout
                                     .createSequentialGroup()
                                     .addGap(165)
-                                    .addComponent(jButton3,
+                                    .addComponent(saveButton,
                                         GroupLayout.PREFERRED_SIZE, 86,
                                         GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap()));
@@ -320,7 +328,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnit
             layout
                 .createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(titleLabel)
                 .addGap(13)
                 .addGroup(
                     layout
@@ -328,26 +336,26 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnit
                         .addGroup(
                             layout
                                 .createSequentialGroup()
-                                .addComponent(jPanel1,
+                                .addComponent(unitPanel,
                                     GroupLayout.PREFERRED_SIZE,
                                     GroupLayout.DEFAULT_SIZE,
                                     GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(ComponentPlacement.RELATED)
-                                .addComponent(jPanel2,
+                                .addComponent(studentPanel,
                                     GroupLayout.PREFERRED_SIZE,
                                     GroupLayout.DEFAULT_SIZE,
                                     GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel4, GroupLayout.PREFERRED_SIZE,
+                        .addComponent(gradePanel, GroupLayout.PREFERRED_SIZE,
                             GroupLayout.DEFAULT_SIZE,
                             GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED,
                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, GroupLayout.PREFERRED_SIZE,
+                .addComponent(marksPanel, GroupLayout.PREFERRED_SIZE,
                     GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(saveButton)
                 .addGap(11)
-                .addComponent(jlabel6, GroupLayout.PREFERRED_SIZE, 30,
+                .addComponent(errorLabel, GroupLayout.PREFERRED_SIZE, 30,
                     GroupLayout.PREFERRED_SIZE).addContainerGap()));
     getContentPane().setLayout(layout);
 
@@ -355,152 +363,154 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements IUnit
   }// </editor-fold>//GEN-END:initComponents
 
   private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
-    String cU = (String) unit.getSelectedItem();
+    String cU = (String) unitField.getSelectedItem();
     Refresh3();
     clearStudents();
     if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cU.equals((String) unit.getItemAt(0))) {
+      if (cU.equals(unitField.getItemAt(0))) {
         cU = "NONE";
       }
-      ctl.unitSelected(cU);
+      studentControl.unitSelected(cU);
     }
   }// GEN-LAST:event_jComboBox1ItemStateChanged
 
   private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox2ItemStateChanged
     Refresh3();
-    String cS = (String) student.getSelectedItem();
+    String cS = (String) studentField.getSelectedItem();
     if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cS.equals((String) student.getItemAt(0))) {
-        sid = new Integer(0);
-        ctl.studentSelected(sid);
+      if (cS.equals(studentField.getItemAt(0))) {
+        studentId = new Integer(0);
+        studentControl.studentSelected(studentId);
       } else {
-        sid = new Integer(cS.split("\\s")[0]);
+        studentId = new Integer(cS.split("\\s")[0]);
       }
-      ctl.studentSelected(sid);
+      studentControl.studentSelected(studentId);
     }
   }// GEN-LAST:event_jComboBox2ItemStateChanged
 
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
-    f1 = new Float(jTextField1.getText()).floatValue();
-    f2 = new Float(jTextField2.getText()).floatValue();
-    f3 = new Float(jTextField3.getText()).floatValue();
+    assignment1Result = new Float(assignment1Field.getText()).floatValue();
+    assignment2Result = new Float(assignment2Field.getText()).floatValue();
+    assignment3Result = new Float(examField.getText()).floatValue();
     // lblErrMsg.setText("");
     try {
-      String s = ctl.checkGrade(f1, f2, f3);
-      jLabel5.setText(s);
+      String s = studentControl.checkGrade(assignment1Result, assignment2Result, assignment3Result);
+      gradeLabel.setText(s);
     } catch (RuntimeException re) {
-      jlabel6.setText(re.getMessage());
+      errorLabel.setText(re.getMessage());
     }
   }// GEN-LAST:event_jButton3ActionPerformed
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-    ctl.enableChangeMarks();
-    jLabel5.setText("");
+    studentControl.enableChangeMarks();
+    gradeLabel.setText("");
     // lblErrMsg.setText("");
   }// GEN-LAST:event_jButton1ActionPerformed
 
   private void jTextFieldKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField1KeyTyped
-    jLabel5.setText("");
-    jlabel6.setText("");
+    gradeLabel.setText("");
+    errorLabel.setText("");
   }// GEN-LAST:event_jTextField1KeyTyped
 
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-    float asg1 = new Float(jTextField1.getText()).floatValue();
-    float asg2 = new Float(jTextField2.getText()).floatValue();
-    float exam = new Float(jTextField3.getText()).floatValue();
-    jlabel6.setText("");
+    float asg1 = new Float(assignment1Field.getText()).floatValue();
+    float asg2 = new Float(assignment2Field.getText()).floatValue();
+    float exam = new Float(examField.getText()).floatValue();
+    errorLabel.setText("");
     try {
-      ctl.saveGrade(asg1, asg2, exam);
+      studentControl.saveGrade(asg1, asg2, exam);
       // jButton3ActionPerformed(null);
     } catch (RuntimeException re) {
-      jlabel6.setText(re.getMessage());
+      errorLabel.setText(re.getMessage());
     }
   }// GEN-LAST:event_jButton2ActionPerformed
 
   public void clearUnits() {
-    uM.removeAllElements();
-    uM.addElement("<none selected>");
+    unitModel.removeAllElements();
+    unitModel.addElement("<none selected>");
     clearStudents();
   }
 
   public void addUnit(IUnit u) {
-    uM.addElement(u.getUnitCode());
+    unitModel.addElement(u.getUnitCode());
   }
 
   public void setState1(boolean b) {
-    unit.setEnabled(b);
-    jlabel6.setText("");
+    unitField.setEnabled(b);
+    errorLabel.setText("");
   }
 
   public void clearStudents() {
-    rM.removeAllElements();
-    rM.addElement("<none selected>");
+    studentModel.removeAllElements();
+    studentModel.addElement("<none selected>");
   }
 
   public void addStudent(IStudent student) {
-    rM.addElement(student.getID().toString() + " : " + student.getFirstName()
+    studentModel.addElement(student.getID().toString() + " : " + student.getFirstName()
         + " " + student.getLastName());
   }
 
   public void setState2(boolean b) {
-    student.setEnabled(b);
-    jlabel6.setText("");
+    studentField.setEnabled(b);
+    errorLabel.setText("");
   }
 
   public void setRecord(IStudentUnitRecord record) {
-    jTextField1.setText(new Float(record.getAssignment1Result()).toString());
-    jTextField2.setText(new Float(record.getAssignment2Result()).toString());
-    jTextField3.setText(new Float(record.getExamResult()).toString());
-    jLabel5.setText("");
+    assignment1Field.setText(new Float(record.getAssignment1Result())
+        .toString());
+    assignment2Field.setText(new Float(record.getAssignment2Result())
+        .toString());
+    examField.setText(new Float(record.getExamResult()).toString());
+    gradeLabel.setText("");
   }
 
   public void Refresh3() {
-    jTextField1.setText("");
-    jTextField2.setText("");
-    jTextField3.setText("");
-    jLabel5.setText("");
-    jlabel6.setText("");
-    jTextField1.setEditable(false);
-    jTextField2.setEditable(false);
-    jTextField3.setEditable(false);
+    assignment1Field.setText("");
+    assignment2Field.setText("");
+    examField.setText("");
+    gradeLabel.setText("");
+    errorLabel.setText("");
+    assignment1Field.setEditable(false);
+    assignment2Field.setEditable(false);
+    examField.setEditable(false);
   }
 
   public void setState3(boolean b) {
-    jButton2.setEnabled(b);
+    checkGradeButton.setEnabled(b);
   }
 
   public void setState4(boolean b) {
-    jButton1.setEnabled(b);
+    changeButton.setEnabled(b);
     // gradeLB.setText("");
   }
 
   public void setState5(boolean b) {
-    jTextField1.setEditable(b);
-    jTextField2.setEditable(b);
-    jTextField3.setEditable(b);
+    assignment1Field.setEditable(b);
+    assignment2Field.setEditable(b);
+    examField.setEditable(b);
   }
 
   public void setState6(boolean b) {
-    jButton3.setEnabled(b);
+    saveButton.setEnabled(b);
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
-  private javax.swing.JButton jButton3;
-  private javax.swing.JComboBox unit;
-  private javax.swing.JComboBox student;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
-  private javax.swing.JLabel jLabel4;
-  private javax.swing.JLabel jLabel5;
-  private javax.swing.JLabel jlabel6;
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
-  private javax.swing.JPanel jPanel3;
-  private javax.swing.JPanel jPanel4;
-  private javax.swing.JTextField jTextField1;
-  private javax.swing.JTextField jTextField2;
-  private javax.swing.JTextField jTextField3;
+  private javax.swing.JButton changeButton;
+  private javax.swing.JButton checkGradeButton;
+  private javax.swing.JButton saveButton;
+  private javax.swing.JComboBox<String> unitField;
+  private javax.swing.JComboBox<String> studentField;
+  private javax.swing.JLabel titleLabel;
+  private javax.swing.JLabel assignment1Label;
+  private javax.swing.JLabel assignment2Label;
+  private javax.swing.JLabel examLabel;
+  private javax.swing.JLabel gradeLabel;
+  private javax.swing.JLabel errorLabel;
+  private javax.swing.JPanel unitPanel;
+  private javax.swing.JPanel studentPanel;
+  private javax.swing.JPanel marksPanel;
+  private javax.swing.JPanel gradePanel;
+  private javax.swing.JTextField assignment1Field;
+  private javax.swing.JTextField assignment2Field;
+  private javax.swing.JTextField examField;
 }

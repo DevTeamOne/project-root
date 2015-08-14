@@ -280,8 +280,7 @@ public class StudentUnitRecordAdapter {
   /**
    * Save a record to the XML file.
    * 
-   * @param studentUnitRecord
-   *          : Record to be saved.
+   * @param studentUnitRecord: Record to be saved.
    * @throws: RuntimeException - If the xml document could not be saved.
    */
   public void saveRecord(IStudentUnitRecord studentUnitRecord) {
