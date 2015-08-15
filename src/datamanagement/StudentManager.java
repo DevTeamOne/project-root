@@ -12,8 +12,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 public class StudentManager {
+  
   /** 
-   * Private variables for class StudentManager
+   * Call private methods
    */
   private static StudentManager self = null;
   private StudentMap studentManager_;
@@ -29,9 +30,8 @@ public class StudentManager {
   
   /**
    * Retrieve student unit record.   
-   * If self is null
    * @return create new self.
-   * else
+   * or
    * @return self.
    */ 
   public static StudentManager get() {
@@ -43,19 +43,20 @@ public class StudentManager {
 
   /**
    * Retrieve individual student using their student number.   
-   * @param number: The student number to retrieve.
+   * @param studentNumber: The student number to retrieve.
    * @return individual student or create new student if null.
    */   
-  public IStudent getStudent(Integer number) {
-    IStudent individualStudent = studentManager_.get(number);
+  public IStudent getStudent(Integer studentNumber) {
+    IStudent individualStudent = studentManager_.get(studentNumber);
     
-    return individualStudent != null ? individualStudent : createStudent(number);
+    return individualStudent != null ? individualStudent : createStudent(studentNumber);
   }
   
   /**
-   * Retrieve individual student using their student number.   
-   * @param number: The student number to retrieve.
-   * @return individual student or create new student if null.
+   * Retrieve student element using student number.   
+   * @param studentNumber: The student number to retrieve.
+   * @return element.
+   * @return null.
    */   
   @SuppressWarnings("unchecked")
   private Element getStudentElement(Integer studentNumber) {
@@ -65,14 +66,17 @@ public class StudentManager {
         getChild("studentTable").
         getChildren("student"))
       
-      if (studentNumber.toString().equals(element.getAttribute("Student Number"))) {
+      if (studentNumber.toString().equals(element.getAttribute("studentNumber"))) {
         return element;
       }
     return null;
   }
   
-  
-  
+  /**
+   * Retrieve individual student using a unit code.   
+   * @param code: The code number to lookup student.
+   * @return student record attached to unit code.
+   */ 
   public StudentMap getStudentsByUnit(String code) {
     StudentMap student = unitManager_.get(code);
     
@@ -95,21 +99,28 @@ public class StudentManager {
     
     return student;
   }
-
   
-  
-  private IStudent createStudent(Integer number) {
+  /**
+   * Create a new student element.   
+   * @param studentNumber: The student number assigned to a new student element.
+   * @return individual student created.
+   * @throws runtime exception if student is not in file.
+   */ 
+  private IStudent createStudent(Integer studentNumber) {
     IStudent individualStudent_;
-    Element element_ = getStudentElement(number);
+    Element element_ = getStudentElement(studentNumber);
     
     if (element_ != null) {
-      StudentUnitRecordList recordList = StudentUnitRecordManager.instance().getRecordsByStudent(number);
+      StudentUnitRecordList recordList = StudentUnitRecordManager.instance().
+          getRecordsByStudent(studentNumber);
       
       individualStudent_ = new Student(new Integer(element_.getAttribute("Student Number")),
           element_.getAttribute("First Name"), 
           element_.getAttribute("Last Name"), recordList);
 
-      studentManager_.put(individualStudent_.getStudentNumber(), individualStudent_);
+      studentManager_.put(individualStudent_.
+          getStudentNumber(), 
+          individualStudent_);
       
       return individualStudent_;
     }
@@ -117,13 +128,17 @@ public class StudentManager {
     throw new RuntimeException("DBMD: createStudent : student not in file");
   }
 
-  
-  
-  private IStudent createStudentProxy(Integer number) {
-    Element element_ = getStudentElement(number);
+  /**
+   * Create a new student proxy.   
+   * @param studentNumber: The studentNumber to be retrieved.
+   * @return student element using student number..
+   * @throws runtime exception if student is not in file.
+   */ 
+  private IStudent createStudentProxy(Integer studentNumber) {
+    Element element_ = getStudentElement(studentNumber);
 
     if (element_ != null) {
-      return new StudentProxy(number, 
+      return new StudentProxy(studentNumber, 
           element_.getAttribute("First Name"), 
           element_.getAttribute("Last Name"));
     }
