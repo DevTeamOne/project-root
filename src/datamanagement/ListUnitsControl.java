@@ -3,25 +3,37 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class 
+ * Description: This class controls the list of units for a student
  */
 package datamanagement;
 
 public class ListUnitsControl {
+  
+  /**
+   * Call method unitManager
+   */ 
   private UnitManager unitManager;
-
+  
+  /**
+   * Class ListUnitsControl constructor
+   */ 
   public ListUnitsControl() {
     unitManager = UnitManager.UNIT_MANAGER();
   }
 
-  
-  
-  public void listStudents(cgUI cGUI, String code) {
+  /**
+   * Retrieve student record from class student.
+   * @param cgUI: The user interface of the lister retrieved.
+   * @param code: The unit code to be retrieved.
+   */ 
+  public void listStudents(cgUI cgUI, String code) {
     unitManager = UnitManager.UNIT_MANAGER();    
   }
   
-  
-  
+  /**
+   * List the units from the unitManger
+   * @param lister: The unit list to be retrieved.
+   */ 
   public void listUnits(IUnitLister lister) {
     lister.clearUnits();
     UnitMap units = unitManager.getUnits();
