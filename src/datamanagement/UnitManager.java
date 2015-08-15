@@ -29,7 +29,7 @@ public class UnitManager {
 
 		IUnit iu;
 
-		for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+		for (Element el : (List<Element>) XMLManager.getInstance().getDocument()
 				.getRootElement().getChild("unitTable").getChildren("unit"))
 			if (unitCode.equals(el.getAttributeValue("uid"))) {
 				StudentUnitRecordList slist;
@@ -63,7 +63,7 @@ public class UnitManager {
 		IUnit iu;
 
 		uM = new UnitMap();
-		for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+		for (Element el : (List<Element>) XMLManager.getInstance().getDocument()
 				.getRootElement().getChild("unitTable").getChildren("unit")) {
 			iu = new UnitProxy(el.getAttributeValue("uid"),
 					el.getAttributeValue("name"));

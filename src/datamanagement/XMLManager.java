@@ -11,6 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
+/**
+ * XMLManager is a singleton
+ */
 public class XMLManager {
   private static XMLManager self_ = new XMLManager();
   private Document document_;
@@ -21,14 +24,16 @@ public class XMLManager {
   }
     
 
-  static XMLManager getXML() {
+  static XMLManager getInstance() {
     return self_;
   }
   
     
   public void initialize() {
-    String fileName = ApplicationProperties.getInstance().getProperties()
-        .getProperty("XMLFILE");
+    String fileName = ApplicationProperties.
+        getInstance().
+        getProperties().
+        getProperty("XMLFILE");
     
     try {
       SAXBuilder builder = new SAXBuilder();

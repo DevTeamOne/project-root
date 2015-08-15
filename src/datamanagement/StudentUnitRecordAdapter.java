@@ -119,7 +119,7 @@ public class StudentUnitRecordAdapter {
    */
   private List<Element> loadStudentUnitRecordElementsFromFile() {
     return (List<Element>) XMLManager.
-        getXML().
+        getInstance().
         getDocument().
         getRootElement().
         getChild(STUDENT_UNIT_RECORD_NODE).
@@ -297,7 +297,7 @@ public class StudentUnitRecordAdapter {
             new Float(studentUnitRecord.getExamResult()).toString());
 
         // write out the XML file
-        XMLManager.getXML().saveDocument();
+        XMLManager.getInstance().saveDocument();
 
         // for continuous save
         return;
