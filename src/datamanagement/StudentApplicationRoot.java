@@ -1,6 +1,6 @@
 package datamanagement;
 
-public class Main {
+public class StudentApplicationRoot {
   public static void main(String[] args) {
     new StudentControl().execute();
   }

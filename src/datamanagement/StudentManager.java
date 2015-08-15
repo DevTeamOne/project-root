@@ -22,7 +22,7 @@ IStudent is = sm.get(id);
     }
 
 private Element getStudentElement(Integer id) {
-        for (Element el : (List<Element>) XMLManager.getInstance().getDocument().getRootElement().getChild("studentTable").getChildren("student")) 
+        for (Element el : (List<Element>) XmlManager.getInstance().getDocument().getRootElement().getChild("studentTable").getChildren("student")) 
             if (id.toString().equals(el.getAttributeValue("sid"))) 
 return el;return null;
                 }

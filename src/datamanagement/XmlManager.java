@@ -14,17 +14,17 @@ import java.io.IOException;
 /**
  * XMLManager is a singleton
  */
-public class XMLManager {
-  private static XMLManager self_ = new XMLManager();
+public class XmlManager {
+  private static XmlManager self_ = new XmlManager();
   private Document document_;
   
 
-  private XMLManager() {
+  private XmlManager() {
     initialize();
   }
     
 
-  static XMLManager getInstance() {
+  static XmlManager getInstance() {
     return self_;
   }
   
