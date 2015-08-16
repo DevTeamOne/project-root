@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class 
+ * Description: This class manages and creates new element of a student
  */
 package datamanagement;
 
@@ -84,9 +84,7 @@ public class StudentManager {
     }
 
     student = new StudentMap();
-    
     IStudent individualStudent;
-    
     StudentUnitRecordList unitRecord = StudentUnitRecordManager.instance().getRecordsByUnit(code);
     
     for (IStudentUnitRecord s : unitRecord) {

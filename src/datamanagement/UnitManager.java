@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class
+ * Description: This class manages and creates new element of a unit
  */
 package datamanagement;
 
@@ -12,48 +12,71 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 public class UnitManager {
+  
+  /** 
+   * Declare class variables
+   */
   private static UnitManager self = null;
   private UnitMap unitManager_;
 
+  /**
+   * Retrieve unit record.   
+   * @return self.
+   */ 
   public static UnitManager UNIT_MANAGER() {
     if (self == null)
       self = new UnitManager();
     return self;
   }
 
-  
-  
+  /**
+   * Constructor of class UnitManager
+   */ 
   private UnitManager() {
     unitManager_ = new UnitMap();
   }
   
-  
-
+  /**
+   * Retrieve a unit or create new unit if no existing match.
+   * @param unitCode: The unit code to retrieve
+   * @return unit or create new unit if null.
+   */
   public IUnit getUnit(String unitCode) {
     IUnit unit = unitManager_.get(unitCode);
     return unit != null ? unit : createUnit(unitCode);
 
   }
 
-  
-  
+  /**
+   * Retrieve proxy unit element from the UnitMap.
+   * @return unit manager.
+   */ 
   public UnitMap getUnits() {
 
-    UnitMap unitManger;
+    UnitMap unitManager;
     IUnit unit;
 
-    unitManger = new UnitMap();
-    for (Element element : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("unitTable").getChildren("Unit")) {
+    unitManager = new UnitMap();
+    for (Element element : (List<Element>) XMLManager.getXML().
+        getDocument().
+        getRootElement().
+        getChild("unitTable").
+        getChildren("Unit")) {
+      
       unit = new UnitProxy(element.getAttribute("Unit ID"),
           element.getAttribute("Name"));
-      unitManger.put(unit.getUnitCode(), unit);
+      
+      unitManager.put(unit.getUnitCode(), unit);
     } // unit maps are filled with PROXY units
-    return unitManger;
+    return unitManager;
   }
 
-  
-  
-  @SuppressWarnings("unchecked")
+  /**
+   * Create a new unit element using unit code.   
+   * @param unitCode: The unit code assigned to a new unit element.
+   * @return the unit created.
+   * @throws runtime exception if unit is not in file.
+   */
   private IUnit createUnit(String unitCode) {
 
     IUnit unit_;
