@@ -10,7 +10,7 @@ package datamanagement;
 public class ListUnitsControl {
   
   /**
-   * Call method unitManager
+   * Declare class variable
    */ 
   private UnitManager unitManager;
   

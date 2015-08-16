@@ -3,9 +3,14 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: 
+ * Description: Class Map of student numbers to ensure each student has a unique number
  */
 package datamanagement;
 
 public class StudentMap extends java.util.HashMap<Integer, IStudent> {
+
+  /**
+   * Unique serial user ID
+   */
+  private static final long serialVersionUID = 1L;
 }

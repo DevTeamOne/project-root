@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 public class StudentManager {
   
   /** 
-   * Call private methods
+   * Declare class variables
    */
   private static StudentManager self = null;
   private StudentMap studentManager_;
@@ -57,8 +57,7 @@ public class StudentManager {
    * @param studentNumber: The student number to retrieve.
    * @return element.
    * @return null.
-   */   
-  @SuppressWarnings("unchecked")
+   */
   private Element getStudentElement(Integer studentNumber) {
     for (Element element : (List<Element>) XMLManager.getXML().
         getDocument().
