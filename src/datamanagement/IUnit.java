@@ -21,7 +21,7 @@ public interface IUnit {
   
   public float getHighDistinctionRange(); 
   
-  public float getAlternativeExitRange();
+  public float getAdditionalExamRange();
   
   public int getFirstAssignmentWeight();
 
@@ -41,7 +41,7 @@ public interface IUnit {
 
   public void setHighDistinctionRange(float range);
 
-  public void setAlternativeExitRange(float range);
+  public void setAdditionalExamRange(float range);
 
   public void setAssessmentWeights(int assessment1, int assessment2, int assessmentExam);
 

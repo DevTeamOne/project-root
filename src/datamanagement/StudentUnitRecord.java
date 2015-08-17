@@ -14,7 +14,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 		this.setExam(exam);
 	}
 
-	public Integer getStudentID() {
+	public Integer getStudentNumber() {
 		return sid;
 	}
 

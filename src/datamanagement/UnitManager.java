@@ -96,7 +96,7 @@ public class UnitManager {
                 element.getAttribute("Credit")).floatValue(), Float.valueOf(
                 element.getAttribute("Distinction")).floatValue(), Float.valueOf(
                 element.getAttribute("High Distinction")).floatValue(), Float.valueOf(
-                element.getAttribute("Alternative Exit")).floatValue(), Integer.valueOf(
+                element.getAttribute("Additional Exam")).floatValue(), Integer.valueOf(
                 element.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
                 element.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
                 element.getAttribute("Exam weight")).intValue(), StudentUnitRecordManager.instance().

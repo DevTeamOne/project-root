@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class 
+ * Description: This class can add a record to a unit, list an existing unit and its weighting criterion.
  */
 package datamanagement;
 
@@ -77,11 +77,11 @@ public class UnitProxy implements IUnit {
   }
   
   /**
-   * Retrieve the alternative exit range of each unit.
-   * @return alternative exit range.
+   * Retrieve the additional exam range of each unit.
+   * @return additional exam range.
    */
-  public float getAlternativeExitRange() {
-    return unitManager.getUnit(unitCode_).getAlternativeExitRange();
+  public float getAdditionalExamRange() {
+    return unitManager.getUnit(unitCode_).getAdditionalExamRange();
   }
   
   /**
@@ -161,11 +161,11 @@ public class UnitProxy implements IUnit {
   }
 
   /**
-   * Set alternative exit range for a specific unit.
-   * @param range: The range of a alternative exit mark to set.
+   * Set additional exam range for a specific unit.
+   * @param range: The range for an additional exam to be set.
    */  
-  public void setAlternativeExitRange(float range) {
-    unitManager.getUnit(unitCode_).setAlternativeExitRange(range);
+  public void setAdditionalExamRange(float range) {
+    unitManager.getUnit(unitCode_).setAdditionalExamRange(range);
   }  
    
   /**
