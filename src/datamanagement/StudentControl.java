@@ -9,6 +9,7 @@ public class StudentControl {
 
   public StudentControl() {
   }
+  
 
   public void execute() {
     studentManagementUserInterface = new CheckGradeUserInterface(this);
@@ -27,6 +28,8 @@ public class StudentControl {
     studentManagementUserInterface.setState1(true);
   }
 
+  
+  
   public void unitSelected(String code) {
 
     if (code.equals("NONE"))
@@ -40,6 +43,8 @@ public class StudentControl {
     studentManagementUserInterface.setState3(false);
   }
 
+  
+  
   public void studentSelected(Integer studentIdentifier) {
     currentStudentID = studentIdentifier;
     if (currentStudentID.intValue() == 0) {
@@ -65,6 +70,8 @@ public class StudentControl {
     }
   }
 
+  
+  
   public String checkGrade(float f, float g, float h) {
     IUnit unit = UnitManager.UM().getUnit(unitCode);
     String grade = unit.getGrade(f, g, h);
@@ -83,6 +90,8 @@ public class StudentControl {
     changed = true;
   }
 
+  
+  
   public void saveGrade(float asg1, float asg2, float exam) {
 
     IUnit u = UnitManager.UM().getUnit(unitCode);

@@ -10,6 +10,7 @@ public class ApplicationProperties {
   private Properties properties_;
   
   
+  
   private ApplicationProperties() {
     properties_ = new Properties();
     try {
@@ -20,10 +21,12 @@ public class ApplicationProperties {
   }
   
   
+  
   public static ApplicationProperties getInstance() {
     return self_;
   }
 
+  
   
   public Properties getProperties() {
     return properties_;

@@ -19,16 +19,19 @@ public class XmlManager {
   private Document document_;
   
 
+  
   private XmlManager() {
     initialize();
   }
-    
+  
+  
 
   static XmlManager getInstance() {
     return self_;
   }
   
     
+  
   public void initialize() {
     String fileName = ApplicationProperties.
         getInstance().
@@ -55,9 +58,11 @@ public class XmlManager {
   }
 
   
+  
   public Document getDocument() {
     return document_;
   }
+  
   
   
   public void saveDocument() {
