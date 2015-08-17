@@ -41,8 +41,8 @@ public class UnitManager {
    * @param unitCode: The unit code to retrieve
    * @return unit or create new unit if null.
    */
-  public IUnit getUnit(String unitCode) {
-    IUnit unit = unitManager_.get(unitCode);
+  public UnitInterface getUnit(String unitCode) {
+    UnitInterface unit = unitManager_.get(unitCode);
     return unit != null ? unit : createUnit(unitCode);
 
   }
@@ -54,7 +54,7 @@ public class UnitManager {
   public UnitMap getUnits() {
 
     UnitMap unitManager;
-    IUnit unit;
+    UnitInterface unit;
 
     unitManager = new UnitMap();
     for (Element element : (List<Element>) XMLManager.getXML().
@@ -77,9 +77,9 @@ public class UnitManager {
    * @return the unit created.
    * @throws runtime exception if unit is not in file.
    */
-  private IUnit createUnit(String unitCode) {
+  private UnitInterface createUnit(String unitCode) {
 
-    IUnit unit_;
+    UnitInterface unit_;
 
     for (Element element : (List<Element>) XMLManager.getXML().
         getDocument().

@@ -7,7 +7,7 @@
  */
 package datamanagement;
 
-public class UnitProxy implements IUnit {
+public class UnitProxy implements UnitInterface {
   
   /** 
    * Declare class variables.

@@ -46,8 +46,8 @@ public class StudentManager {
    * @param studentNumber: The student number to retrieve.
    * @return individual student or create new student if null.
    */   
-  public IStudent getStudent(Integer studentNumber) {
-    IStudent individualStudent = studentManager_.get(studentNumber);
+  public StudentInterface getStudent(Integer studentNumber) {
+    StudentInterface individualStudent = studentManager_.get(studentNumber);
     
     return individualStudent != null ? individualStudent : createStudent(studentNumber);
   }
@@ -84,7 +84,7 @@ public class StudentManager {
     }
 
     student = new StudentMap();
-    IStudent individualStudent;
+    StudentInterface individualStudent;
     StudentUnitRecordList unitRecord = StudentUnitRecordManager.instance().getRecordsByUnit(code);
     
     for (IStudentUnitRecord s : unitRecord) {
@@ -103,8 +103,8 @@ public class StudentManager {
    * @return individual student created.
    * @throws runtime exception if student is not in file.
    */ 
-  private IStudent createStudent(Integer studentNumber) {
-    IStudent individualStudent_;
+  private StudentInterface createStudent(Integer studentNumber) {
+    StudentInterface individualStudent_;
     Element element_ = getStudentElement(studentNumber);
     
     if (element_ != null) {
@@ -131,7 +131,7 @@ public class StudentManager {
    * @return student element using student number..
    * @throws runtime exception if student is not in file.
    */ 
-  private IStudent createStudentProxy(Integer studentNumber) {
+  private StudentInterface createStudentProxy(Integer studentNumber) {
     Element element_ = getStudentElement(studentNumber);
 
     if (element_ != null) {

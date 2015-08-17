@@ -7,7 +7,7 @@
  */
 package datamanagement;
 
-public class StudentProxy implements IStudent {
+public class StudentProxy implements StudentInterface {
   
   /**
    * Private variables for class StudentProxy

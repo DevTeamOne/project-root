@@ -7,7 +7,8 @@
  */
 package datamanagement;
 
-public class Student implements IStudent {
+public class Student implements StudentInterface {
+  
   /** 
    * Private variables for class Student
    */

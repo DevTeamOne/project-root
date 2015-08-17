@@ -371,7 +371,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		clearStudents();
 	}
 
-	public void addUnit(IUnit u) {
+	public void addUnit(UnitInterface u) {
 		uM.addElement(u.getUnitCode());
 	}
 
@@ -385,7 +385,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		rM.addElement("<none selected>");
 	}
 
-	public void addStudent(IStudent student) {
+	public void addStudent(StudentInterface student) {
 		rM.addElement(student.getStudentNumber().toString() + " : "
 				+ student.getFirstName() + " " + student.getLastName());
 	}

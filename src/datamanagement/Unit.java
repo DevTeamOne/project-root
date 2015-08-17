@@ -7,7 +7,7 @@
  */
 package datamanagement;
 
-public class Unit implements IUnit {
+public class Unit implements UnitInterface {
   
   /** 
    * Declare class variables.
