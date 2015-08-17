@@ -2,70 +2,71 @@ package datamanagement;
 
 public class StudentControl {
 
-  CheckGradeUserInterface studentManagementUserInterface;
-  String unitCode = null;
-  Integer currentStudentID = null;
-  boolean changed = false;
+  private CheckGradeUserInterface studentManagementUserInterface_;
+  private String unitCode_ = null;
+  private Integer currentStudentIdentifier_ = null;
+  private boolean isChanged_ = false;
 
   public StudentControl() {
   }
   
 
   public void execute() {
-    studentManagementUserInterface = new CheckGradeUserInterface(this);
-    studentManagementUserInterface.setState1(false);
+    studentManagementUserInterface_ = new CheckGradeUserInterface(this);
+    
+    studentManagementUserInterface_.setState1(false);
+    studentManagementUserInterface_.setState2(false);
+    studentManagementUserInterface_.setState3(false);
+    studentManagementUserInterface_.setState4(false);
+    studentManagementUserInterface_.setState5(false);
+    studentManagementUserInterface_.setState6(false);
+    
+    studentManagementUserInterface_.Refresh3();
 
-    studentManagementUserInterface.setState2(false);
-    studentManagementUserInterface.setState3(false);
-    studentManagementUserInterface.setState4(false);
-    studentManagementUserInterface.setState5(false);
-    studentManagementUserInterface.setState6(false);
-    studentManagementUserInterface.Refresh3();
-
-    ListUnitsCTL units = new ListUnitsCTL();
-    units.listUnits(studentManagementUserInterface);
-    studentManagementUserInterface.setVisible(true);
-    studentManagementUserInterface.setState1(true);
+    ListUnitsControl units = new ListUnitsControl();
+    units.listUnits(studentManagementUserInterface_);
+    studentManagementUserInterface_.setVisible(true);
+    studentManagementUserInterface_.setState1(true);
   }
 
   
   
-  public void unitSelected(String code) {
+  public void selectUnit(String code) {
 
     if (code.equals("NONE"))
-      studentManagementUserInterface.setState2(false);
+      studentManagementUserInterface_.setState2(false);
     else {
       ListStudentsCTL lsCTL = new ListStudentsCTL();
-      lsCTL.listStudents(studentManagementUserInterface, code);
-      unitCode = code;
-      studentManagementUserInterface.setState2(true);
+      lsCTL.listStudents(studentManagementUserInterface_, code);
+      unitCode_ = code;
+      studentManagementUserInterface_.setState2(true);
     }
-    studentManagementUserInterface.setState3(false);
+    studentManagementUserInterface_.setState3(false);
   }
 
   
   
-  public void studentSelected(Integer studentIdentifier) {
-    currentStudentID = studentIdentifier;
-    if (currentStudentID.intValue() == 0) {
-      studentManagementUserInterface.Refresh3();
-      studentManagementUserInterface.setState3(false);
-      studentManagementUserInterface.setState4(false);
-      studentManagementUserInterface.setState5(false);
-      studentManagementUserInterface.setState6(false);
+  public void selectStudent(Integer studentIdentifier) {
+    currentStudentIdentifier_ = studentIdentifier;
+    if (currentStudentIdentifier_.intValue() == 0) {
+      studentManagementUserInterface_.Refresh3();
+      studentManagementUserInterface_.setState3(false);
+      studentManagementUserInterface_.setState4(false);
+      studentManagementUserInterface_.setState5(false);
+      studentManagementUserInterface_.setState6(false);
     }
 
     else {
       IStudent student = StudentManager.get().getStudent(studentIdentifier);
 
-      IStudentUnitRecord studentUnitRecord = student.getUnitRecord(unitCode);
+      IStudentUnitRecord studentUnitRecord = student.getUnitRecord(unitCode_);
 
-      studentManagementUserInterface.setRecord(studentUnitRecord);
-      studentManagementUserInterface.setState3(true);
-      studentManagementUserInterface.setState4(true);
-      studentManagementUserInterface.setState5(false);
-      studentManagementUserInterface.setState6(false);
-      changed = false;
+      studentManagementUserInterface_.setRecord(studentUnitRecord);
+      studentManagementUserInterface_.setState3(true);
+      studentManagementUserInterface_.setState4(true);
+      studentManagementUserInterface_.setState5(false);
+      studentManagementUserInterface_.setState6(false);
+      isChanged_ = false;
 
     }
   }
@@ -73,37 +74,39 @@ public class StudentControl {
   
   
   public String checkGrade(float f, float g, float h) {
-    IUnit unit = UnitManager.UM().getUnit(unitCode);
+    IUnit unit = UnitManager.UM().getUnit(unitCode_);
     String grade = unit.getGrade(f, g, h);
-    studentManagementUserInterface.setState4(true);
-    studentManagementUserInterface.setState5(false);
-    if (changed) {
-      studentManagementUserInterface.setState6(true);
+    studentManagementUserInterface_.setState4(true);
+    studentManagementUserInterface_.setState5(false);
+    if (isChanged_) {
+      studentManagementUserInterface_.setState6(true);
     }
     return grade;
   }
 
+  
+  
   public void enableChangeMarks() {
-    studentManagementUserInterface.setState4(false);
-    studentManagementUserInterface.setState6(false);
-    studentManagementUserInterface.setState5(true);
-    changed = true;
+    studentManagementUserInterface_.setState4(false);
+    studentManagementUserInterface_.setState6(false);
+    studentManagementUserInterface_.setState5(true);
+    isChanged_ = true;
   }
 
   
   
   public void saveGrade(float asg1, float asg2, float exam) {
 
-    IUnit u = UnitManager.UM().getUnit(unitCode);
-    IStudent s = StudentManager.get().getStudent(currentStudentID);
+    IUnit u = UnitManager.UM().getUnit(unitCode_);
+    IStudent s = StudentManager.get().getStudent(currentStudentIdentifier_);
 
-    IStudentUnitRecord r = s.getUnitRecord(unitCode);
+    IStudentUnitRecord r = s.getUnitRecord(unitCode_);
     r.setAssignment1Result(asg1);
     r.setAssignment2Result(asg2);
     r.setExamResult(exam);
     StudentUnitRecordAdapter.getInstance().saveRecord(r);
-    studentManagementUserInterface.setState4(true);
-    studentManagementUserInterface.setState5(false);
-    studentManagementUserInterface.setState6(false);
+    studentManagementUserInterface_.setState4(true);
+    studentManagementUserInterface_.setState5(false);
+    studentManagementUserInterface_.setState6(false);
   }
 }

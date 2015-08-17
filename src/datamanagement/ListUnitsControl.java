@@ -1,7 +1,7 @@
 package datamanagement;
-public class ListUnitsCTL {
+public class ListUnitsControl {
     private UnitManager um;
-public ListUnitsCTL() {
+public ListUnitsControl() {
         um = UnitManager.UM();
 }
             public void listUnits( IUnitLister lister ) {

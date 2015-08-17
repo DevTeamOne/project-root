@@ -6,7 +6,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
   private float assignment1Result_, assignment2Result_, examResult_;
 
   /**
-   * 
+   * Constructor for the Student Unit Record
    * @param studentId
    * @param unitCode
    * @param assignment1Result
@@ -22,21 +22,26 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     this.setExamResult(examResult);
   }
 
+  
+  
   public Integer getStudentID() {
     return studentId_;
   }
 
+  
   
   public String getUnitCode() {
     return unitCode_;
   }
 
   
+  
   public float getAssignment1Result() {
 
     return assignment1Result_;
   }
 
+  
   
   public void setAssignment1Result(float assignment1Result) {
     if (assignment1Result < 0 || assignment1Result > UnitManager.UM().getUnit(unitCode_).getAsg1Weight()) {
@@ -57,10 +62,12 @@ public class StudentUnitRecord implements IStudentUnitRecord {
   }
 
   
+  
   public float getAssignment2Result() {
     return assignment2Result_;
   }
 
+  
   
   public void setExamResult(float ex) {
     if (ex < 0 || ex > UnitManager.UM().getUnit(unitCode_).getExamWeight()) {
@@ -71,10 +78,12 @@ public class StudentUnitRecord implements IStudentUnitRecord {
   }
 
   
+  
   public float getExamResult() {
     return examResult_;
   }
 
+  
   
   public float getTotal() {
     return assignment1Result_ + assignment2Result_ + examResult_;

@@ -1,30 +1,30 @@
 package datamanagement;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import java.awt.Color;
+import java.awt.Font;
+
 public class CheckGradeUserInterface extends javax.swing.JFrame implements
     IUnitLister, IStudentLister {
-  private StudentControl studentControl;
-  private javax.swing.DefaultComboBoxModel unitModel;
-  private javax.swing.DefaultComboBoxModel studentModel;
+  private StudentControl studentControl_;
+  private javax.swing.DefaultComboBoxModel unitModel_;
+  private javax.swing.DefaultComboBoxModel studentModel_;
   float assignment1Result;
   float assignment2Result;
   float assignment3Result;
   Integer studentId;
 
   public CheckGradeUserInterface(StudentControl studentControl) {
-    this.studentControl = studentControl;
-    unitModel = new javax.swing.DefaultComboBoxModel(new String[0]);
-    studentModel = new javax.swing.DefaultComboBoxModel(new String[0]);
+    this.studentControl_ = studentControl;
+    unitModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
+    studentModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
     initComponents();
-    unitField.setModel(unitModel);
-    studentField.setModel(studentModel);
+    unitField.setModel(unitModel_);
+    studentField.setModel(studentModel_);
     errorLabel.setText("");
   }
 
@@ -60,7 +60,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
     unitPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
 
-    unitField.setModel(unitModel);
+    unitField.setModel(unitModel_);
     unitField.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox1ItemStateChanged(evt);
@@ -89,7 +89,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     studentPanel.setBorder(javax.swing.BorderFactory
         .createTitledBorder("Student"));
 
-    studentField.setModel(studentModel);
+    studentField.setModel(studentModel_);
     studentField.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox2ItemStateChanged(evt);
@@ -362,6 +362,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  
+  
   private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
     String cU = (String) unitField.getSelectedItem();
     Refresh3();
@@ -370,9 +372,11 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
       if (cU.equals(unitField.getItemAt(0))) {
         cU = "NONE";
       }
-      studentControl.unitSelected(cU);
+      studentControl_.selectUnit(cU);
     }
   }// GEN-LAST:event_jComboBox1ItemStateChanged
+  
+  
 
   private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox2ItemStateChanged
     Refresh3();
@@ -380,13 +384,15 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
       if (cS.equals(studentField.getItemAt(0))) {
         studentId = new Integer(0);
-        studentControl.studentSelected(studentId);
+        studentControl_.selectStudent(studentId);
       } else {
         studentId = new Integer(cS.split("\\s")[0]);
       }
-      studentControl.studentSelected(studentId);
+      studentControl_.selectStudent(studentId);
     }
   }// GEN-LAST:event_jComboBox2ItemStateChanged
+  
+  
 
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
     assignment1Result = new Float(assignment1Field.getText()).floatValue();
@@ -394,67 +400,87 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     assignment3Result = new Float(examField.getText()).floatValue();
     // lblErrMsg.setText("");
     try {
-      String s = studentControl.checkGrade(assignment1Result, assignment2Result, assignment3Result);
+      String s = studentControl_.checkGrade(assignment1Result, assignment2Result, assignment3Result);
       gradeLabel.setText(s);
     } catch (RuntimeException re) {
       errorLabel.setText(re.getMessage());
     }
   }// GEN-LAST:event_jButton3ActionPerformed
+  
+  
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-    studentControl.enableChangeMarks();
+    studentControl_.enableChangeMarks();
     gradeLabel.setText("");
     // lblErrMsg.setText("");
   }// GEN-LAST:event_jButton1ActionPerformed
 
+  
+  
   private void jTextFieldKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField1KeyTyped
     gradeLabel.setText("");
     errorLabel.setText("");
   }// GEN-LAST:event_jTextField1KeyTyped
 
+  
+  
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
     float asg1 = new Float(assignment1Field.getText()).floatValue();
     float asg2 = new Float(assignment2Field.getText()).floatValue();
     float exam = new Float(examField.getText()).floatValue();
     errorLabel.setText("");
     try {
-      studentControl.saveGrade(asg1, asg2, exam);
+      studentControl_.saveGrade(asg1, asg2, exam);
       // jButton3ActionPerformed(null);
     } catch (RuntimeException re) {
       errorLabel.setText(re.getMessage());
     }
   }// GEN-LAST:event_jButton2ActionPerformed
 
+  
+  
   public void clearUnits() {
-    unitModel.removeAllElements();
-    unitModel.addElement("<none selected>");
+    unitModel_.removeAllElements();
+    unitModel_.addElement("<none selected>");
     clearStudents();
   }
 
+  
+  
   public void addUnit(IUnit u) {
-    unitModel.addElement(u.getUnitCode());
+    unitModel_.addElement(u.getUnitCode());
   }
 
+  
+  
   public void setState1(boolean b) {
     unitField.setEnabled(b);
     errorLabel.setText("");
   }
 
+  
+  
   public void clearStudents() {
-    studentModel.removeAllElements();
-    studentModel.addElement("<none selected>");
+    studentModel_.removeAllElements();
+    studentModel_.addElement("<none selected>");
   }
 
+  
+  
   public void addStudent(IStudent student) {
-    studentModel.addElement(student.getID().toString() + " : " + student.getFirstName()
+    studentModel_.addElement(student.getID().toString() + " : " + student.getFirstName()
         + " " + student.getLastName());
   }
 
+  
+  
   public void setState2(boolean b) {
     studentField.setEnabled(b);
     errorLabel.setText("");
   }
 
+  
+  
   public void setRecord(IStudentUnitRecord record) {
     assignment1Field.setText(new Float(record.getAssignment1Result())
         .toString());
@@ -464,6 +490,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     gradeLabel.setText("");
   }
 
+  
+  
   public void Refresh3() {
     assignment1Field.setText("");
     assignment2Field.setText("");
@@ -475,25 +503,35 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     examField.setEditable(false);
   }
 
+  
+  
   public void setState3(boolean b) {
     checkGradeButton.setEnabled(b);
   }
 
+  
+  
   public void setState4(boolean b) {
     changeButton.setEnabled(b);
     // gradeLB.setText("");
   }
 
+  
+  
   public void setState5(boolean b) {
     assignment1Field.setEditable(b);
     assignment2Field.setEditable(b);
     examField.setEditable(b);
   }
 
+  
+  
   public void setState6(boolean b) {
     saveButton.setEnabled(b);
   }
 
+  
+  
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton changeButton;
   private javax.swing.JButton checkGradeButton;

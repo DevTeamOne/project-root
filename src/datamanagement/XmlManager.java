@@ -72,7 +72,7 @@ public class XmlManager {
     try (FileWriter outputFile = new FileWriter(xmlFile)) {
       XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
       outputter.output(document_, outputFile);
-      outputFile.close();
+      
     } catch (IOException ioException) {
       System.err.printf("%s\n",
           "DBMD : XMLManager : saveDocument : Error saving XML to " + xmlFile);

@@ -31,12 +31,14 @@ public class StudentUnitRecordAdapter {
     studentUnitRecordsById_ = new java.util.HashMap<>();
   }
   
+  
 
   public static StudentUnitRecordAdapter getInstance() {
     if (studentUnitRecordManager_ == null)
       studentUnitRecordManager_ = new StudentUnitRecordAdapter();
     return studentUnitRecordManager_;
   }
+  
   
   
   /**
@@ -58,6 +60,7 @@ public class StudentUnitRecordAdapter {
 
     return studentUnitRecord;
   }
+  
   
   
   /**
@@ -97,6 +100,7 @@ public class StudentUnitRecordAdapter {
   }
   
   
+  
   /**
    * Returns a composite key built from the Student Id and Unit Code.
    * This can be used to uniquely identify a record.
@@ -112,6 +116,8 @@ public class StudentUnitRecordAdapter {
            studentUnitRecord.getUnitCode();
   }
 
+  
+  
   /**
    * Loads the student unit record element from the XML file.
    * 
@@ -127,6 +133,7 @@ public class StudentUnitRecordAdapter {
   }
   
 
+  
   /**
    * Checks if the given element matches the Student ID and Unit Code.
    * 
@@ -143,6 +150,7 @@ public class StudentUnitRecordAdapter {
   }
   
 
+  
   /**
    * Returns the value of the requested attribute, from the given element 
    * as a float.
@@ -155,6 +163,7 @@ public class StudentUnitRecordAdapter {
     return new Float(element.getAttributeValue(attributeName));
   }
 
+  
 
   /**
    * Returns the value of the requested attribute, from the given element 
@@ -169,6 +178,7 @@ public class StudentUnitRecordAdapter {
   }
 
 
+  
   /**
    * Returns the value of the requested attribute, from the given element 
    * as a String.
@@ -182,6 +192,7 @@ public class StudentUnitRecordAdapter {
   }
   
 
+  
   /**
    * Hydrates a student record element node from the CML document to a
    * StudentUnitRecord.
@@ -197,6 +208,7 @@ public class StudentUnitRecordAdapter {
         getAttributeAsFloat(element, ASSIGNMENT2_ATTRIBUTE),
         getAttributeAsFloat(element, EXAM_ATTRIBUTE));
   }
+  
   
 
   /**
@@ -239,6 +251,7 @@ public class StudentUnitRecordAdapter {
     return studentUnitRecords;
   }
 
+
   
   /**
    * Retrieves a list of StudentRecords by Student Id.
@@ -275,6 +288,7 @@ public class StudentUnitRecordAdapter {
       studentUnitRecordsById_.put(studentIDToFind, studentUnitRecords); 
     return studentUnitRecords;
   }
+  
   
 
   /**

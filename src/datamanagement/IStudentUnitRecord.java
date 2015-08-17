@@ -18,5 +18,5 @@ public interface IStudentUnitRecord {
 
 	public float getExamResult();
 
-	public float getTotal();
+	public float getTotal(); 
 }
