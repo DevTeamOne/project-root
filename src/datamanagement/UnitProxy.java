@@ -18,6 +18,7 @@ public class UnitProxy implements UnitInterface {
 
   /**
    * Constructor method for class UnitProxy.  
+   * 
    * @param code: The unit code to retrieve.
    * @param name: The unit name to retrieve.
    */  
@@ -29,6 +30,7 @@ public class UnitProxy implements UnitInterface {
 
   /**
    * Retrieve the unit code.
+   * 
    * @return unit code.
    */  
   public String getUnitCode() {
@@ -37,6 +39,7 @@ public class UnitProxy implements UnitInterface {
 
   /**
    * Retrieve the unit name.
+   * 
    * @return unit name.
    */  
   public String getUnitName() {
@@ -45,6 +48,7 @@ public class UnitProxy implements UnitInterface {
 
   /**
    * Retrieve the pass range of each unit.
+   * 
    * @return pass range.
    */
   public float getPassRange() {
@@ -53,6 +57,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the credit range of each unit.
+   * 
    * @return credit range.
    */
   public float getCreditRange() {
@@ -61,6 +66,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the distinction range of each unit.
+   * 
    * @return distinction range.
    */
   public float getDistinctionRange() {
@@ -69,6 +75,7 @@ public class UnitProxy implements UnitInterface {
 
   /**
    * Retrieve the high distinction range of each unit.
+   * 
    * @return high distinction range.
    */
   public float getHighDistinctionRange() {
@@ -78,6 +85,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the additional exam range of each unit.
+   * 
    * @return additional exam range.
    */
   public float getAdditionalExamRange() {
@@ -86,6 +94,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the unit grade.
+   * 
    * @param first: The unit code to retrieve grade
    * @param second: The unit code to retrieve grade
    * @param third: The unit code to retrieve grade
@@ -97,6 +106,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the student record.
+   * 
    * @param student: The student to retrieve.
    * @return student information record.
    */
@@ -106,6 +116,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the weighting value of the first assignment of a unit.
+   * 
    * @return the first assignment weight for a specific unit.
    */
   public int getFirstAssignmentWeight() {
@@ -114,6 +125,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the weighting value of the second assignment of a unit.
+   * 
    * @return the second assignment weight for a specific unit.
    */ 
   public int getSecondAssignmentWeight() {
@@ -122,6 +134,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the weighting value of the exam of a unit.
+   * 
    * @return the exam weight for a specific unit.
    */
   public int getExamWeight() {
@@ -130,6 +143,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Set pass range for a specific unit.
+   * 
    * @param range: The range of a pass mark to set.
    */
   public void setPassRange(float range) {
@@ -138,6 +152,7 @@ public class UnitProxy implements UnitInterface {
 
   /**
    * Set credit range for a specific unit.
+   * 
    * @param range: The range of a credit mark to set.
    */ 
   public void setCreditRange(float range) {
@@ -146,6 +161,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Set distinction range for a specific unit.
+   * 
    * @param range: The range of a distinction mark to set.
    */ 
   public void setDistinctionRange(float range) {
@@ -154,6 +170,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Set high distinction range for a specific unit.
+   * 
    * @param range: The range of a high distinction mark to set.
    */
   public void setHighDistinctionRange(float range) {
@@ -162,6 +179,7 @@ public class UnitProxy implements UnitInterface {
 
   /**
    * Set additional exam range for a specific unit.
+   * 
    * @param range: The range for an additional exam to be set.
    */  
   public void setAdditionalExamRange(float range) {
@@ -170,6 +188,7 @@ public class UnitProxy implements UnitInterface {
    
   /**
    * Set the weight of each assessment item.
+   * 
    * @param assessment1: The range of the first assessment item to be set.
    * @param assessment2: The range of the second assessment item to be set.
    * @param exam: The range of the exam item to be set.
@@ -180,6 +199,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Add a mark to student record.
+   * 
    * @param mark: The specific mark to be added on the students record.
    */ 
   public void addStudentRecord(IStudentUnitRecord mark) {
@@ -188,6 +208,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * List the student record of a student.
+   * 
    * @return A list of the students record.
    */ 
   public StudentUnitRecordList listStudentRecords() {
