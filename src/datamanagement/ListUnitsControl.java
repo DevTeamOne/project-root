@@ -23,6 +23,7 @@ public class ListUnitsControl {
 
   /**
    * Retrieve student record from class student.
+   * 
    * @param cgUI: The user interface of the lister retrieved.
    * @param code: The unit code to be retrieved.
    */ 
@@ -32,6 +33,7 @@ public class ListUnitsControl {
   
   /**
    * List the units from the unitManger.
+   * 
    * @param lister: The unit list to be retrieved.
    */ 
   public void listUnits(IUnitLister lister) {

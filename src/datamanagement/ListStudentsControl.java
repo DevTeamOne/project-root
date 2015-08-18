@@ -23,6 +23,7 @@ public class ListStudentsControl {
 
   /**
    * Method call from studentManager.java and student.java.
+   * 
    * @param lister: The list of students retrieved.
    * @param code: locate student by looking up unit code.
    */  

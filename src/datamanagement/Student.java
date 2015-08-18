@@ -19,6 +19,7 @@ public class Student implements StudentInterface {
   
   /**
    * Retrieve a student unit record, based on a key of both student id and unit code.
+   * 
    * @param number: The student number to retrieve.
    * @param first: The first name to retrieve.
    * @param last: The last name to retrieve.
@@ -34,6 +35,7 @@ public class Student implements StudentInterface {
   
   /**
    * Retrieve a student number.
+   * 
    * @return The student number.
    */ 
   public Integer getStudentNumber() {
@@ -42,6 +44,7 @@ public class Student implements StudentInterface {
   
   /**
    * Retrieve student first name.
+   * 
    * @return The student first name.
    */ 
   public String getFirstName() {
@@ -50,6 +53,7 @@ public class Student implements StudentInterface {
   
   /**
    * Retrieve student last name.
+   * 
    * @return The student last name.
    */ 
   public String getLastName() {
@@ -58,6 +62,7 @@ public class Student implements StudentInterface {
     
   /**
    * Retrieve student unit record.
+   * 
    * @return The student unit record.
    */ 
   public StudentUnitRecordList getUnitRecords() {
@@ -66,10 +71,9 @@ public class Student implements StudentInterface {
   
   /**
    * Retrieve student record using unit code.
+   * 
    * @param code: The unit code to be retrieved.
-   * If unit code is found in studentUnit then
    * @return Retrieve unit record.
-   * Else
    * @return Null.
    */ 
   public IStudentUnitRecord getUnitRecord(String code) {
@@ -82,6 +86,7 @@ public class Student implements StudentInterface {
   
   /**
    * Set student first name.
+   * 
    * @param first: The first name of the student to set.
    */
   public void setFirstName(String first) {
@@ -90,6 +95,7 @@ public class Student implements StudentInterface {
   
   /**
    * Set student last name. 
+   * 
    * @param last: The last name of the student to set.
    */
   public void setLastName(String last) {
@@ -98,6 +104,7 @@ public class Student implements StudentInterface {
   
   /**
    * Add a unit to the student record.
+   * 
    * @param record: The unit is added to the student record.
    */
   public void addUnitRecord(IStudentUnitRecord record) {

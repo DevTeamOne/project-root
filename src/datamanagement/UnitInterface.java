@@ -61,6 +61,7 @@ public interface UnitInterface {
 
   /**
    * Retrieve student grade of unit.
+   * 
    * @param assignment1: The assignment 1 grade to be retrieved.
    * @param assignment2: The assignment 2 grade to be retrieved.
    * @param exam: The exam grade to be retrieved.
@@ -69,42 +70,49 @@ public interface UnitInterface {
   
   /**
    * Retrieve student unit record using student number.
+   * 
    * @param studentNumber: The student number be retrieved.
    */ 
   public IStudentUnitRecord getStudentRecord(int studentNumber);
   
   /**
    * Set unit pass range.
+   * 
    * @param range: The range of a pass mark to set.
    */
   public void setPassRange(float range);
 
   /**
    * Set unit credit range.
+   * 
    * @param range: The range of a credit mark to set.
    */
   public void setCreditRange(float range);
 
   /**
    * Set unit distinction range.
+   * 
    * @param range: The range of a distinction mark to set.
    */
   public void setDistinctionRange(float range);
 
   /**
    * Set unit high distinction range.
+   * 
    * @param range: The range of a high distinction mark to set.
    */
   public void setHighDistinctionRange(float range);
 
   /**
    * Set unit additional exam range.
+   * 
    * @param range: The range of mark for an additional exam to set.
    */
   public void setAdditionalExamRange(float range);
 
   /**
    * Set unit assessment weight range.
+   * 
    * @param assessment1: The first assessment weight to set.
    * @param assessment2: The second assessment weight to set.
    * @param exam: The exam weight to set.
@@ -113,6 +121,7 @@ public interface UnitInterface {
 
   /**
    * Set unit assessment weight range.
+   * 
    * @param range: The unit assessment weight to set.
    */
   public void addStudentRecord(IStudentUnitRecord record);

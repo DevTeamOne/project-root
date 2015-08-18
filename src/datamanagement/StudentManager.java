@@ -30,8 +30,8 @@ public class StudentManager {
   
   /**
    * Retrieve student unit record.   
+   * 
    * @return create new self.
-   * or
    * @return self.
    */ 
   public static StudentManager get() {
@@ -43,6 +43,7 @@ public class StudentManager {
 
   /**
    * Retrieve individual student using their student number.   
+   * 
    * @param studentNumber: The student number to retrieve.
    * @return individual student or create new student if null.
    */   
@@ -54,6 +55,7 @@ public class StudentManager {
   
   /**
    * Retrieve student element using student number.   
+   * 
    * @param studentNumber: The student number to retrieve.
    * @return element.
    * @return null.
@@ -72,7 +74,8 @@ public class StudentManager {
   }
   
   /**
-   * Retrieve individual student using a unit code.   
+   * Retrieve individual student using a unit code. 
+   *   
    * @param code: The code number to lookup student.
    * @return student record attached to unit code.
    */ 
@@ -99,6 +102,7 @@ public class StudentManager {
   
   /**
    * Create a new student element.   
+   * 
    * @param studentNumber: The student number assigned to a new student element.
    * @return individual student created.
    * @throws runtime exception if student is not in file.
@@ -127,6 +131,7 @@ public class StudentManager {
 
   /**
    * Create a new student proxy.   
+   * 
    * @param studentNumber: The studentNumber to be retrieved.
    * @return student element using student number..
    * @throws runtime exception if student is not in file.

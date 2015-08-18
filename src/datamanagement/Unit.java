@@ -24,6 +24,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Retrieve a unit or create new unit if no existing match.
+   * 
    * @param code: The unit code to retrieve.
    * @param name: The unit name to retrieve.
    * @param range1: The range of a pass mark for this unit to retrieve.
@@ -52,6 +53,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Retrieve unit code.
+   * 
    * @return The unit code.
    */ 
   public String getUnitCode() {
@@ -60,6 +62,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Retrieve unit name.
+   * 
    * @return The unit name.
    */
   public String getUnitName() {
@@ -69,6 +72,7 @@ public class Unit implements UnitInterface {
    
   /**
    * Retrieve pass range.
+   * 
    * @return The pass range.
    */
   public float getPassRange() {
@@ -77,6 +81,7 @@ public class Unit implements UnitInterface {
   
   /**
    * Retrieve credit range.
+   * 
    * @return The credit range.
    */
   public float getCreditRange() {
@@ -85,6 +90,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Retrieve distinction range.
+   * 
    * @return The distinction range.
    */
   public float getDistinctionRange() {
@@ -93,6 +99,7 @@ public class Unit implements UnitInterface {
   
   /**
    * Retrieve high distinction range.
+   * 
    * @return The high distinction range.
    */
   public float getHighDistinctionRange() {
@@ -101,6 +108,7 @@ public class Unit implements UnitInterface {
   
   /**
    * Retrieve additional exam range.
+   * 
    * @return The additional exam range.
    */
   public float getAdditionalExamRange() {
@@ -109,6 +117,7 @@ public class Unit implements UnitInterface {
       
   /**
    * Retrieve high distinction range.
+   * 
    * @param studentNumber: The student number to retrieve.
    * @return If the student number exists lookup and return record.
    * @return null.
@@ -123,6 +132,7 @@ public class Unit implements UnitInterface {
   
   /**
    * Retrieve first assignment weight.
+   * 
    * @return The first assignment weight.
    */
   public int getFirstAssignmentWeight() {
@@ -131,6 +141,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Retrieve second assignment weight.
+   * 
    * @return The second assignment weight.
    */
   public int getSecondAssignmentWeight() {
@@ -139,6 +150,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Retrieve exam weight.
+   * 
    * @return The exam weight.
    */
   public int getExamWeight() {
@@ -147,6 +159,7 @@ public class Unit implements UnitInterface {
   
   /**
    * Retrieve grades.
+   * 
    * @param assessment1: The first assessment value to retrieve.
    * @param assessment2: The second assessment value to retrieve.
    * @param assessment3: The third assessment value to retrieve.
@@ -185,6 +198,7 @@ public class Unit implements UnitInterface {
   
   /**
    * Set unit pass range.
+   * 
    * @param range: The range of a pass mark to set.
    */
   public void setPassRange(float range) {
@@ -193,6 +207,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Set unit credit range.
+   * 
    * @param range: The range of a credit mark to set.
    */
   public void setCreditRange(float range) {
@@ -201,6 +216,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Set unit distinction range.
+   * 
    * @param range: The range of a distinction mark to set.
    */
   public void setDistinctionRange(float range) {
@@ -209,6 +225,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Set unit high distinction range.
+   * 
    * @param range: The range of a high distinction mark to set.
    */
   public void setHighDistinctionRange(float range) {
@@ -217,6 +234,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Set unit additional exam range.
+   * 
    * @param range: The range of an additional exam to set.
    */
   public void setAdditionalExamRange(float range) {
@@ -225,6 +243,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Set the weighting criterion for each assessment.
+   * 
    * @param assessment1: The weight of assessment 1 to set.
    * @param assessment2: The weight of assessment 2 to set.
    * @param assessmentExam: The weight of exam to set.
@@ -248,6 +267,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Set the weighting criterion for each assessment.
+   * 
    * @param pass: The pass range to set.
    * @param credit: The credit range to set.
    * @param distinction: The distinction range to set.
@@ -279,6 +299,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Add a record of a unit to the student record.
+   * 
    * @param record: The unit record of a student to add the to student record.
    */
   public void addStudentRecord(IStudentUnitRecord record) {
@@ -287,6 +308,7 @@ public class Unit implements UnitInterface {
 
   /**
    * Access the student unit record list.
+   * 
    * @return The list of the student record.
    */
   public StudentUnitRecordList listStudentRecords() {

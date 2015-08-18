@@ -29,6 +29,7 @@ public class StudentProxy implements StudentInterface {
   
   /**
    * Retrieve a student number.
+   * 
    * @return The student number.
    */ 
   public Integer getStudentNumber() {
@@ -37,6 +38,7 @@ public class StudentProxy implements StudentInterface {
   
   /**
    * Retrieve student first name.
+   * 
    * @return The student first name.
    */ 
   public String getFirstName() {
@@ -45,6 +47,7 @@ public class StudentProxy implements StudentInterface {
   
   /**
    * Retrieve student last name.
+   * 
    * @return The student last name.
    */
   public String getLastName() {
@@ -53,6 +56,7 @@ public class StudentProxy implements StudentInterface {
     
   /**
    * Retrieve student unit record.
+   * 
    * @return The student unit record.
    */ 
   public StudentUnitRecordList getUnitRecords() {
@@ -61,6 +65,7 @@ public class StudentProxy implements StudentInterface {
 
   /**
    * Retrieve student record from class student.
+   * 
    * @param code: The unit code to be retrieved.
    * @return Retrieve unit record based on value of student number.
    */ 
@@ -71,6 +76,7 @@ public class StudentProxy implements StudentInterface {
   
   /**
    * Set student first name.
+   * 
    * @param first: The first name of the student to set.
    */
   public void setFirstName(String first) {
@@ -79,6 +85,7 @@ public class StudentProxy implements StudentInterface {
   
   /**
    * Set student last name.
+   * 
    * @param last: The last name of the student to set.
    */
   public void setLastName(String last) {
@@ -87,6 +94,7 @@ public class StudentProxy implements StudentInterface {
   
   /**
    * Add a unit to the student record.
+   * 
    * @param record: The unit is added to the student record.
    */
   public void addUnitRecord(IStudentUnitRecord record) {

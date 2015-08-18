@@ -20,7 +20,8 @@ public class UnitManager {
   private UnitMap unitManager_;
 
   /**
-   * Retrieve unit record.   
+   * Retrieve unit record. 
+   *   
    * @return self.
    */ 
   public static UnitManager UNIT_MANAGER() {
@@ -38,6 +39,7 @@ public class UnitManager {
   
   /**
    * Retrieve a unit or create new unit if no existing match.
+   * 
    * @param unitCode: The unit code to retrieve
    * @return unit or create new unit if null.
    */
@@ -49,6 +51,7 @@ public class UnitManager {
 
   /**
    * Retrieve proxy unit element from the UnitMap.
+   * 
    * @return unit manager.
    */ 
   public UnitMap getUnits() {
@@ -73,6 +76,7 @@ public class UnitManager {
 
   /**
    * Create a new unit element using unit code.   
+   * 
    * @param unitCode: The unit code assigned to a new unit element.
    * @return the unit created.
    * @throws runtime exception if unit is not in file.
