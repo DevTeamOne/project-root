@@ -14,9 +14,9 @@ public class UnitProxy implements UnitInterface {
   /** 
    * Declare class variables.
    */
+  UnitManager unitManager;
   private String unitCode_;
   private String unitName_;
-  UnitManager unitManager;
 
   
   
@@ -233,8 +233,10 @@ public class UnitProxy implements UnitInterface {
    * @param assessment2: The range of the second assessment item to be set.
    * @param exam: The range of the exam item to be set.
    */ 
-  public void setAssessmentWeights (int assessment1, int assessment2, int exam) {
-    unitManager.getUnit(unitCode_).setAssessmentWeights(assessment1, assessment2, exam);
+  public void setAssessmentWeights (int assessment1, 
+      int assessment2, int exam) {
+    unitManager.getUnit(unitCode_).setAssessmentWeights(
+        assessment1, assessment2, exam);
   }
   
   
