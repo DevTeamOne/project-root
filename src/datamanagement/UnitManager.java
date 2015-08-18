@@ -51,7 +51,7 @@ public class UnitManager {
    * @param unitCode: The unit code to retrieve
    * @return unit or create new unit if null.
    */
-  public UnitInterface getUnit(String unitCode) {
+  public UnitInterface getUnit (String unitCode) {
     UnitInterface unit = unitManager_.get(unitCode);
     return unit != null ? unit : createUnit(unitCode);
 
@@ -93,7 +93,7 @@ public class UnitManager {
    * @return the unit created.
    * @throws runtime exception if unit is not in file.
    */
-  private UnitInterface createUnit(String unitCode) {
+  private UnitInterface createUnit (String unitCode) {
 
     UnitInterface unit_;
 

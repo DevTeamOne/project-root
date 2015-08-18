@@ -24,7 +24,7 @@ public class StudentProxy implements StudentInterface {
   /**
    * Constructor for class StudentProxy.
    */ 
-  public StudentProxy(Integer number, String first, String last) {
+  public StudentProxy (Integer number, String first, String last) {
     this.studentNumber_ = number;
     this.firstName_ = first;
     this.lastName_ = last;
@@ -83,7 +83,7 @@ public class StudentProxy implements StudentInterface {
    * @param code: The unit code to be retrieved.
    * @return Retrieve unit record based on value of student number.
    */ 
-  public IStudentUnitRecord getUnitRecord(String code) {
+  public IStudentUnitRecord getUnitRecord (String code) {
     return student_.getStudent(studentNumber_).getUnitRecord(code);
   }
  
@@ -94,7 +94,7 @@ public class StudentProxy implements StudentInterface {
    * 
    * @param first: The first name of the student to set.
    */
-  public void setFirstName(String first) {
+  public void setFirstName (String first) {
     student_.getStudent(studentNumber_).setFirstName(first);
   }
   
@@ -105,7 +105,7 @@ public class StudentProxy implements StudentInterface {
    * 
    * @param last: The last name of the student to set.
    */
-  public void setLastName(String last) {
+  public void setLastName (String last) {
     student_.getStudent(studentNumber_).setLastName(last);
   }
   
@@ -116,7 +116,7 @@ public class StudentProxy implements StudentInterface {
    * 
    * @param record: The unit is added to the student record.
    */
-  public void addUnitRecord(IStudentUnitRecord record) {
+  public void addUnitRecord (IStudentUnitRecord record) {
     student_.getStudent(studentNumber_).addUnitRecord(record);
   }
 }

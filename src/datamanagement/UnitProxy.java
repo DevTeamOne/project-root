@@ -26,7 +26,7 @@ public class UnitProxy implements UnitInterface {
    * @param code: The unit code to retrieve.
    * @param name: The unit name to retrieve.
    */  
-  public UnitProxy(String code, String name) {
+  public UnitProxy (String code, String name) {
     this.unitCode_ = code;
     this.unitName_ = name;
     unitManager = UnitManager.UNIT_MANAGER();
@@ -120,7 +120,7 @@ public class UnitProxy implements UnitInterface {
    * @param third: The unit code to retrieve grade
    * @return unit grade.
    */
-  public String getGrade(float first, float second, float third) {
+  public String getGrade (float first, float second, float third) {
     return unitManager.getUnit(unitCode_).getGrade(first, second, third);
   }
   
@@ -132,7 +132,7 @@ public class UnitProxy implements UnitInterface {
    * @param student: The student to retrieve.
    * @return student information record.
    */
-  public IStudentUnitRecord getStudentRecord(int student) {
+  public IStudentUnitRecord getStudentRecord (int student) {
     return unitManager.getUnit(unitCode_).getStudentRecord(student);
   }
   
@@ -176,7 +176,7 @@ public class UnitProxy implements UnitInterface {
    * 
    * @param range: The range of a pass mark to set.
    */
-  public void setPassRange(float range) {
+  public void setPassRange (float range) {
     unitManager.getUnit(unitCode_).setPassRange(range);
   }
 
@@ -187,7 +187,7 @@ public class UnitProxy implements UnitInterface {
    * 
    * @param range: The range of a credit mark to set.
    */ 
-  public void setCreditRange(float range) {
+  public void setCreditRange (float range) {
     unitManager.getUnit(unitCode_).setCreditRange(range);
   }
   
@@ -198,7 +198,7 @@ public class UnitProxy implements UnitInterface {
    * 
    * @param range: The range of a distinction mark to set.
    */ 
-  public void setDistinctionRange(float range) {
+  public void setDistinctionRange (float range) {
     unitManager.getUnit(unitCode_).setDistinctionRange(range);
   }
   
@@ -209,7 +209,7 @@ public class UnitProxy implements UnitInterface {
    * 
    * @param range: The range of a high distinction mark to set.
    */
-  public void setHighDistinctionRange(float range) {
+  public void setHighDistinctionRange (float range) {
     unitManager.getUnit(unitCode_).setHighDistinctionRange(range);
   }
   
@@ -220,7 +220,7 @@ public class UnitProxy implements UnitInterface {
    * 
    * @param range: The range for an additional exam to be set.
    */  
-  public void setAdditionalExamRange(float range) {
+  public void setAdditionalExamRange (float range) {
     unitManager.getUnit(unitCode_).setAdditionalExamRange(range);
   }  
   
@@ -233,7 +233,7 @@ public class UnitProxy implements UnitInterface {
    * @param assessment2: The range of the second assessment item to be set.
    * @param exam: The range of the exam item to be set.
    */ 
-  public void setAssessmentWeights(int assessment1, int assessment2, int exam) {
+  public void setAssessmentWeights (int assessment1, int assessment2, int exam) {
     unitManager.getUnit(unitCode_).setAssessmentWeights(assessment1, assessment2, exam);
   }
   
@@ -244,7 +244,7 @@ public class UnitProxy implements UnitInterface {
    * 
    * @param mark: The specific mark to be added on the students record.
    */ 
-  public void addStudentRecord(IStudentUnitRecord mark) {
+  public void addStudentRecord (IStudentUnitRecord mark) {
     unitManager.getUnit(unitCode_).addStudentRecord(mark);
   }
   

@@ -33,7 +33,7 @@ public class ListStudentsControl {
    * @param lister: The list of students retrieved.
    * @param code: locate student by looking up unit code.
    */  
-  public void listStudents(IStudentLister lister, String code) {
+  public void listStudents (IStudentLister lister, String code) {
     lister.clearStudents();
     
     StudentMap student = studentManager.getStudentsByUnit(code);

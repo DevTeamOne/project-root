@@ -30,7 +30,7 @@ public class Student implements StudentInterface {
    * @param record: The unit record to retrieve.
    * @return A matching or empty student unit record.
    */
-  public Student(Integer number, String first, String last, StudentUnitRecordList record) {
+  public Student (Integer number, String first, String last, StudentUnitRecordList record) {
     this.studentNumber_ = number;
     this.firstName_ = first;
     this.lastName_ = last;
@@ -90,7 +90,7 @@ public class Student implements StudentInterface {
    * @return Retrieve unit record.
    * @return Null.
    */ 
-  public IStudentUnitRecord getUnitRecord(String code) {
+  public IStudentUnitRecord getUnitRecord (String code) {
     for (IStudentUnitRecord record : studentUnit_) {
       if (record.getUnitCode().equals(code))
         return record;
@@ -105,7 +105,7 @@ public class Student implements StudentInterface {
    * 
    * @param first: The first name of the student to set.
    */
-  public void setFirstName(String first) {
+  public void setFirstName (String first) {
     this.firstName_ = first;
   }
   
@@ -116,7 +116,7 @@ public class Student implements StudentInterface {
    * 
    * @param last: The last name of the student to set.
    */
-  public void setLastName(String last) {
+  public void setLastName (String last) {
     this.lastName_ = last;
   }
   
@@ -127,7 +127,7 @@ public class Student implements StudentInterface {
    * 
    * @param record: The unit is added to the student record.
    */
-  public void addUnitRecord(IStudentUnitRecord record) {
+  public void addUnitRecord (IStudentUnitRecord record) {
     studentUnit_.add(record);
   } 
 }

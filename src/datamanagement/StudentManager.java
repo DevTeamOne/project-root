@@ -55,7 +55,7 @@ public class StudentManager {
    * @param studentNumber: The student number to retrieve.
    * @return individual student or create new student if null.
    */   
-  public StudentInterface getStudent(Integer studentNumber) {
+  public StudentInterface getStudent (Integer studentNumber) {
     StudentInterface individualStudent = studentManager_.get(studentNumber);
     
     return individualStudent != null ? individualStudent : createStudent(studentNumber);
@@ -70,7 +70,7 @@ public class StudentManager {
    * @return element.
    * @return null.
    */
-  private Element getStudentElement(Integer studentNumber) {
+  private Element getStudentElement (Integer studentNumber) {
     for (Element element : (List<Element>) XMLManager.getXML().
         getDocument().
         getRootElement().

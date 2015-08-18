@@ -16,7 +16,7 @@ public interface StudentInterface {
    * 
    * @param code: The unit code to be retrieved.
    */ 
-  public IStudentUnitRecord getUnitRecord(String code);
+  public IStudentUnitRecord getUnitRecord (String code);
   
   
   
@@ -25,7 +25,7 @@ public interface StudentInterface {
    * 
    * @param The student first name.
    */ 
-  public void setFirstName(String first);
+  public void setFirstName (String first);
   
   
   
@@ -34,7 +34,7 @@ public interface StudentInterface {
    * 
    * @param The student last name.
    */ 
-  public void setLastName(String last);
+  public void setLastName (String last);
   
   
   
@@ -43,7 +43,7 @@ public interface StudentInterface {
    * 
    * @param record: The unit is added to the student record.
    */ 
-  public void addUnitRecord(IStudentUnitRecord record);
+  public void addUnitRecord (IStudentUnitRecord record);
   
   
   

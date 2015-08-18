@@ -88,7 +88,7 @@ public interface UnitInterface {
    * @param assignment2: The assignment 2 grade to be retrieved.
    * @param exam: The exam grade to be retrieved.
    */ 
-  public String getGrade(float assignment1, float assignment2, float exam);
+  public String getGrade (float assignment1, float assignment2, float exam);
   
   
   
@@ -97,7 +97,7 @@ public interface UnitInterface {
    * 
    * @param studentNumber: The student number be retrieved.
    */ 
-  public IStudentUnitRecord getStudentRecord(int studentNumber);
+  public IStudentUnitRecord getStudentRecord (int studentNumber);
   
   
   
@@ -106,7 +106,7 @@ public interface UnitInterface {
    * 
    * @param range: The range of a pass mark to set.
    */
-  public void setPassRange(float range);
+  public void setPassRange (float range);
 
   
   
@@ -115,7 +115,7 @@ public interface UnitInterface {
    * 
    * @param range: The range of a credit mark to set.
    */
-  public void setCreditRange(float range);
+  public void setCreditRange (float range);
 
   
   
@@ -124,7 +124,7 @@ public interface UnitInterface {
    * 
    * @param range: The range of a distinction mark to set.
    */
-  public void setDistinctionRange(float range);
+  public void setDistinctionRange (float range);
 
   
   
@@ -133,7 +133,7 @@ public interface UnitInterface {
    * 
    * @param range: The range of a high distinction mark to set.
    */
-  public void setHighDistinctionRange(float range);
+  public void setHighDistinctionRange (float range);
 
   
   
@@ -142,7 +142,7 @@ public interface UnitInterface {
    * 
    * @param range: The range of mark for an additional exam to set.
    */
-  public void setAdditionalExamRange(float range);
+  public void setAdditionalExamRange (float range);
 
   
   
@@ -153,7 +153,7 @@ public interface UnitInterface {
    * @param assessment2: The second assessment weight to set.
    * @param exam: The exam weight to set.
    */
-  public void setAssessmentWeights(int assessment1, int assessment2, int exam);
+  public void setAssessmentWeights (int assessment1, int assessment2, int exam);
 
   
   
@@ -162,7 +162,7 @@ public interface UnitInterface {
    * 
    * @param range: The unit assessment weight to set.
    */
-  public void addStudentRecord(IStudentUnitRecord record);
+  public void addStudentRecord (IStudentUnitRecord record);
 
   
   

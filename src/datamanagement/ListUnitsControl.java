@@ -33,7 +33,7 @@ public class ListUnitsControl {
    * @param cgUI: The user interface of the lister retrieved.
    * @param code: The unit code to be retrieved.
    */ 
-  public void listStudents(cgUI cgUI, String code) {
+  public void listStudents (cgUI cgUI, String code) {
     unitManager = UnitManager.UNIT_MANAGER();    
   }
   
@@ -44,7 +44,7 @@ public class ListUnitsControl {
    * 
    * @param lister: The unit list to be retrieved.
    */ 
-  public void listUnits(IUnitLister lister) {
+  public void listUnits (IUnitLister lister) {
     lister.clearUnits();
     UnitMap units = unitManager.getUnits();
     for (String student : units.keySet())

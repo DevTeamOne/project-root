@@ -41,7 +41,7 @@ public class Unit implements UnitInterface {
    * @param weight3: The weight of assessments for this unit to set.
    * @param recordList: If the unit is not currently in the unit list then create new unit to record. 
    */
-  public Unit(String code, String name, float range1, float range2, float range3, float range4,
+  public Unit (String code, String name, float range1, float range2, float range3, float range4,
       float range5, int weight1, int weight2, int weight3, StudentUnitRecordList recordList) {
 
     this.unitCode_ = code;
@@ -141,7 +141,7 @@ public class Unit implements UnitInterface {
    * @return If the student number exists lookup and return record.
    * @return null.
    */
-  public IStudentUnitRecord getStudentRecord(int studentNumber) {
+  public IStudentUnitRecord getStudentRecord (int studentNumber) {
     for (IStudentUnitRecord record : recordStudent) {
       if (record.getStudentNumber() == studentNumber)
         return record;
@@ -198,7 +198,7 @@ public class Unit implements UnitInterface {
    * @return string.
    * @return string.
    */
-  public String getGrade(float assessment1, float assessment2, float assessment3) {
+  public String getGrade (float assessment1, float assessment2, float assessment3) {
     float totalMarks = assessment1 + assessment2 + assessment3;
 
     if (assessment1 < 0 || assessment1 > assignment1 || 
@@ -230,7 +230,7 @@ public class Unit implements UnitInterface {
    * 
    * @param range: The range of a pass mark to set.
    */
-  public void setPassRange(float range) {
+  public void setPassRange (float range) {
     this.passRange = range;
   }
   
@@ -241,7 +241,7 @@ public class Unit implements UnitInterface {
    * 
    * @param range: The range of a credit mark to set.
    */
-  public void setCreditRange(float range) {
+  public void setCreditRange (float range) {
     this.creditRange = range;
   }
   
@@ -252,7 +252,7 @@ public class Unit implements UnitInterface {
    * 
    * @param range: The range of a distinction mark to set.
    */
-  public void setDistinctionRange(float range) {
+  public void setDistinctionRange (float range) {
     this.distinctionRange = range;
   }
 
@@ -263,7 +263,7 @@ public class Unit implements UnitInterface {
    * 
    * @param range: The range of a high distinction mark to set.
    */
-  public void setHighDistinctionRange(float range) {
+  public void setHighDistinctionRange (float range) {
     this.highDistinctionRange = range;
   }
   
@@ -274,7 +274,7 @@ public class Unit implements UnitInterface {
    * 
    * @param range: The range of an additional exam to set.
    */
-  public void setAdditionalExamRange(float range) {
+  public void setAdditionalExamRange (float range) {
     this.additionalExamRange = range;
   }
 
@@ -289,7 +289,7 @@ public class Unit implements UnitInterface {
    * @throw exception on weight range.
    * @throw exception on weight total.
    */
-  public void setAssessmentWeights(int assessment1, int assessment2, int assessment3) {
+  public void setAssessmentWeights (int assessment1, int assessment2, int assessment3) {
     if (assessment1 < 0 || assessment1 > 100 || 
         assessment2 < 0 || assessment2 > 100 || 
         assessment3 < 0 || assessment3 > 100) {
@@ -315,7 +315,7 @@ public class Unit implements UnitInterface {
    * @param highDistinction: The high distinction range to set.
    * @param additionalExam: The additional exam range to set.
    */
-  private void setAssignmentRange(float pass, float credit, float distinction, float highDistinction, float additionalExam) {
+  private void setAssignmentRange (float pass, float credit, float distinction, float highDistinction, float additionalExam) {
     if (pass < 0 || pass > 100 || 
         credit < 0 || credit > 100 || 
         distinction < 0 || distinction > 100 || 
@@ -345,7 +345,7 @@ public class Unit implements UnitInterface {
    * 
    * @param record: The unit record of a student to add the to student record.
    */
-  public void addStudentRecord(IStudentUnitRecord record) {
+  public void addStudentRecord (IStudentUnitRecord record) {
     recordStudent.add(record);
   }
 
