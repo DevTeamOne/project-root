@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class manages and creates new element of a unit
+ * Description: This class manages and creates new element of a unit.
  */
 package datamanagement;
 
@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 public class UnitManager {
   
   /** 
-   * Declare class variables
+   * Declare class variables.
    */
   private static UnitManager self = null;
   private UnitMap unitManager_;
@@ -30,7 +30,7 @@ public class UnitManager {
   }
 
   /**
-   * Constructor of class UnitManager
+   * Constructor of class UnitManager.
    */ 
   private UnitManager() {
     unitManager_ = new UnitMap();

@@ -3,19 +3,19 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class controls the list of units for a student
+ * Description: This class controls the list of units for a student.
  */
 package datamanagement;
 
 public class ListUnitsControl {
   
   /**
-   * Declare class variable
+   * Declare class variable.
    */ 
   private UnitManager unitManager;
   
   /**
-   * Class ListUnitsControl constructor
+   * Class ListUnitsControl constructor.
    */ 
   public ListUnitsControl() {
     unitManager = UnitManager.UNIT_MANAGER();
@@ -31,7 +31,7 @@ public class ListUnitsControl {
   }
   
   /**
-   * List the units from the unitManger
+   * List the units from the unitManger.
    * @param lister: The unit list to be retrieved.
    */ 
   public void listUnits(IUnitLister lister) {

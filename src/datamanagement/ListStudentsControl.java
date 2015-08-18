@@ -15,7 +15,7 @@ public class ListStudentsControl {
   private StudentManager studentManager;
 
   /**
-   * Constructor of class ListStudentsControl.
+   * Constructor of the class ListStudentsControl.
    */ 
   public ListStudentsControl() {
     studentManager = StudentManager.get();

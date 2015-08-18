@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: Class Map of student numbers to ensure each student has a unique number
+ * Description: Class Map of student numbers to ensure each student has a unique number.
  */
 package datamanagement;
 

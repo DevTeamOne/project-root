@@ -10,12 +10,12 @@ package datamanagement;
 public interface UnitInterface {
 
   /**
-   * Retrieve unit code.
+   * Retrieve the unit code.
    */ 
   public String getUnitCode();
   
   /**
-   * Retrieve unit name.
+   * Retrieve the unit name.
    */ 
   public String getUnitName();
   

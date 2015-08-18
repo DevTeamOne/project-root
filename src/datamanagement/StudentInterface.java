@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This is an interface class that allows the user to add or retrieve information of a Student
+ * Description: This is an interface class that allows the user to add or retrieve information of a Student.
  */
 package datamanagement;
 

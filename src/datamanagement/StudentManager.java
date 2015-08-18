@@ -3,7 +3,7 @@
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: This class manages and creates new element of a student
+ * Description: This class manages and creates new element of a student.
  */
 package datamanagement;
 
@@ -14,14 +14,14 @@ import org.w3c.dom.Element;
 public class StudentManager {
   
   /** 
-   * Declare class variables
+   * Declare class variables.
    */
   private static StudentManager self = null;
   private StudentMap studentManager_;
   private java.util.HashMap<String, StudentMap> unitManager_;
 
   /**
-   * Constructor for class StudentManager
+   * Constructor for class StudentManager.
    */ 
   private StudentManager() {
     studentManager_ = new StudentMap();

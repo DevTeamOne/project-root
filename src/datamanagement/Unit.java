@@ -150,7 +150,7 @@ public class Unit implements UnitInterface {
    * @param assessment1: The first assessment value to retrieve.
    * @param assessment2: The second assessment value to retrieve.
    * @param assessment3: The third assessment value to retrieve.
-   * @throw exception on marking criterion.
+   * @throw exception on the marking criterion.
    * @return string.
    * @return string.
    * @return string.

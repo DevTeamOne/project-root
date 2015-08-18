@@ -97,7 +97,7 @@ public class UnitProxy implements UnitInterface {
   
   /**
    * Retrieve the student record.
-   * @param student: The student to retrieve
+   * @param student: The student to retrieve.
    * @return student information record.
    */
   public IStudentUnitRecord getStudentRecord(int student) {

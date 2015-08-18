@@ -10,7 +10,7 @@ package datamanagement;
 public class StudentProxy implements StudentInterface {
   
   /**
-   * Private variables for class StudentProxy
+   * Private variables for class StudentProxy.
    */ 
   private Integer studentNumber_;
   private String firstName_;
@@ -18,7 +18,7 @@ public class StudentProxy implements StudentInterface {
   private StudentManager student_;
 
   /**
-   * Constructor for class StudentProxy
+   * Constructor for class StudentProxy.
    */ 
   public StudentProxy(Integer number, String first, String last) {
     this.studentNumber_ = number;

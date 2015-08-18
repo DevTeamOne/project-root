@@ -10,7 +10,7 @@ package datamanagement;
 public class Student implements StudentInterface {
   
   /** 
-   * Private variables for class Student
+   * Private variables for class Student.
    */
   private Integer studentNumber_;
   private String firstName_;
@@ -89,7 +89,7 @@ public class Student implements StudentInterface {
   }
   
   /**
-   * Set student last name.
+   * Set student last name. 
    * @param last: The last name of the student to set.
    */
   public void setLastName(String last) {
@@ -102,5 +102,5 @@ public class Student implements StudentInterface {
    */
   public void addUnitRecord(IStudentUnitRecord record) {
     studentUnit_.add(record);
-  }
+  } 
 }
