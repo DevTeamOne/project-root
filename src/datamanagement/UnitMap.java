@@ -7,12 +7,6 @@ package datamanagement;
  * Assessment: Assignment 2
  * Description: Class Map of unit codes to ensure each unit has a unique code.
  */
-public class UnitMap extends java.util.HashMap<String, UnitInterface> {
-
-  
-  
-  /**
-   * Unique serial user ID.
-   */
-  private static final long serialVersionUID = 1L;
+public class UnitMap extends 
+    java.util.HashMap<String, UnitInterface> {
 }
