@@ -1,3 +1,5 @@
+package datamanagement;
+
 /**
  * Author: Evan Watkins
  * Student Number: 11537439
@@ -5,8 +7,6 @@
  * Assessment: Assignment 2
  * Description: This is an interface class that allows the user to add or retrieve information of a unit.
  */
-package datamanagement;
-
 public interface UnitInterface {
 
   

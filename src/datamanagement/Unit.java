@@ -1,3 +1,5 @@
+package datamanagement;
+
 /**
  * Author: Evan Watkins
  * Student Number: 11537439
@@ -5,8 +7,6 @@
  * Assessment: Assignment 2
  * Description: Unit class object containing details of a unit such as unit code and unit name as implemented from the IUnit class.
  */
-package datamanagement;
-
 public class Unit implements UnitInterface {
   
   

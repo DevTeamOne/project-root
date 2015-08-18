@@ -1,3 +1,5 @@
+package datamanagement;
+
 /**
  * Author: Evan Watkins
  * Student Number: 11537439
@@ -5,10 +7,7 @@
  * Assessment: Assignment 2
  * Description: This class manages and creates new element of a student.
  */
-package datamanagement;
-
 import java.util.List;
-
 import org.w3c.dom.Element;
 
 public class StudentManager {

@@ -1,3 +1,5 @@
+package datamanagement;
+
 /**
  * Author: Evan Watkins
  * Student Number: 11537439
@@ -5,8 +7,6 @@
  * Assessment: Assignment 2
  * Description: This class controls a list of students by student code.
  */
-package datamanagement;
-
 public class ListStudentsControl {
   
   

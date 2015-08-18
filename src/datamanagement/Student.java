@@ -1,3 +1,5 @@
+package datamanagement;
+
 /**
  * Author: Evan Watkins
  * Student Number: 11537439
@@ -5,8 +7,6 @@
  * Assessment: Assignment 2
  * Description: Student class object containing details of a student such as their first name, last name, student number and the unit records as implemented from the IStudent class.
  */
-package datamanagement;
-
 public class Student implements StudentInterface {
   
   

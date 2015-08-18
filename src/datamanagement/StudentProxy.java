@@ -1,3 +1,5 @@
+package datamanagement;
+
 /**
  * Author: Evan Watkins
  * Student Number: 11537439
@@ -5,8 +7,6 @@
  * Assessment: Assignment 2
  * Description: This class can create or return a student object based on the individual student details.
  */
-package datamanagement;
-
 public class StudentProxy implements StudentInterface {
   
   

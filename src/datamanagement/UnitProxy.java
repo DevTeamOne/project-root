@@ -1,3 +1,5 @@
+package datamanagement;
+
 /**
  * Author: Evan Watkins
  * Student Number: 11537439
@@ -5,8 +7,6 @@
  * Assessment: Assignment 2
  * Description: This class can add a record to a unit, list an existing unit and its weighting criterion.
  */
-package datamanagement;
-
 public class UnitProxy implements UnitInterface {
   
   
