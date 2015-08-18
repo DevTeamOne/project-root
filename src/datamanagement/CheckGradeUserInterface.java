@@ -11,8 +11,8 @@ import java.awt.Font;
 public class CheckGradeUserInterface extends javax.swing.JFrame implements
     IUnitLister, IStudentLister {
   private StudentControl studentControl_;
-  private javax.swing.DefaultComboBoxModel unitModel_;
-  private javax.swing.DefaultComboBoxModel studentModel_;
+  private javax.swing.DefaultComboBoxModel<String> unitModel_;
+  private javax.swing.DefaultComboBoxModel<String> studentModel_;
   float assignment1Result;
   float assignment2Result;
   float assignment3Result;
@@ -23,8 +23,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     unitModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
     studentModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
     initComponents();
-    unitField.setModel(unitModel_);
-    studentField.setModel(studentModel_);
+    unitComboBox.setModel(unitModel_);
+    studentComboBox.setModel(studentModel_);
     errorLabel.setText("");
   }
 
@@ -39,9 +39,9 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
     titleLabel = new javax.swing.JLabel();
     unitPanel = new javax.swing.JPanel();
-    unitField = new javax.swing.JComboBox<String>();
+    unitComboBox = new javax.swing.JComboBox<String>();
     studentPanel = new javax.swing.JPanel();
-    studentField = new javax.swing.JComboBox<String>();
+    studentComboBox = new javax.swing.JComboBox<String>();
     marksPanel = new javax.swing.JPanel();
     assignment1Label = new javax.swing.JLabel();
     assignment2Label = new javax.swing.JLabel();
@@ -60,10 +60,10 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
     unitPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
 
-    unitField.setModel(unitModel_);
-    unitField.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(java.awt.event.ItemEvent evt) {
-        jComboBox1ItemStateChanged(evt);
+    unitComboBox.setModel(unitModel_);
+    unitComboBox.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent event) {
+        jComboBox1ItemStateChanged(event);
       }
     });
 
@@ -75,13 +75,13 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
         gl_unitPanel
             .createSequentialGroup()
             .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(unitField, GroupLayout.PREFERRED_SIZE, 185,
+            .addComponent(unitComboBox, GroupLayout.PREFERRED_SIZE, 185,
                 GroupLayout.PREFERRED_SIZE).addContainerGap()));
     gl_unitPanel.setVerticalGroup(gl_unitPanel.createParallelGroup(
         Alignment.LEADING).addGroup(
         gl_unitPanel
             .createSequentialGroup()
-            .addComponent(unitField, GroupLayout.PREFERRED_SIZE,
+            .addComponent(unitComboBox, GroupLayout.PREFERRED_SIZE,
                 GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
             .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
     unitPanel.setLayout(gl_unitPanel);
@@ -89,8 +89,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     studentPanel.setBorder(javax.swing.BorderFactory
         .createTitledBorder("Student"));
 
-    studentField.setModel(studentModel_);
-    studentField.addItemListener(new java.awt.event.ItemListener() {
+    studentComboBox.setModel(studentModel_);
+    studentComboBox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox2ItemStateChanged(evt);
       }
@@ -104,7 +104,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
         gl_studentPanel
             .createSequentialGroup()
             .addContainerGap()
-            .addComponent(studentField, javax.swing.GroupLayout.PREFERRED_SIZE,
+            .addComponent(studentComboBox, javax.swing.GroupLayout.PREFERRED_SIZE,
                 185, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
                 Short.MAX_VALUE)));
@@ -112,7 +112,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
         javax.swing.GroupLayout.Alignment.LEADING).addGroup(
         gl_studentPanel
             .createSequentialGroup()
-            .addComponent(studentField, javax.swing.GroupLayout.PREFERRED_SIZE,
+            .addComponent(studentComboBox, javax.swing.GroupLayout.PREFERRED_SIZE,
                 javax.swing.GroupLayout.DEFAULT_SIZE,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -365,11 +365,11 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   
   private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
-    String cU = (String) unitField.getSelectedItem();
-    Refresh3();
+    String cU = (String) unitComboBox.getSelectedItem();
+    clearAndDisableValueFields();
     clearStudents();
     if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cU.equals(unitField.getItemAt(0))) {
+      if (cU.equals(unitComboBox.getItemAt(0))) {
         cU = "NONE";
       }
       studentControl_.selectUnit(cU);
@@ -379,10 +379,10 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
 
   private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox2ItemStateChanged
-    Refresh3();
-    String cS = (String) studentField.getSelectedItem();
+    clearAndDisableValueFields();
+    String cS = (String) studentComboBox.getSelectedItem();
     if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cS.equals(studentField.getItemAt(0))) {
+      if (cS.equals(studentComboBox.getItemAt(0))) {
         studentId = new Integer(0);
         studentControl_.selectStudent(studentId);
       } else {
@@ -439,6 +439,11 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
   
   
+  /*
+   * Removes all unit elements from the unit model.
+   * (non-Javadoc)
+   * @see datamanagement.IUnitLister#clearUnits()
+   */
   public void clearUnits() {
     unitModel_.removeAllElements();
     unitModel_.addElement("<none selected>");
@@ -447,19 +452,31 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
   
   
-  public void addUnit(IUnit u) {
-    unitModel_.addElement(u.getUnitCode());
+  /*
+   * adds a unit to the unit model.
+   * (non-Javadoc)
+   * @see datamanagement.IUnitLister#addUnit(datamanagement.IUnit)
+   */
+  public void addUnit(IUnit unit) {
+    unitModel_.addElement(unit.getUnitCode());
   }
 
   
   
-  public void setState1(boolean b) {
-    unitField.setEnabled(b);
+  /**
+   * Enable/Disable The Combo box..
+   * @param isEnabled : If true the combo box is enabled.
+   */
+  public void enableUnitComboBox(boolean isEnabled) {
+    unitComboBox.setEnabled(isEnabled);
     errorLabel.setText("");
   }
 
   
   
+  /**
+   * Remove all elements from the student model.
+   */
   public void clearStudents() {
     studentModel_.removeAllElements();
     studentModel_.addElement("<none selected>");
@@ -467,6 +484,10 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
   
   
+/**
+ * Adds a student to the student model.
+ * @param IStudent: The student record to add to the model.
+ */
   public void addStudent(IStudent student) {
     studentModel_.addElement(student.getID().toString() + " : " + student.getFirstName()
         + " " + student.getLastName());
@@ -474,25 +495,26 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
   
   
-  public void setState2(boolean b) {
-    studentField.setEnabled(b);
-    errorLabel.setText("");
-  }
-
-  
-  
-  public void setRecord(IStudentUnitRecord record) {
-    assignment1Field.setText(new Float(record.getAssignment1Result())
-        .toString());
-    assignment2Field.setText(new Float(record.getAssignment2Result())
-        .toString());
-    examField.setText(new Float(record.getExamResult()).toString());
+  /**
+   * Populates the user interface with data from a student.
+   * @param studentUnitRecord
+   */
+  public void addStudentRecord(IStudentUnitRecord studentUnitRecord) {
+    assignment1Field.setText(new Float(studentUnitRecord.getAssignment1Result()).
+        toString());
+    assignment2Field.setText(new Float(studentUnitRecord.getAssignment2Result()).
+        toString());
+    examField.setText(new Float(studentUnitRecord.getExamResult()).toString());
     gradeLabel.setText("");
   }
 
   
   
-  public void Refresh3() {
+  /**
+   * Clears the value fields and combo boxes and sets their
+   * state to disabled.
+   */
+  public void clearAndDisableValueFields() {
     assignment1Field.setText("");
     assignment2Field.setText("");
     examField.setText("");
@@ -505,29 +527,55 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
   
   
-  public void setState3(boolean b) {
-    checkGradeButton.setEnabled(b);
+  /**
+   * Enables/Disables the check grade button on the form.
+   * @param isEnabled: true to enable the button.
+   */
+  public void enableCheckGradeButton(boolean isEnabled) {
+    checkGradeButton.setEnabled(isEnabled);
   }
 
   
   
-  public void setState4(boolean b) {
-    changeButton.setEnabled(b);
-    // gradeLB.setText("");
+  /**
+   * Enable the change buttons on the form.
+   * @param isEnabled: true to enable the button.
+   */
+  public void enableChangeButton(boolean isEnabled) {
+    changeButton.setEnabled(isEnabled);
   }
 
   
   
-  public void setState5(boolean b) {
-    assignment1Field.setEditable(b);
-    assignment2Field.setEditable(b);
-    examField.setEditable(b);
+  /**
+   * Enable/Disable the student combo box on the form.
+   * @param isEnabled
+   */
+  public void enableStudentCombo(boolean isEnabled) {
+    studentComboBox.setEnabled(isEnabled);
+    errorLabel.setText("");
   }
 
   
   
-  public void setState6(boolean b) {
-    saveButton.setEnabled(b);
+  /**
+   * Enable/Disable value fields on the form
+   * @param isEnabled: Set to true to enable the value fields.
+   */
+  public void enableValueFields(boolean isEnabled) {
+    assignment1Field.setEditable(isEnabled);
+    assignment2Field.setEditable(isEnabled);
+    examField.setEditable(isEnabled);
+  }
+
+  
+  
+  /**
+   * Sets the enabled/disabled state fgor the button.
+   * @param isEnabled: Set to true to enable the save button.
+   */
+  public void enableSave(boolean isEnabled) {
+    saveButton.setEnabled(isEnabled);
   }
 
   
@@ -536,8 +584,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   private javax.swing.JButton changeButton;
   private javax.swing.JButton checkGradeButton;
   private javax.swing.JButton saveButton;
-  private javax.swing.JComboBox<String> unitField;
-  private javax.swing.JComboBox<String> studentField;
+  private javax.swing.JComboBox<String> unitComboBox;
+  private javax.swing.JComboBox<String> studentComboBox;
   private javax.swing.JLabel titleLabel;
   private javax.swing.JLabel assignment1Label;
   private javax.swing.JLabel assignment2Label;

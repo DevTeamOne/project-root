@@ -14,19 +14,19 @@ public class StudentControl {
   public void execute() {
     studentManagementUserInterface_ = new CheckGradeUserInterface(this);
     
-    studentManagementUserInterface_.setState1(false);
-    studentManagementUserInterface_.setState2(false);
-    studentManagementUserInterface_.setState3(false);
-    studentManagementUserInterface_.setState4(false);
-    studentManagementUserInterface_.setState5(false);
-    studentManagementUserInterface_.setState6(false);
+    studentManagementUserInterface_.enableUnitComboBox(false);
+    studentManagementUserInterface_.enableStudentCombo(false);
+    studentManagementUserInterface_.enableCheckGradeButton(false);
+    studentManagementUserInterface_.enableChangeButton(false);
+    studentManagementUserInterface_.enableValueFields(false);
+    studentManagementUserInterface_.enableSave(false);
     
-    studentManagementUserInterface_.Refresh3();
+    studentManagementUserInterface_.clearAndDisableValueFields();
 
     ListUnitsControl units = new ListUnitsControl();
     units.listUnits(studentManagementUserInterface_);
     studentManagementUserInterface_.setVisible(true);
-    studentManagementUserInterface_.setState1(true);
+    studentManagementUserInterface_.enableUnitComboBox(true);
   }
 
   
@@ -34,14 +34,14 @@ public class StudentControl {
   public void selectUnit(String code) {
 
     if (code.equals("NONE"))
-      studentManagementUserInterface_.setState2(false);
+      studentManagementUserInterface_.enableStudentCombo(false);
     else {
       ListStudentsCTL lsCTL = new ListStudentsCTL();
       lsCTL.listStudents(studentManagementUserInterface_, code);
       unitCode_ = code;
-      studentManagementUserInterface_.setState2(true);
+      studentManagementUserInterface_.enableStudentCombo(true);
     }
-    studentManagementUserInterface_.setState3(false);
+    studentManagementUserInterface_.enableCheckGradeButton(false);
   }
 
   
@@ -49,11 +49,11 @@ public class StudentControl {
   public void selectStudent(Integer studentIdentifier) {
     currentStudentIdentifier_ = studentIdentifier;
     if (currentStudentIdentifier_.intValue() == 0) {
-      studentManagementUserInterface_.Refresh3();
-      studentManagementUserInterface_.setState3(false);
-      studentManagementUserInterface_.setState4(false);
-      studentManagementUserInterface_.setState5(false);
-      studentManagementUserInterface_.setState6(false);
+      studentManagementUserInterface_.clearAndDisableValueFields();
+      studentManagementUserInterface_.enableCheckGradeButton(false);
+      studentManagementUserInterface_.enableChangeButton(false);
+      studentManagementUserInterface_.enableValueFields(false);
+      studentManagementUserInterface_.enableSave(false);
     }
 
     else {
@@ -61,11 +61,11 @@ public class StudentControl {
 
       IStudentUnitRecord studentUnitRecord = student.getUnitRecord(unitCode_);
 
-      studentManagementUserInterface_.setRecord(studentUnitRecord);
-      studentManagementUserInterface_.setState3(true);
-      studentManagementUserInterface_.setState4(true);
-      studentManagementUserInterface_.setState5(false);
-      studentManagementUserInterface_.setState6(false);
+      studentManagementUserInterface_.addStudentRecord(studentUnitRecord);
+      studentManagementUserInterface_.enableCheckGradeButton(true);
+      studentManagementUserInterface_.enableChangeButton(true);
+      studentManagementUserInterface_.enableValueFields(false);
+      studentManagementUserInterface_.enableSave(false);
       isChanged_ = false;
 
     }
@@ -76,10 +76,10 @@ public class StudentControl {
   public String checkGrade(float f, float g, float h) {
     IUnit unit = UnitManager.UM().getUnit(unitCode_);
     String grade = unit.getGrade(f, g, h);
-    studentManagementUserInterface_.setState4(true);
-    studentManagementUserInterface_.setState5(false);
+    studentManagementUserInterface_.enableChangeButton(true);
+    studentManagementUserInterface_.enableValueFields(false);
     if (isChanged_) {
-      studentManagementUserInterface_.setState6(true);
+      studentManagementUserInterface_.enableSave(true);
     }
     return grade;
   }
@@ -87,9 +87,9 @@ public class StudentControl {
   
   
   public void enableChangeMarks() {
-    studentManagementUserInterface_.setState4(false);
-    studentManagementUserInterface_.setState6(false);
-    studentManagementUserInterface_.setState5(true);
+    studentManagementUserInterface_.enableChangeButton(false);
+    studentManagementUserInterface_.enableSave(false);
+    studentManagementUserInterface_.enableValueFields(true);
     isChanged_ = true;
   }
 
@@ -105,8 +105,8 @@ public class StudentControl {
     r.setAssignment2Result(asg2);
     r.setExamResult(exam);
     StudentUnitRecordAdapter.getInstance().saveRecord(r);
-    studentManagementUserInterface_.setState4(true);
-    studentManagementUserInterface_.setState5(false);
-    studentManagementUserInterface_.setState6(false);
+    studentManagementUserInterface_.enableChangeButton(true);
+    studentManagementUserInterface_.enableValueFields(false);
+    studentManagementUserInterface_.enableSave(false);
   }
 }
