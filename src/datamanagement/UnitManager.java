@@ -69,14 +69,14 @@ public class UnitManager {
     UnitInterface unit;
 
     unitManager = new UnitMap();
-    for (Element element : (List<Element>) XMLManager.getXML().
+    for (Element e : (List<Element>) XMLManager.getXML().
         getDocument().
         getRootElement().
         getChild("unitTable").
         getChildren("Unit")) {
       
-      unit = new UnitProxy(element.getAttribute("Unit ID"),
-          element.getAttribute("Name"));
+      unit = new UnitProxy(e.getAttribute("Unit ID"),
+          e.getAttribute("Name"));
       
       unitManager.put(unit.getUnitCode(), unit);
     } // unit maps are filled with PROXY units
@@ -95,25 +95,25 @@ public class UnitManager {
   private UnitInterface createUnit (String unitCode) {
     UnitInterface unit_;
 
-    for (Element element : (List<Element>) XMLManager.getXML().
+    for (Element e : (List<Element>) XMLManager.getXML().
         getDocument().
         getRootElement().
         getChild("Unit Table").
         getChildren("Unit"))
-      if (unitCode.equals(element.getAttribute("Unit ID"))) {
+      if (unitCode.equals(e.getAttribute("Unit ID"))) {
         StudentUnitRecordList studentList;
 
         studentList = null;
-        unit_ = new Unit(element.getAttribute("Unit ID"),
-            element.getAttribute("Name"), Float.valueOf(
-                element.getAttribute("Pass")).floatValue(), Float.valueOf(
-                element.getAttribute("Credit")).floatValue(), Float.valueOf(
-                element.getAttribute("Distinction")).floatValue(), Float.valueOf(
-                element.getAttribute("High Distinction")).floatValue(), Float.valueOf(
-                element.getAttribute("Additional Exam")).floatValue(), Integer.valueOf(
-                element.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
-                element.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
-                element.getAttribute("Exam weight")).intValue(), StudentUnitRecordManager.instance().
+        unit_ = new Unit(e.getAttribute("Unit ID"),
+            e.getAttribute("Name"), Float.valueOf(
+                e.getAttribute("Pass")).floatValue(), Float.valueOf(
+                e.getAttribute("Credit")).floatValue(), Float.valueOf(
+                e.getAttribute("Distinction")).floatValue(), Float.valueOf(
+                e.getAttribute("High Distinction")).floatValue(), Float.valueOf(
+                e.getAttribute("Additional Exam")).floatValue(), Integer.valueOf(
+                e.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
+                e.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
+                e.getAttribute("Exam weight")).intValue(), StudentUnitRecordManager.instance().
                 getRecordsByUnit(unitCode));
         unitManager_.put(unit_.getUnitCode(), unit_);
         return unit_;

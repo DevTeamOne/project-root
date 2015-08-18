@@ -47,7 +47,7 @@ public class ListUnitsControl {
   public void listUnits (IUnitLister lister) {
     lister.clearUnits();
     UnitMap units = unitManager.getUnits();
-    for (String student : units.keySet())
-      lister.addUnit(units.get(student));
+    for (String s : units.keySet())
+      lister.addUnit(units.get(s));
   }  
 }

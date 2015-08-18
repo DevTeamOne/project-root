@@ -38,7 +38,7 @@ public class ListStudentsControl {
     
     StudentMap student = studentManager.getStudentsByUnit(code);
     
-    for (Integer studentNo : student.keySet())
-      lister.addStudent(student.get(studentNo));
+    for (Integer n : student.keySet())
+      lister.addStudent(student.get(n));
   }
 }
