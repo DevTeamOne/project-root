@@ -13,6 +13,8 @@ import org.w3c.dom.Element;
 
 public class StudentManager {
   
+  
+  
   /** 
    * Declare class variables.
    */
@@ -20,6 +22,8 @@ public class StudentManager {
   private StudentMap studentManager_;
   private java.util.HashMap<String, StudentMap> unitManager_;
 
+  
+  
   /**
    * Constructor for class StudentManager.
    */ 
@@ -27,6 +31,8 @@ public class StudentManager {
     studentManager_ = new StudentMap();
     unitManager_ = new java.util.HashMap<>();
   }
+  
+  
   
   /**
    * Retrieve student unit record.   
@@ -41,6 +47,8 @@ public class StudentManager {
     return self;
   }
 
+  
+  
   /**
    * Retrieve individual student using their student number.   
    * 
@@ -52,6 +60,8 @@ public class StudentManager {
     
     return individualStudent != null ? individualStudent : createStudent(studentNumber);
   }
+  
+  
   
   /**
    * Retrieve student element using student number.   
@@ -72,6 +82,8 @@ public class StudentManager {
       }
     return null;
   }
+  
+  
   
   /**
    * Retrieve individual student using a unit code. 
@@ -99,6 +111,8 @@ public class StudentManager {
     
     return student;
   }
+  
+  
   
   /**
    * Create a new student element.   
@@ -129,6 +143,8 @@ public class StudentManager {
     throw new RuntimeException("DBMD: createStudent : student not in file");
   }
 
+  
+  
   /**
    * Create a new student proxy.   
    * 

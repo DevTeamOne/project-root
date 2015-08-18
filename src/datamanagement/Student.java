@@ -9,6 +9,8 @@ package datamanagement;
 
 public class Student implements StudentInterface {
   
+  
+  
   /** 
    * Private variables for class Student.
    */
@@ -16,6 +18,8 @@ public class Student implements StudentInterface {
   private String firstName_;
   private String lastName_;
   private StudentUnitRecordList studentUnit_;
+  
+  
   
   /**
    * Retrieve a student unit record, based on a key of both student id and unit code.
@@ -33,6 +37,8 @@ public class Student implements StudentInterface {
     this.studentUnit_ = record == null ? new StudentUnitRecordList() : record;
   }
   
+  
+  
   /**
    * Retrieve a student number.
    * 
@@ -41,6 +47,8 @@ public class Student implements StudentInterface {
   public Integer getStudentNumber() {
     return this.studentNumber_;
   }
+  
+  
   
   /**
    * Retrieve student first name.
@@ -51,6 +59,8 @@ public class Student implements StudentInterface {
     return firstName_;
   }
   
+  
+  
   /**
    * Retrieve student last name.
    * 
@@ -60,6 +70,8 @@ public class Student implements StudentInterface {
     return lastName_;
   }
     
+  
+  
   /**
    * Retrieve student unit record.
    * 
@@ -68,6 +80,8 @@ public class Student implements StudentInterface {
   public StudentUnitRecordList getUnitRecords() {
     return studentUnit_;
   }
+  
+  
   
   /**
    * Retrieve student record using unit code.
@@ -84,6 +98,8 @@ public class Student implements StudentInterface {
     return null;
   }
   
+  
+  
   /**
    * Set student first name.
    * 
@@ -93,6 +109,8 @@ public class Student implements StudentInterface {
     this.firstName_ = first;
   }
   
+  
+  
   /**
    * Set student last name. 
    * 
@@ -101,6 +119,8 @@ public class Student implements StudentInterface {
   public void setLastName(String last) {
     this.lastName_ = last;
   }
+  
+  
   
   /**
    * Add a unit to the student record.

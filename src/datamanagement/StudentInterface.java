@@ -9,12 +9,16 @@ package datamanagement;
 
 public interface StudentInterface {
   
+  
+  
   /**
    * Retrieve student record using unit code.
    * 
    * @param code: The unit code to be retrieved.
    */ 
   public IStudentUnitRecord getUnitRecord(String code);
+  
+  
   
   /**
    * Set student first name.
@@ -23,12 +27,16 @@ public interface StudentInterface {
    */ 
   public void setFirstName(String first);
   
+  
+  
   /**
    * Set student last name.
    * 
    * @param The student last name.
    */ 
   public void setLastName(String last);
+  
+  
   
   /**
    * Add a unit to the student record.
@@ -37,21 +45,29 @@ public interface StudentInterface {
    */ 
   public void addUnitRecord(IStudentUnitRecord record);
   
+  
+  
   /**
    * Retrieve student number.
    */ 
   public Integer getStudentNumber();
+  
+  
   
   /**
    * Retrieve student first name.
    */ 
   public String getFirstName();
   
+  
+  
   /**
    * Retrieve student last name.
    */ 
   public String getLastName();
 
+  
+  
   /**
    * Retrieve student unit records.
    */ 

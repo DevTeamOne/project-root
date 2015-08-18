@@ -9,17 +9,23 @@ package datamanagement;
 
 public class ListStudentsControl {
   
+  
+  
   /** 
    * Declare class variables.
    */
   private StudentManager studentManager;
 
+  
+  
   /**
    * Constructor of the class ListStudentsControl.
    */ 
   public ListStudentsControl() {
     studentManager = StudentManager.get();
   }
+  
+  
 
   /**
    * Method call from studentManager.java and student.java.

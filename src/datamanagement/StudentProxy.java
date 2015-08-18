@@ -9,6 +9,8 @@ package datamanagement;
 
 public class StudentProxy implements StudentInterface {
   
+  
+  
   /**
    * Private variables for class StudentProxy.
    */ 
@@ -17,6 +19,8 @@ public class StudentProxy implements StudentInterface {
   private String lastName_;
   private StudentManager student_;
 
+  
+  
   /**
    * Constructor for class StudentProxy.
    */ 
@@ -27,6 +31,8 @@ public class StudentProxy implements StudentInterface {
     this.student_ = StudentManager.get();
   }
   
+  
+  
   /**
    * Retrieve a student number.
    * 
@@ -35,6 +41,8 @@ public class StudentProxy implements StudentInterface {
   public Integer getStudentNumber() {
     return studentNumber_;
   }
+  
+  
   
   /**
    * Retrieve student first name.
@@ -45,6 +53,8 @@ public class StudentProxy implements StudentInterface {
     return firstName_;
   }
   
+  
+  
   /**
    * Retrieve student last name.
    * 
@@ -54,6 +64,8 @@ public class StudentProxy implements StudentInterface {
     return lastName_;
   }
     
+  
+  
   /**
    * Retrieve student unit record.
    * 
@@ -63,6 +75,8 @@ public class StudentProxy implements StudentInterface {
     return student_.getStudent(studentNumber_).getUnitRecords();
   }
 
+  
+  
   /**
    * Retrieve student record from class student.
    * 
@@ -74,6 +88,7 @@ public class StudentProxy implements StudentInterface {
   }
  
   
+  
   /**
    * Set student first name.
    * 
@@ -83,6 +98,8 @@ public class StudentProxy implements StudentInterface {
     student_.getStudent(studentNumber_).setFirstName(first);
   }
   
+  
+  
   /**
    * Set student last name.
    * 
@@ -91,6 +108,8 @@ public class StudentProxy implements StudentInterface {
   public void setLastName(String last) {
     student_.getStudent(studentNumber_).setLastName(last);
   }
+  
+  
   
   /**
    * Add a unit to the student record.

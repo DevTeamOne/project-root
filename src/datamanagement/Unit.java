@@ -9,6 +9,8 @@ package datamanagement;
 
 public class Unit implements UnitInterface {
   
+  
+  
   /** 
    * Declare class variables.
    */
@@ -22,6 +24,8 @@ public class Unit implements UnitInterface {
   private int assignment1, assignment2, exam;
   private StudentUnitRecordList recordStudent;
 
+  
+  
   /**
    * Retrieve a unit or create new unit if no existing match.
    * 
@@ -51,6 +55,8 @@ public class Unit implements UnitInterface {
     recordStudent = recordList == null ? new StudentUnitRecordList() : recordList;
   }
 
+  
+  
   /**
    * Retrieve unit code.
    * 
@@ -60,16 +66,19 @@ public class Unit implements UnitInterface {
     return this.unitCode_;
   }
 
+ 
+  
   /**
    * Retrieve unit name.
    * 
    * @return The unit name.
    */
   public String getUnitName() {
-
     return this.unitName_;
   }
    
+  
+  
   /**
    * Retrieve pass range.
    * 
@@ -78,6 +87,8 @@ public class Unit implements UnitInterface {
   public float getPassRange() {
     return this.passRange;
   }
+  
+  
   
   /**
    * Retrieve credit range.
@@ -88,6 +99,8 @@ public class Unit implements UnitInterface {
     return this.creditRange;
   }
 
+  
+  
   /**
    * Retrieve distinction range.
    * 
@@ -96,6 +109,8 @@ public class Unit implements UnitInterface {
   public float getDistinctionRange() {
     return this.distinctionRange;
   }
+  
+  
   
   /**
    * Retrieve high distinction range.
@@ -106,6 +121,8 @@ public class Unit implements UnitInterface {
     return this.highDistinctionRange;
   }
   
+  
+  
   /**
    * Retrieve additional exam range.
    * 
@@ -115,6 +132,8 @@ public class Unit implements UnitInterface {
     return this.additionalExamRange;
   }
       
+  
+  
   /**
    * Retrieve high distinction range.
    * 
@@ -130,6 +149,8 @@ public class Unit implements UnitInterface {
     return null;
   }
   
+  
+  
   /**
    * Retrieve first assignment weight.
    * 
@@ -138,6 +159,8 @@ public class Unit implements UnitInterface {
   public int getFirstAssignmentWeight() {
     return assignment1;
   }
+  
+  
 
   /**
    * Retrieve second assignment weight.
@@ -147,6 +170,8 @@ public class Unit implements UnitInterface {
   public int getSecondAssignmentWeight() {
     return assignment2;
   }
+  
+  
 
   /**
    * Retrieve exam weight.
@@ -156,6 +181,8 @@ public class Unit implements UnitInterface {
   public int getExamWeight() {
     return exam;
   }
+  
+  
   
   /**
    * Retrieve grades.
@@ -196,6 +223,8 @@ public class Unit implements UnitInterface {
       return "High Distinction";
   }
   
+  
+  
   /**
    * Set unit pass range.
    * 
@@ -204,6 +233,8 @@ public class Unit implements UnitInterface {
   public void setPassRange(float range) {
     this.passRange = range;
   }
+  
+  
 
   /**
    * Set unit credit range.
@@ -213,6 +244,8 @@ public class Unit implements UnitInterface {
   public void setCreditRange(float range) {
     this.creditRange = range;
   }
+  
+  
 
   /**
    * Set unit distinction range.
@@ -223,6 +256,8 @@ public class Unit implements UnitInterface {
     this.distinctionRange = range;
   }
 
+  
+  
   /**
    * Set unit high distinction range.
    * 
@@ -231,6 +266,8 @@ public class Unit implements UnitInterface {
   public void setHighDistinctionRange(float range) {
     this.highDistinctionRange = range;
   }
+  
+  
 
   /**
    * Set unit additional exam range.
@@ -241,6 +278,8 @@ public class Unit implements UnitInterface {
     this.additionalExamRange = range;
   }
 
+  
+  
   /**
    * Set the weighting criterion for each assessment.
    * 
@@ -264,6 +303,8 @@ public class Unit implements UnitInterface {
     this.assignment2 = assessment2;
     this.exam = assessment3;
   }
+  
+  
 
   /**
    * Set the weighting criterion for each assessment.
@@ -297,6 +338,8 @@ public class Unit implements UnitInterface {
     }
   }
 
+  
+  
   /**
    * Add a record of a unit to the student record.
    * 
@@ -306,6 +349,8 @@ public class Unit implements UnitInterface {
     recordStudent.add(record);
   }
 
+  
+  
   /**
    * Access the student unit record list.
    * 

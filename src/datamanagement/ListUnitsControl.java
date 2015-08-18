@@ -9,10 +9,14 @@ package datamanagement;
 
 public class ListUnitsControl {
   
+  
+  
   /**
    * Declare class variable.
    */ 
   private UnitManager unitManager;
+  
+  
   
   /**
    * Class ListUnitsControl constructor.
@@ -21,6 +25,8 @@ public class ListUnitsControl {
     unitManager = UnitManager.UNIT_MANAGER();
   }
 
+  
+  
   /**
    * Retrieve student record from class student.
    * 
@@ -30,6 +36,8 @@ public class ListUnitsControl {
   public void listStudents(cgUI cgUI, String code) {
     unitManager = UnitManager.UNIT_MANAGER();    
   }
+  
+  
   
   /**
    * List the units from the unitManger.

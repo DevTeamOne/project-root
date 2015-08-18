@@ -9,56 +9,78 @@ package datamanagement;
 
 public interface UnitInterface {
 
+  
+  
   /**
    * Retrieve the unit code.
    */ 
   public String getUnitCode();
+  
+  
   
   /**
    * Retrieve the unit name.
    */ 
   public String getUnitName();
   
+  
+  
   /**
    * Retrieve unit pass range.
    */ 
   public float getPassRange();
+  
+  
   
   /**
    * Retrieve unit credit range.
    */ 
   public float getCreditRange();  
   
+  
+  
   /**
    * Retrieve unit distinction range.
    */ 
   public float getDistinctionRange(); 
+  
+  
   
   /**
    * Retrieve unit high distinction range.
    */ 
   public float getHighDistinctionRange(); 
   
+  
+  
   /**
    * Retrieve unit additional exam range.
    */ 
   public float getAdditionalExamRange();
+  
+  
   
   /**
    * Retrieve first assignment weighting.
    */ 
   public int getFirstAssignmentWeight();
 
+  
+  
   /**
    * Retrieve second assignment weighting.
    */ 
   public int getSecondAssignmentWeight();
 
+  
+  
   /**
    * Retrieve exam weighting.
    */ 
   public int getExamWeight();
 
+  
+  
   /**
    * Retrieve student grade of unit.
    * 
@@ -68,12 +90,16 @@ public interface UnitInterface {
    */ 
   public String getGrade(float assignment1, float assignment2, float exam);
   
+  
+  
   /**
    * Retrieve student unit record using student number.
    * 
    * @param studentNumber: The student number be retrieved.
    */ 
   public IStudentUnitRecord getStudentRecord(int studentNumber);
+  
+  
   
   /**
    * Set unit pass range.
@@ -82,6 +108,8 @@ public interface UnitInterface {
    */
   public void setPassRange(float range);
 
+  
+  
   /**
    * Set unit credit range.
    * 
@@ -89,6 +117,8 @@ public interface UnitInterface {
    */
   public void setCreditRange(float range);
 
+  
+  
   /**
    * Set unit distinction range.
    * 
@@ -96,6 +126,8 @@ public interface UnitInterface {
    */
   public void setDistinctionRange(float range);
 
+  
+  
   /**
    * Set unit high distinction range.
    * 
@@ -103,6 +135,8 @@ public interface UnitInterface {
    */
   public void setHighDistinctionRange(float range);
 
+  
+  
   /**
    * Set unit additional exam range.
    * 
@@ -110,6 +144,8 @@ public interface UnitInterface {
    */
   public void setAdditionalExamRange(float range);
 
+  
+  
   /**
    * Set unit assessment weight range.
    * 
@@ -119,6 +155,8 @@ public interface UnitInterface {
    */
   public void setAssessmentWeights(int assessment1, int assessment2, int exam);
 
+  
+  
   /**
    * Set unit assessment weight range.
    * 
@@ -126,6 +164,8 @@ public interface UnitInterface {
    */
   public void addStudentRecord(IStudentUnitRecord record);
 
+  
+  
   /**
    * Call method to list student records.
    */ 

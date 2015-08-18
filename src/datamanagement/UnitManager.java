@@ -13,12 +13,16 @@ import org.w3c.dom.Element;
 
 public class UnitManager {
   
+  
+  
   /** 
    * Declare class variables.
    */
   private static UnitManager self = null;
   private UnitMap unitManager_;
 
+  
+  
   /**
    * Retrieve unit record. 
    *   
@@ -29,6 +33,8 @@ public class UnitManager {
       self = new UnitManager();
     return self;
   }
+  
+  
 
   /**
    * Constructor of class UnitManager.
@@ -36,6 +42,8 @@ public class UnitManager {
   private UnitManager() {
     unitManager_ = new UnitMap();
   }
+  
+  
   
   /**
    * Retrieve a unit or create new unit if no existing match.
@@ -49,6 +57,8 @@ public class UnitManager {
 
   }
 
+  
+  
   /**
    * Retrieve proxy unit element from the UnitMap.
    * 
@@ -73,6 +83,8 @@ public class UnitManager {
     } // unit maps are filled with PROXY units
     return unitManager;
   }
+  
+  
 
   /**
    * Create a new unit element using unit code.   
