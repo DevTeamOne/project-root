@@ -65,7 +65,6 @@ public class UnitManager {
    * @return unit manager.
    */ 
   public UnitMap getUnits() {
-
     UnitMap unitManager;
     UnitInterface unit;
 
@@ -94,7 +93,6 @@ public class UnitManager {
    * @throws runtime exception if unit is not in file.
    */
   private UnitInterface createUnit (String unitCode) {
-
     UnitInterface unit_;
 
     for (Element element : (List<Element>) XMLManager.getXML().
