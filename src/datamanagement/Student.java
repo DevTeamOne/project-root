@@ -14,7 +14,7 @@ public class Student implements StudentInterface {
   /** 
    * Private variables for class Student.
    */
-  private Integer studentNumber_;
+  private Integer studentNo_;
   private String firstName_;
   private String lastName_;
   private StudentUnitRecordList studentUnit_;
@@ -31,7 +31,7 @@ public class Student implements StudentInterface {
    * @return A matching or empty student unit record.
    */
   public Student (Integer number, String first, String last, StudentUnitRecordList record) {
-    this.studentNumber_ = number;
+    this.studentNo_ = number;
     this.firstName_ = first;
     this.lastName_ = last;
     this.studentUnit_ = record == null ? new StudentUnitRecordList() : record;
@@ -45,7 +45,7 @@ public class Student implements StudentInterface {
    * @return The student number.
    */ 
   public Integer getStudentNumber() {
-    return this.studentNumber_;
+    return this.studentNo_;
   }
   
   

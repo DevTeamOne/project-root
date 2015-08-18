@@ -97,7 +97,7 @@ public interface UnitInterface {
    * 
    * @param studentNumber: The student number be retrieved.
    */ 
-  public IStudentUnitRecord getStudentRecord (int studentNumber);
+  public IStudentUnitRecord getStudentRecord (int studentNo);
   
   
   

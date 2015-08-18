@@ -141,9 +141,9 @@ public class Unit implements UnitInterface {
    * @return If the student number exists lookup and return record.
    * @return null.
    */
-  public IStudentUnitRecord getStudentRecord (int studentNumber) {
+  public IStudentUnitRecord getStudentRecord (int studentNo) {
     for (IStudentUnitRecord record : recordStudent) {
-      if (record.getStudentNumber() == studentNumber)
+      if (record.getStudentNumber() == studentNo)
         return record;
     }
     return null;

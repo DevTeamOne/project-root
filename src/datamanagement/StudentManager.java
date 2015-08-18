@@ -55,10 +55,10 @@ public class StudentManager {
    * @param studentNumber: The student number to retrieve.
    * @return individual student or create new student if null.
    */   
-  public StudentInterface getStudent (Integer studentNumber) {
-    StudentInterface individualStudent = studentManager_.get(studentNumber);
+  public StudentInterface getStudent (Integer studentNo) {
+    StudentInterface individualStudent = studentManager_.get(studentNo);
     
-    return individualStudent != null ? individualStudent : createStudent(studentNumber);
+    return individualStudent != null ? individualStudent : createStudent(studentNo);
   }
   
   
@@ -70,14 +70,14 @@ public class StudentManager {
    * @return element.
    * @return null.
    */
-  private Element getStudentElement (Integer studentNumber) {
+  private Element getStudentElement (Integer studentNo) {
     for (Element element : (List<Element>) XMLManager.getXML().
         getDocument().
         getRootElement().
         getChild("studentTable").
         getChildren("student"))
       
-      if (studentNumber.toString().equals(element.getAttribute("studentNumber"))) {
+      if (studentNo.toString().equals(element.getAttribute("studentNumber"))) {
         return element;
       }
     return null;
@@ -121,13 +121,13 @@ public class StudentManager {
    * @return individual student created.
    * @throws runtime exception if student is not in file.
    */ 
-  private StudentInterface createStudent(Integer studentNumber) {
+  private StudentInterface createStudent(Integer studentNo) {
     StudentInterface individualStudent_;
-    Element element_ = getStudentElement(studentNumber);
+    Element element_ = getStudentElement(studentNo);
     
     if (element_ != null) {
       StudentUnitRecordList recordList = StudentUnitRecordManager.instance().
-          getRecordsByStudent(studentNumber);
+          getRecordsByStudent(studentNo);
       
       individualStudent_ = new Student(new Integer(element_.getAttribute("Student Number")),
           element_.getAttribute("First Name"), 
@@ -152,11 +152,11 @@ public class StudentManager {
    * @return student element using student number..
    * @throws runtime exception if student is not in file.
    */ 
-  private StudentInterface createStudentProxy(Integer studentNumber) {
-    Element element_ = getStudentElement(studentNumber);
+  private StudentInterface createStudentProxy(Integer studentNo) {
+    Element element_ = getStudentElement(studentNo);
 
     if (element_ != null) {
-      return new StudentProxy(studentNumber, 
+      return new StudentProxy(studentNo, 
           element_.getAttribute("First Name"), 
           element_.getAttribute("Last Name"));
     }
