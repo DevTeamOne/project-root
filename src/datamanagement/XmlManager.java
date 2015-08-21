@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class XmlManager {
   private static XmlManager self_ = new XmlManager();
-  private Document document_;
+  private Document document;
   
 
   
@@ -52,7 +52,7 @@ public class XmlManager {
     try {
       SAXBuilder builder = new SAXBuilder();
       builder.setExpandEntities(true);
-      document_ = builder.build(fileName);
+      document = builder.build(fileName);
     }
 
     catch (JDOMException exception) {
@@ -75,7 +75,7 @@ public class XmlManager {
    * @return Document: The xml document root.
    */
   public Document getDocument() {
-    return document_;
+    return document;
   }
   
   
@@ -93,7 +93,7 @@ public class XmlManager {
     try (FileWriter outputFile = new FileWriter(xmlFile)) {
       
       XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-      outputter.output(document_, outputFile);
+      outputter.output(document, outputFile);
       
     } catch (IOException ioException) {
       System.err.printf("%s\n",
