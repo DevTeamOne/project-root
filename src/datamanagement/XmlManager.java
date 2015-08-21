@@ -11,8 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
+
 /**
- * XMLManager is a singleton
+ * XMLManager is a singleton class for managing an xml data store.
  */
 public class XmlManager {
   private static XmlManager self_ = new XmlManager();
@@ -23,15 +24,25 @@ public class XmlManager {
   private XmlManager() {
     initialize();
   }
-  
-  
 
+  
+  
+  /**
+   * Retrieves the singleton instance of the xmlManager.
+   * 
+   * @return The singleton instance of the xmlManager
+   */
   static XmlManager getInstance() {
     return self_;
   }
   
-    
   
+  
+  /**
+   * Initializes the XmlManager by loading the 
+   * xml File identified by the XMLFILE application
+   * property.
+   */
   public void initialize() {
     String fileName = ApplicationProperties.
         getInstance().
@@ -59,17 +70,28 @@ public class XmlManager {
 
   
   
+  /**
+   * Retrieves the xml document root.
+   * @return Document: The xml document root.
+   */
   public Document getDocument() {
     return document_;
   }
   
   
   
+  /**
+   * Save the Xml Document to disk, as identified
+   * by the XMLFILE application property.
+   */
   public void saveDocument() {
-    String xmlFile = ApplicationProperties.getInstance().getProperties()
-        .getProperty("XMLFILE");
+    String xmlFile = ApplicationProperties.
+        getInstance().
+        getProperties().
+        getProperty("XMLFILE");
     
     try (FileWriter outputFile = new FileWriter(xmlFile)) {
+      
       XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
       outputter.output(document_, outputFile);
       
