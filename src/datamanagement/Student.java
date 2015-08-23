@@ -5,24 +5,29 @@ package datamanagement;
  * Student Number: 11537439
  * Class: ITC515
  * Assessment: Assignment 2
- * Description: Student class object containing details of a student such as their first name, last name, student number and the unit records as implemented from the IStudent class.
+ * Description: Student class object containing details of a student 
+ *              such as their first name, last name, student number 
+ *              and the unit records as implemented from the IStudent class.
  */
-public class Student implements StudentInterface {
+public class Student 
+  implements StudentInterface 
+{
   
   
   
   /** 
    * Private variables for class Student.
    */
-  private Integer studentNo_;
-  private String firstName_;
-  private String lastName_;
-  private StudentUnitRecordList studentUnit_;
+  private Integer studentNo;
+  private String firstName;
+  private String lastName;
+  private StudentUnitRecordList studentUnit;
   
   
   
   /**
-   * Retrieve a student unit record, based on a key of both student id and unit code.
+   * Retrieve a student unit record, based on a key of both student id 
+   * and unit code.
    * 
    * @param number: The student number to retrieve.
    * @param first: The first name to retrieve.
@@ -30,11 +35,12 @@ public class Student implements StudentInterface {
    * @param record: The unit record to retrieve.
    * @return A matching or empty student unit record.
    */
-  public Student (Integer number, String first, String last, StudentUnitRecordList record) {
-    this.studentNo_ = number;
-    this.firstName_ = first;
-    this.lastName_ = last;
-    this.studentUnit_ = record == null ? new StudentUnitRecordList() : record;
+  public Student (Integer number, String first, 
+      String last, StudentUnitRecordList record) {
+    this.studentNo = number;
+    this.firstName = first;
+    this.lastName = last;
+    this.studentUnit = record == null ? new StudentUnitRecordList() : record;
   }
   
   
@@ -45,7 +51,7 @@ public class Student implements StudentInterface {
    * @return The student number.
    */ 
   public Integer getStudentNumber() {
-    return this.studentNo_;
+    return this.studentNo;
   }
   
   
@@ -56,7 +62,7 @@ public class Student implements StudentInterface {
    * @return The student first name.
    */ 
   public String getFirstName() {
-    return firstName_;
+    return firstName;
   }
   
   
@@ -67,7 +73,7 @@ public class Student implements StudentInterface {
    * @return The student last name.
    */ 
   public String getLastName() {
-    return lastName_;
+    return lastName;
   }
     
   
@@ -78,7 +84,7 @@ public class Student implements StudentInterface {
    * @return The student unit record.
    */ 
   public StudentUnitRecordList getUnitRecords() {
-    return studentUnit_;
+    return studentUnit;
   }
   
   
@@ -90,9 +96,9 @@ public class Student implements StudentInterface {
    * @return Retrieve unit record.
    * @return Null.
    */ 
-  public IStudentUnitRecord getUnitRecord (String code) {
-    for (IStudentUnitRecord record : studentUnit_) {
-      if (record.getUnitCode().equals(code))
+  public IStudentUnitRecord getUnitRecord (String findCode) {
+    for (IStudentUnitRecord record : studentUnit) {
+      if (record.getUnitCode().equals(findCode))
         return record;
     }
     return null;
@@ -106,7 +112,7 @@ public class Student implements StudentInterface {
    * @param first: The first name of the student to set.
    */
   public void setFirstName (String first) {
-    this.firstName_ = first;
+    this.firstName = first;
   }
   
   
@@ -117,7 +123,7 @@ public class Student implements StudentInterface {
    * @param last: The last name of the student to set.
    */
   public void setLastName (String last) {
-    this.lastName_ = last;
+    this.lastName = last;
   }
   
   
@@ -128,6 +134,6 @@ public class Student implements StudentInterface {
    * @param record: The unit is added to the student record.
    */
   public void addUnitRecord (IStudentUnitRecord record) {
-    studentUnit_.add(record);
+    studentUnit.add(record);
   } 
 }

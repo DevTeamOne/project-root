@@ -11,9 +11,6 @@ public class ListUnitsControl {
   
   
   
-  /**
-   * Declare class variable.
-   */ 
   private UnitManager unitManager;
   
   
@@ -22,7 +19,7 @@ public class ListUnitsControl {
    * Class ListUnitsControl constructor.
    */ 
   public ListUnitsControl() {
-    unitManager = UnitManager.UNIT_MANAGER();
+    unitManager = UnitManager.getInstance();
   }
 
   
@@ -34,7 +31,7 @@ public class ListUnitsControl {
    * @param code: The unit code to be retrieved.
    */ 
   public void listStudents (cgUI cgUI, String code) {
-    unitManager = UnitManager.UNIT_MANAGER();    
+    unitManager = UnitManager.getInstance();    
   }
   
   
@@ -46,8 +43,8 @@ public class ListUnitsControl {
    */ 
   public void listUnits (IUnitLister lister) {
     lister.clearUnits();
-    UnitMap units = unitManager.getUnits();
-    for (String s : units.keySet())
-      lister.addUnit(units.get(s));
+    UnitMap units = unitManager.getUnitMap();
+    for (String student : units.keySet())
+      lister.addUnit(units.get(student));
   }  
 }

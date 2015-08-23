@@ -66,7 +66,7 @@ public class cgCTL {
 	}
 
 	public String checkGrade(float f, float g, float h) {
-		UnitInterface u = UnitManager.UNIT_MANAGER().getUnit(cuc);
+		UnitInterface u = UnitManager.getInstance().getUnit(cuc);
 		String s = u.getGrade(f, g, h);
 		CGUI.setState4(true);
 		CGUI.setState5(false);
@@ -85,7 +85,7 @@ public class cgCTL {
 
 	public void saveGrade(float asg1, float asg2, float exam) {
 
-		UnitInterface u = UnitManager.UNIT_MANAGER().getUnit(cuc);
+		UnitInterface u = UnitManager.getInstance().getUnit(cuc);
 		StudentInterface s = StudentManager.get().getStudent(currentStudentID);
 
 		IStudentUnitRecord r = s.getUnitRecord(cuc);

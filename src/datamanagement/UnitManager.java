@@ -18,8 +18,8 @@ public class UnitManager {
   /** 
    * Declare class variables.
    */
-  private static UnitManager self = null;
-  private UnitMap unitManager_;
+  private static UnitManager self_ = null;
+  private UnitMap unitManager;
 
   
   
@@ -28,19 +28,16 @@ public class UnitManager {
    *   
    * @return self.
    */ 
-  public static UnitManager UNIT_MANAGER() {
-    if (self == null)
-      self = new UnitManager();
-    return self;
+  public static UnitManager getInstance() {
+    if (self_ == null)
+      self_ = new UnitManager();
+    return self_;
   }
   
   
 
-  /**
-   * Constructor of class UnitManager.
-   */ 
   private UnitManager() {
-    unitManager_ = new UnitMap();
+    unitManager = new UnitMap();
   }
   
   
@@ -51,9 +48,9 @@ public class UnitManager {
    * @param unitCode: The unit code to retrieve
    * @return unit or create new unit if null.
    */
-  public UnitInterface getUnit (String unitCode) {
-    UnitInterface unit = unitManager_.get(unitCode);
-    return unit != null ? unit : createUnit(unitCode);
+  public UnitInterface getUnit (String findUnitCode) {
+    UnitInterface unit = unitManager.get(findUnitCode);
+    return unit != null ? unit : createUnit(findUnitCode);
 
   }
 
@@ -64,19 +61,19 @@ public class UnitManager {
    * 
    * @return unit manager.
    */ 
-  public UnitMap getUnits() {
+  public UnitMap getUnitMap() {
     UnitMap unitManager;
     UnitInterface unit;
 
     unitManager = new UnitMap();
-    for (Element e : (List<Element>) XMLManager.getXML().
+    for (Element element : (List<Element>) XMLManager.getXML().
         getDocument().
         getRootElement().
         getChild("unitTable").
         getChildren("Unit")) {
       
-      unit = new UnitProxy(e.getAttribute("Unit ID"),
-          e.getAttribute("Name"));
+      unit = new UnitProxy(element.getAttribute("Unit ID"),
+          element.getAttribute("Name"));
       
       unitManager.put(unit.getUnitCode(), unit);
     } // unit maps are filled with PROXY units
@@ -85,37 +82,31 @@ public class UnitManager {
   
   
 
-  /**
-   * Create a new unit element using unit code.   
-   * 
-   * @param unitCode: The unit code assigned to a new unit element.
-   * @return the unit created.
-   * @throws runtime exception if unit is not in file.
-   */
   private UnitInterface createUnit (String unitCode) {
     UnitInterface unit_;
 
-    for (Element e : (List<Element>) XMLManager.getXML().
+    for (Element element : (List<Element>) XMLManager.getXML().
         getDocument().
         getRootElement().
         getChild("Unit Table").
         getChildren("Unit"))
-      if (unitCode.equals(e.getAttribute("Unit ID"))) {
+      if (unitCode.equals(element.getAttribute("Unit ID"))) {
         StudentUnitRecordList studentList;
 
         studentList = null;
-        unit_ = new Unit(e.getAttribute("Unit ID"),
-            e.getAttribute("Name"), Float.valueOf(
-                e.getAttribute("Pass")).floatValue(), Float.valueOf(
-                e.getAttribute("Credit")).floatValue(), Float.valueOf(
-                e.getAttribute("Distinction")).floatValue(), Float.valueOf(
-                e.getAttribute("High Distinction")).floatValue(), Float.valueOf(
-                e.getAttribute("Additional Exam")).floatValue(), Integer.valueOf(
-                e.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
-                e.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
-                e.getAttribute("Exam weight")).intValue(), StudentUnitRecordManager.instance().
-                getRecordsByUnit(unitCode));
-        unitManager_.put(unit_.getUnitCode(), unit_);
+        unit_ = new Unit(element.getAttribute("Unit ID"),
+          element.getAttribute("Name"), Float.valueOf(
+            element.getAttribute("Pass")).floatValue(), Float.valueOf(
+            element.getAttribute("Credit")).floatValue(), Float.valueOf(
+            element.getAttribute("Distinction")).floatValue(), Float.valueOf(
+            element.getAttribute("High Distinction")).floatValue(), Float.valueOf(
+            element.getAttribute("Additional Exam")).floatValue(), Integer.valueOf(
+            element.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
+            element.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
+            element.getAttribute("Exam weight")).intValue(), 
+            StudentUnitRecordManager.instance().
+            getRecordsByUnit (unitCode));
+        unitManager.put(unit_.getUnitCode(), unit_);
         return unit_;
       }
 
