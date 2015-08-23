@@ -8,6 +8,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * CheckGradeUserInterface renders the main user interface for the 
+ * application.
+ */
 public class CheckGradeUserInterface extends javax.swing.JFrame implements
     IUnitLister, IStudentLister {
   private StudentControl studentControl_;
@@ -18,6 +22,12 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   float assignment3Result;
   Integer studentId;
 
+  
+  
+  /**
+   * Constructor, is passed the student control to be rendered.
+   * @param studentControl, student control to be rendered.
+   */
   public CheckGradeUserInterface(StudentControl studentControl) {
     this.studentControl_ = studentControl;
     unitModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
@@ -28,6 +38,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     errorLabel.setText("");
   }
 
+  
+  
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -364,6 +376,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
   
   
+ 
   private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
     String cU = (String) unitComboBox.getSelectedItem();
     clearAndDisableValueFields();
@@ -409,6 +422,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   
 
+  
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
     studentControl_.enableChangeMarks();
     gradeLabel.setText("");
