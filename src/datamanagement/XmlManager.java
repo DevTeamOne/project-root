@@ -72,6 +72,7 @@ public class XmlManager {
   
   /**
    * Retrieves the xml document root.
+   * 
    * @return Document: The xml document root.
    */
   public Document getDocument() {
