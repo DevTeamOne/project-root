@@ -26,6 +26,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   /**
    * Constructor, is passed the student control to be rendered.
+   * 
    * @param studentControl, student control to be rendered.
    */
   public CheckGradeUserInterface(StudentControl studentControl) {
@@ -511,6 +512,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
 /**
  * Adds a student to the student model.
+ * 
  * @param IStudent: The student record to add to the model.
  */
   public void addStudent(IStudent student) {
@@ -522,6 +524,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   /**
    * Populates the user interface with data from a student.
+   * 
    * @param studentUnitRecord
    */
   public void addStudentRecord(IStudentUnitRecord studentUnitRecord) {
@@ -554,6 +557,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   /**
    * Enables/Disables the check grade button on the form.
+   * 
    * @param isEnabled: true to enable the button.
    */
   public void enableCheckGradeButton(boolean isEnabled) {
@@ -564,6 +568,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   /**
    * Enable the change buttons on the form.
+   * 
    * @param isEnabled: true to enable the button.
    */
   public void enableChangeButton(boolean isEnabled) {
@@ -574,6 +579,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   /**
    * Enable/Disable the student combo box on the form.
+   * 
    * @param isEnabled
    */
   public void enableStudentCombo(boolean isEnabled) {
@@ -584,7 +590,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   
   /**
-   * Enable/Disable value fields on the form
+   * Enable/Disable value fields on the form.
+   * 
    * @param isEnabled: Set to true to enable the value fields.
    */
   public void enableValueFields(boolean isEnabled) {
@@ -597,6 +604,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   /**
    * Sets the enabled/disabled state fgor the button.
+   * 
    * @param isEnabled: Set to true to enable the save button.
    */
   public void enableSave(boolean isEnabled) {
