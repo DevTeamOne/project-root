@@ -11,7 +11,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
   private float assignment1Result, assignment2Result, examResult;
   
 
-  /**
+  /** 
    * Constructor for the Student Unit Record
    * 
    * @param studentId
