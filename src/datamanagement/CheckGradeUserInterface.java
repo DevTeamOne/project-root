@@ -377,77 +377,88 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   
   
  
-  private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
-    String cU = (String) unitComboBox.getSelectedItem();
+  private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent event) {// GEN-FIRST:event_jComboBox1ItemStateChanged
+    
+    String selectedUnit = (String) unitComboBox.getSelectedItem();
     clearAndDisableValueFields();
     clearStudents();
-    if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cU.equals(unitComboBox.getItemAt(0))) {
-        cU = "NONE";
-      }
-      studentControl_.selectUnit(cU);
+    
+    if (event.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+      if (selectedUnit.equals(unitComboBox.getItemAt(0))) 
+        selectedUnit = "NONE";
+
+      studentControl_.selectUnit(selectedUnit);
     }
   }// GEN-LAST:event_jComboBox1ItemStateChanged
   
   
 
-  private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox2ItemStateChanged
+  private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent event) {// GEN-FIRST:event_jComboBox2ItemStateChanged
     clearAndDisableValueFields();
-    String cS = (String) studentComboBox.getSelectedItem();
-    if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-      if (cS.equals(studentComboBox.getItemAt(0))) {
+    
+    String selectedStudent = (String) studentComboBox.getSelectedItem();
+    
+    if (event.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+      if (selectedStudent.equals(studentComboBox.getItemAt(0))) {
+        
         studentId = new Integer(0);
         studentControl_.selectStudent(studentId);
+        
       } else {
-        studentId = new Integer(cS.split("\\s")[0]);
+        studentId = new Integer(selectedStudent.split("\\s")[0]);
       }
+      
       studentControl_.selectStudent(studentId);
     }
   }// GEN-LAST:event_jComboBox2ItemStateChanged
   
   
 
-  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+  private void jButton3ActionPerformed(java.awt.event.ActionEvent event) {// GEN-FIRST:event_jButton3ActionPerformed
+    
     assignment1Result = new Float(assignment1Field.getText()).floatValue();
     assignment2Result = new Float(assignment2Field.getText()).floatValue();
     assignment3Result = new Float(examField.getText()).floatValue();
-    // lblErrMsg.setText("");
+    
     try {
-      String s = studentControl_.checkGrade(assignment1Result, assignment2Result, assignment3Result);
-      gradeLabel.setText(s);
-    } catch (RuntimeException re) {
-      errorLabel.setText(re.getMessage());
+      
+      String studentsGrade = studentControl_.checkGrade(assignment1Result, assignment2Result, assignment3Result);
+      gradeLabel.setText(studentsGrade);
+      
+    } catch (RuntimeException exception) {
+      errorLabel.setText(exception.getMessage());
     }
   }// GEN-LAST:event_jButton3ActionPerformed
   
   
 
   
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent event) {// GEN-FIRST:event_jButton1ActionPerformed
     studentControl_.enableChangeMarks();
     gradeLabel.setText("");
-    // lblErrMsg.setText("");
   }// GEN-LAST:event_jButton1ActionPerformed
 
   
   
-  private void jTextFieldKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField1KeyTyped
+  private void jTextFieldKeyTyped(java.awt.event.KeyEvent event) {// GEN-FIRST:event_jTextField1KeyTyped
     gradeLabel.setText("");
     errorLabel.setText("");
   }// GEN-LAST:event_jTextField1KeyTyped
 
   
   
-  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-    float asg1 = new Float(assignment1Field.getText()).floatValue();
-    float asg2 = new Float(assignment2Field.getText()).floatValue();
-    float exam = new Float(examField.getText()).floatValue();
+  private void jButton2ActionPerformed(java.awt.event.ActionEvent event) {// GEN-FIRST:event_jButton2ActionPerformed
+    
+    float assignment1Result = new Float(assignment1Field.getText()).floatValue();
+    float assignment2Result = new Float(assignment2Field.getText()).floatValue();
+    float examResult = new Float(examField.getText()).floatValue();
+    
     errorLabel.setText("");
+    
     try {
-      studentControl_.saveGrade(asg1, asg2, exam);
-      // jButton3ActionPerformed(null);
-    } catch (RuntimeException re) {
-      errorLabel.setText(re.getMessage());
+      studentControl_.saveGrade(assignment1Result, assignment2Result, examResult);
+    } catch (RuntimeException exception) {
+      errorLabel.setText(exception.getMessage());
     }
   }// GEN-LAST:event_jButton2ActionPerformed
 
