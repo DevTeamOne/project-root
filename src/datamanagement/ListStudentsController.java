@@ -1,7 +1,7 @@
 package datamanagement;
-        public class ListStudentsCTL {
+        public class ListStudentsController {
 private StudentManager sm;
-public ListStudentsCTL() {sm = StudentManager.get();}
+public ListStudentsController() {sm = StudentManager.get();}
             public void listStudents( IStudentLister lister, String unitCode ) {
     lister.clearStudents();
                 StudentMap students = sm.getStudentsByUnit( unitCode );

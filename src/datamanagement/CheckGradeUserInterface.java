@@ -14,7 +14,7 @@ import java.awt.Font;
  */
 public class CheckGradeUserInterface extends javax.swing.JFrame implements
     IUnitLister, IStudentLister {
-  private StudentControl studentControl_;
+  private StudentController studentControl_;
   private javax.swing.DefaultComboBoxModel<String> unitModel_;
   private javax.swing.DefaultComboBoxModel<String> studentModel_;
   float assignment1Result;
@@ -29,7 +29,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
    * 
    * @param studentControl, student control to be rendered.
    */
-  public CheckGradeUserInterface(StudentControl studentControl) {
+  public CheckGradeUserInterface(StudentController studentControl) {
     this.studentControl_ = studentControl;
     unitModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
     studentModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
