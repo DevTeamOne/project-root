@@ -54,8 +54,10 @@ public class StudentController {
     if (unitCode.equals("NONE"))
       studentManagementUserInterface.enableStudentCombo(false);
     else {
-      ListStudentsController listStudentsController = new ListStudentsController();
-      listStudentsController.listStudents(studentManagementUserInterface, unitCode);
+      ListStudentsController listStudentsController = 
+          new ListStudentsController();
+      listStudentsController.listStudents (studentManagementUserInterface,
+          unitCode);
       this.unitCode = unitCode;
       studentManagementUserInterface.enableStudentCombo(true);
     }
@@ -81,11 +83,11 @@ public class StudentController {
     }
 
     else {
-      IStudent student = StudentManager.get().getStudent(studentIdentifier);
+      IStudent student = StudentManager.get().getStudent (studentIdentifier);
 
       IStudentUnitRecord studentUnitRecord = student.getUnitRecord(unitCode);
 
-      studentManagementUserInterface.addStudentRecord(studentUnitRecord);
+      studentManagementUserInterface.addStudentRecord (studentUnitRecord);
       studentManagementUserInterface.enableCheckGradeButton(true);
       studentManagementUserInterface.enableChangeButton(true);
       studentManagementUserInterface.enableValueFields(false);
@@ -105,9 +107,11 @@ public class StudentController {
    * @param examResult
    * @return
    */
-  public String checkGrade(float assignment1Result, float assignment2Result, float examResult) {
-    IUnit unit = UnitManager.UM().getUnit(unitCode);
-    String grade = unit.getGrade(assignment1Result, assignment2Result, examResult);
+  public String checkGrade(float assignment1Result, float assignment2Result,
+      float examResult) {
+    IUnit unit = UnitManager.UM().getUnit (unitCode);
+    String grade = unit.getGrade (assignment1Result, assignment2Result,
+        examResult);
     studentManagementUserInterface.enableChangeButton(true);
     studentManagementUserInterface.enableValueFields(false);
     
@@ -141,18 +145,20 @@ public class StudentController {
    * @param assignment2Result, The result of assignment 2
    * @param examResult, The result of the assignment.
    */
-  public void saveGrade(float assignment1Result, float assignment2Result, float examResult) {
+  public void saveGrade(float assignment1Result, float assignment2Result,
+      float examResult) {
 
     IUnit unit = UnitManager.UM().getUnit(unitCode);
-    IStudent student = StudentManager.get().getStudent(currentStudentIdentifier);
+    IStudent student = StudentManager.get().
+        getStudent (currentStudentIdentifier);
 
     
-    IStudentUnitRecord unitRecord = student.getUnitRecord(unitCode);
-    unitRecord.setAssignment1Result(assignment1Result);
-    unitRecord.setAssignment2Result(assignment2Result);
-    unitRecord.setExamResult(examResult);
+    IStudentUnitRecord unitRecord = student.getUnitRecord (unitCode);
+    unitRecord.setAssignment1Result (assignment1Result);
+    unitRecord.setAssignment2Result (assignment2Result);
+    unitRecord.setExamResult (examResult);
     
-    StudentUnitRecordAdapter.getInstance().saveRecord(unitRecord);
+    StudentUnitRecordAdapter.getInstance().saveRecord (unitRecord);
     
     studentManagementUserInterface.enableChangeButton(true);
     studentManagementUserInterface.enableValueFields(false);
