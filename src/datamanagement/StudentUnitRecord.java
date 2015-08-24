@@ -13,6 +13,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
   /**
    * Constructor for the Student Unit Record
+   * 
    * @param studentId
    * @param unitCode
    * @param assignment1Result
