@@ -38,6 +38,7 @@ public class StudentUnitRecordProxy
 	}
 	
 	
+	
 	/**
 	 * The Unit Code for this proxy.
 	 * 
