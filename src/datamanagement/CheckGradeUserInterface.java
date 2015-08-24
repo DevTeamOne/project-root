@@ -14,9 +14,9 @@ import java.awt.Font;
  */
 public class CheckGradeUserInterface extends javax.swing.JFrame implements
     IUnitLister, IStudentLister {
-  private StudentController studentControl_;
-  private javax.swing.DefaultComboBoxModel<String> unitModel_;
-  private javax.swing.DefaultComboBoxModel<String> studentModel_;
+  private StudentController studentControl;
+  private javax.swing.DefaultComboBoxModel<String> unitModel;
+  private javax.swing.DefaultComboBoxModel<String> studentModel;
   float assignment1Result;
   float assignment2Result;
   float assignment3Result;
@@ -30,12 +30,12 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
    * @param studentControl, student control to be rendered.
    */
   public CheckGradeUserInterface(StudentController studentControl) {
-    this.studentControl_ = studentControl;
-    unitModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
-    studentModel_ = new javax.swing.DefaultComboBoxModel(new String[0]);
+    this.studentControl = studentControl;
+    unitModel = new javax.swing.DefaultComboBoxModel(new String[0]);
+    studentModel = new javax.swing.DefaultComboBoxModel(new String[0]);
     initComponents();
-    unitComboBox.setModel(unitModel_);
-    studentComboBox.setModel(studentModel_);
+    unitComboBox.setModel(unitModel);
+    studentComboBox.setModel(studentModel);
     errorLabel.setText("");
   }
 
@@ -73,7 +73,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
     unitPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
 
-    unitComboBox.setModel(unitModel_);
+    unitComboBox.setModel(unitModel);
     unitComboBox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent event) {
         jComboBox1ItemStateChanged(event);
@@ -102,7 +102,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     studentPanel.setBorder(javax.swing.BorderFactory
         .createTitledBorder("Student"));
 
-    studentComboBox.setModel(studentModel_);
+    studentComboBox.setModel(studentModel);
     studentComboBox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         jComboBox2ItemStateChanged(evt);
@@ -388,7 +388,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
       if (selectedUnit.equals(unitComboBox.getItemAt(0))) 
         selectedUnit = "NONE";
 
-      studentControl_.selectUnit(selectedUnit);
+      studentControl.selectUnit(selectedUnit);
     }
   }// GEN-LAST:event_jComboBox1ItemStateChanged
   
@@ -403,13 +403,13 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
       if (selectedStudent.equals(studentComboBox.getItemAt(0))) {
         
         studentId = new Integer(0);
-        studentControl_.selectStudent(studentId);
+        studentControl.selectStudent(studentId);
         
       } else {
         studentId = new Integer(selectedStudent.split("\\s")[0]);
       }
       
-      studentControl_.selectStudent(studentId);
+      studentControl.selectStudent(studentId);
     }
   }// GEN-LAST:event_jComboBox2ItemStateChanged
   
@@ -423,7 +423,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     
     try {
       
-      String studentsGrade = studentControl_.checkGrade(assignment1Result, assignment2Result, assignment3Result);
+      String studentsGrade = studentControl.checkGrade(assignment1Result, assignment2Result, assignment3Result);
       gradeLabel.setText(studentsGrade);
       
     } catch (RuntimeException exception) {
@@ -435,7 +435,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
 
   
   private void jButton1ActionPerformed(java.awt.event.ActionEvent event) {// GEN-FIRST:event_jButton1ActionPerformed
-    studentControl_.enableChangeMarks();
+    studentControl.enableChangeMarks();
     gradeLabel.setText("");
   }// GEN-LAST:event_jButton1ActionPerformed
 
@@ -457,7 +457,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
     errorLabel.setText("");
     
     try {
-      studentControl_.saveGrade(assignment1Result, assignment2Result, examResult);
+      studentControl.saveGrade(assignment1Result, assignment2Result, examResult);
     } catch (RuntimeException exception) {
       errorLabel.setText(exception.getMessage());
     }
@@ -471,8 +471,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
    * @see datamanagement.IUnitLister#clearUnits()
    */
   public void clearUnits() {
-    unitModel_.removeAllElements();
-    unitModel_.addElement("<none selected>");
+    unitModel.removeAllElements();
+    unitModel.addElement("<none selected>");
     clearStudents();
   }
 
@@ -484,7 +484,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
    * @see datamanagement.IUnitLister#addUnit(datamanagement.IUnit)
    */
   public void addUnit(IUnit unit) {
-    unitModel_.addElement(unit.getUnitCode());
+    unitModel.addElement(unit.getUnitCode());
   }
 
   
@@ -504,8 +504,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
    * Remove all elements from the student model.
    */
   public void clearStudents() {
-    studentModel_.removeAllElements();
-    studentModel_.addElement("<none selected>");
+    studentModel.removeAllElements();
+    studentModel.addElement("<none selected>");
   }
 
   
@@ -516,7 +516,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
  * @param IStudent: The student record to add to the model.
  */
   public void addStudent(IStudent student) {
-    studentModel_.addElement(student.getID().toString() + " : " + student.getFirstName()
+    studentModel.addElement(student.getID().toString() + " : " + student.getFirstName()
         + " " + student.getLastName());
   }
 
