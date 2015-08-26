@@ -16,7 +16,7 @@ public interface StudentInterface {
    * 
    * @param code: The unit code to be retrieved.
    */ 
-  public IStudentUnitRecord getUnitRecord (String code);
+  public IStudentUnitRecord findUnitRecord (String code);
   
   
   

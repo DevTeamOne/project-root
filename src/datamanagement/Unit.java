@@ -23,7 +23,7 @@ public class Unit
   private float distinctionRange;
   private float highDistinctionRange;
   private float additionalExamRange;
-  private int assignment1, assignment2, exam;
+  private int assignment1, assignment2, assignment3, exam;
   private StudentUnitRecordList recordStudent;
 
   
@@ -45,8 +45,8 @@ public class Unit
    *        then create new unit to record. 
    */
   public Unit (String code, String name, float range1, float range2, 
-    float range3, float range4, float range5, int assessment1, int assessment2, 
-    int assessment3, StudentUnitRecordList recordList) {
+    float range3, float range4, float range5, int assessment1Weight, int assessment2Weight, 
+    int assessment3Weight, int examWeight, StudentUnitRecordList recordList) {
 
     this.unitCode = code;
     this.unitName = name;
@@ -55,7 +55,7 @@ public class Unit
     this.distinctionRange = range3;
     this.highDistinctionRange = range4;
     this.additionalExamRange = range5;
-    this.setAssessmentWeights(assessment1, assessment2, assessment3);
+    this.setAssessmentWeights(assessment1Weight, assessment2Weight, assessment3Weight, examWeight);
     recordStudent = recordList == null ? new StudentUnitRecordList() : recordList;
   }
 
@@ -145,7 +145,7 @@ public class Unit
    * @return If the student number exists lookup and return record.
    * @return null.
    */
-  public IStudentUnitRecord getStudentRecord (int studentNumber) {
+  public IStudentUnitRecord findStudentRecord (int studentNumber) {
     for (IStudentUnitRecord record : recordStudent) {
       if (record.getStudentNumber() == studentNumber)
         return record;
@@ -194,6 +194,7 @@ public class Unit
    * @param assessment1: The first assessment value to retrieve.
    * @param assessment2: The second assessment value to retrieve.
    * @param assessment3: The third assessment value to retrieve.
+   * @param exam: The exam value to retrieve.
    * @throw exception on the marking criterion.
    * @return string.
    * @return string.
@@ -203,14 +204,17 @@ public class Unit
    * @return string.
    */
   public String getGrade (float assignment1, 
-    float assignment2, float assignment3) {
+    float assignment2, float assignment3, float exam) {
     
     float totalMarks = assignment1 + assignment2 + assignment3;
-    boolean testRange = assignment1 < 0 || assignment1 > assignment2 || 
-    assignment2 < 0 || assignment2 > assignment3 || 
-    assignment3 < 0 || assignment3 > exam;
     
-    if (testRange)
+    boolean assignment1ValidRange = assignment1 >=0 && assignment1 <= 100;
+    boolean assignment2ValidRange = assignment2 >=0 && assignment2 <= 100;
+    boolean assignment3ValidRange = assignment3 >=0 && assignment3 <= 100;
+    boolean examValidRange = exam >=0 && exam <= 100;
+    
+    if (assignment1ValidRange && assignment2ValidRange && 
+        assignment3ValidRange && examValidRange)
       throw new RuntimeException(
           "marks cannot be less than zero or greater than assessment weights");
     else if (totalMarks < additionalExamRange)
@@ -290,26 +294,29 @@ public class Unit
    * @param assessment1: The weight of assessment 1 to set.
    * @param assessment2: The weight of assessment 2 to set.
    * @param assessmentExam: The weight of exam to set.
+   * @return 
    * @throw exception on weight range.
    * @throw exception on weight total.
    */
-  public void setAssessmentWeights (int assessment1, 
-    int assessment2, int assessment3) {
-    
-    int totalMarks = assessment1 + assessment2 + assessment3;
-    
-    if (assessment1 < 0 || assessment1 > 100 || 
-        assessment2 < 0 || assessment2 > 100 || 
-        assessment3 < 0 || assessment3 > 100) {
-      throw new RuntimeException(
-          "Assessment weights cant be less than zero or greater than 100");
-    }
-    else if (totalMarks != 100)
-      throw new RuntimeException("Assessment weights must add to 100");
+  public void setAssessmentWeights (int assignment1, 
+    int assignment2, int assignment3, int exam) {
         
-    this.assignment1 = assessment1;
-    this.assignment2 = assessment2;
-    this.exam = assessment3;
+    boolean isAssignment1WeightInBounds = assignment1 >=0 && assignment1 <= 100;
+    boolean isAssignment2WeightInBounds = assignment2 >=0 && assignment2 <= 100;
+    boolean isAssignment3WeightInBounds = assignment3 >=0 && assignment3 <= 100;
+    boolean isExamWeightInBounds = exam >=0 && exam <= 100;
+    
+    if (isAssignment1WeightInBounds && isAssignment2WeightInBounds && 
+        isAssignment3WeightInBounds && isExamWeightInBounds) {
+      
+      this.assignment1 = assignment1;
+      this.assignment2 = assignment2;
+      this.assignment3 = assignment3;
+      this.exam = exam;
+    }
+    else
+      throw new RuntimeException(
+        "Assessment weights cant be less than zero or greater than 100");
   }
   
   
@@ -357,5 +364,4 @@ public class Unit
   public StudentUnitRecordList listStudentRecords() {
     return recordStudent;
   }
-
 }

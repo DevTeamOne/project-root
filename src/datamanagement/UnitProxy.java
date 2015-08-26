@@ -64,7 +64,7 @@ public class UnitProxy
    * @return pass range.
    */
   public float getPassRange() {
-    return unitManager.getUnit (unitCode).getPassRange();
+    return unitManager.findUnit (unitCode).getPassRange();
   }
   
   
@@ -75,7 +75,7 @@ public class UnitProxy
    * @return credit range.
    */
   public float getCreditRange() {
-    return unitManager.getUnit (unitCode).getCreditRange();
+    return unitManager.findUnit (unitCode).getCreditRange();
   }
   
   
@@ -86,7 +86,7 @@ public class UnitProxy
    * @return distinction range.
    */
   public float getDistinctionRange() {
-    return unitManager.getUnit (unitCode).getDistinctionRange();
+    return unitManager.findUnit (unitCode).getDistinctionRange();
   }
 
   
@@ -98,7 +98,7 @@ public class UnitProxy
    */
   public float getHighDistinctionRange() {
 
-    return unitManager.getUnit (unitCode).getHighDistinctionRange();
+    return unitManager.findUnit (unitCode).getHighDistinctionRange();
   }
   
   
@@ -109,7 +109,7 @@ public class UnitProxy
    * @return additional exam range.
    */
   public float getAdditionalExamRange() {
-    return unitManager.getUnit (unitCode).getAdditionalExamRange();
+    return unitManager.findUnit (unitCode).getAdditionalExamRange();
   }
   
   
@@ -122,8 +122,8 @@ public class UnitProxy
    * @param third: The unit code to retrieve grade
    * @return unit grade.
    */
-  public String getGrade (float first, float second, float third) {
-    return unitManager.getUnit (unitCode).getGrade (first, second, third);
+  public String getGrade (float assignment1, float assignment2, float assignment3, float exam) {
+    return unitManager.findUnit (unitCode).getGrade (assignment1, assignment2, assignment3, exam);
   }
   
   
@@ -134,8 +134,8 @@ public class UnitProxy
    * @param student: The student to retrieve.
    * @return student information record.
    */
-  public IStudentUnitRecord getStudentRecord (int student) {
-    return unitManager.getUnit(unitCode).getStudentRecord(student);
+  public IStudentUnitRecord findStudentRecord (int student) {
+    return unitManager.findUnit (unitCode).findStudentRecord (student);
   }
   
   
@@ -146,7 +146,7 @@ public class UnitProxy
    * @return the first assignment weight for a specific unit.
    */
   public int getFirstAssignmentWeight() {
-    return unitManager.getUnit(unitCode).getFirstAssignmentWeight();
+    return unitManager.findUnit (unitCode).getFirstAssignmentWeight();
   }
   
   
@@ -157,7 +157,7 @@ public class UnitProxy
    * @return the second assignment weight for a specific unit.
    */ 
   public int getSecondAssignmentWeight() {
-    return unitManager.getUnit(unitCode).getSecondAssignmentWeight();
+    return unitManager.findUnit (unitCode).getSecondAssignmentWeight();
   }
   
   
@@ -168,7 +168,7 @@ public class UnitProxy
    * @return the exam weight for a specific unit.
    */
   public int getExamWeight() {
-    return unitManager.getUnit(unitCode).getExamWeight();
+    return unitManager.findUnit (unitCode).getExamWeight();
   }
   
   
@@ -179,7 +179,7 @@ public class UnitProxy
    * @param range: The range of a pass mark to set.
    */
   public void setPassRange (float range) {
-    unitManager.getUnit(unitCode).setPassRange(range);
+    unitManager.findUnit (unitCode).setPassRange (range);
   }
 
   
@@ -190,7 +190,7 @@ public class UnitProxy
    * @param range: The range of a credit mark to set.
    */ 
   public void setCreditRange (float range) {
-    unitManager.getUnit(unitCode).setCreditRange(range);
+    unitManager.findUnit (unitCode).setCreditRange (range);
   }
   
   
@@ -201,7 +201,7 @@ public class UnitProxy
    * @param range: The range of a distinction mark to set.
    */ 
   public void setDistinctionRange (float range) {
-    unitManager.getUnit(unitCode).setDistinctionRange(range);
+    unitManager.findUnit (unitCode).setDistinctionRange (range);
   }
   
   
@@ -212,7 +212,7 @@ public class UnitProxy
    * @param range: The range of a high distinction mark to set.
    */
   public void setHighDistinctionRange (float range) {
-    unitManager.getUnit(unitCode).setHighDistinctionRange(range);
+    unitManager.findUnit (unitCode).setHighDistinctionRange (range);
   }
   
   
@@ -223,7 +223,7 @@ public class UnitProxy
    * @param range: The range for an additional exam to be set.
    */  
   public void setAdditionalExamRange (float range) {
-    unitManager.getUnit(unitCode).setAdditionalExamRange(range);
+    unitManager.findUnit (unitCode).setAdditionalExamRange (range);
   }  
   
   
@@ -236,9 +236,9 @@ public class UnitProxy
    * @param exam: The range of the exam item to be set.
    */ 
   public void setAssessmentWeights (int assessment1, 
-      int assessment2, int exam) {
-    unitManager.getUnit(unitCode).setAssessmentWeights(
-        assessment1, assessment2, exam);
+      int assessment2, int assessment3, int exam) {
+    unitManager.findUnit (unitCode).setAssessmentWeights (
+        assessment1, assessment2, assessment3, exam);
   }
   
   
@@ -249,7 +249,7 @@ public class UnitProxy
    * @param mark: The specific mark to be added on the students record.
    */ 
   public void addStudentRecord (IStudentUnitRecord mark) {
-    unitManager.getUnit(unitCode).addStudentRecord(mark);
+    unitManager.findUnit (unitCode).addStudentRecord (mark);
   }
   
   
@@ -260,6 +260,6 @@ public class UnitProxy
    * @return A list of the students record.
    */ 
   public StudentUnitRecordList listStudentRecords() {
-    return unitManager.getUnit(unitCode).listStudentRecords();
+    return unitManager.findUnit (unitCode).listStudentRecords();
   }
 }

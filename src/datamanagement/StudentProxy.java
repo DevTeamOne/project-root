@@ -30,7 +30,7 @@ public class StudentProxy
     this.studentNo = number;
     this.firstName = first;
     this.lastName = last;
-    this.student = StudentManager.get();
+    this.student = StudentManager.getInstance();
   }
   
   
@@ -74,7 +74,7 @@ public class StudentProxy
    * @return The student unit record.
    */ 
   public StudentUnitRecordList getUnitRecords() {
-    return student.getStudent(studentNo).getUnitRecords();
+    return student.findStudent(studentNo).getUnitRecords();
   }
 
   
@@ -85,8 +85,8 @@ public class StudentProxy
    * @param code: The unit code to be retrieved.
    * @return Retrieve unit record based on value of student number.
    */ 
-  public IStudentUnitRecord getUnitRecord (String code) {
-    return student.getStudent(studentNo).getUnitRecord(code);
+  public IStudentUnitRecord findUnitRecord (String code) {
+    return student.findStudent(studentNo).findUnitRecord(code);
   }
  
   
@@ -97,7 +97,7 @@ public class StudentProxy
    * @param first: The first name of the student to set.
    */
   public void setFirstName (String first) {
-    student.getStudent(studentNo).setFirstName(first);
+    student.findStudent(studentNo).setFirstName(first);
   }
   
   
@@ -108,7 +108,7 @@ public class StudentProxy
    * @param last: The last name of the student to set.
    */
   public void setLastName (String last) {
-    student.getStudent(studentNo).setLastName(last);
+    student.findStudent(studentNo).setLastName(last);
   }
   
   
@@ -119,6 +119,6 @@ public class StudentProxy
    * @param record: The unit is added to the student record.
    */
   public void addUnitRecord (IStudentUnitRecord record) {
-    student.getStudent(studentNo).addUnitRecord(record);
+    student.findStudent(studentNo).addUnitRecord(record);
   }
 }

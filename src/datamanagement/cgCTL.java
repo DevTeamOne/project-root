@@ -51,9 +51,9 @@ public class cgCTL {
 		}
 
 		else {
-			StudentInterface s = StudentManager.get().getStudent(id);
+			StudentInterface s = StudentManager.getInstance().findStudent(id);
 
-			IStudentUnitRecord r = s.getUnitRecord(cuc);
+			IStudentUnitRecord r = s.findUnitRecord(cuc);
 
 			CGUI.setRecord(r);
 			CGUI.setState3(true);
@@ -66,8 +66,8 @@ public class cgCTL {
 	}
 
 	public String checkGrade(float f, float g, float h) {
-		UnitInterface u = UnitManager.getInstance().getUnit(cuc);
-		String s = u.getGrade(f, g, h);
+		UnitInterface u = UnitManager.getInstance().findUnit(cuc);
+		String s = u.getGrade(f, g, h, h);
 		CGUI.setState4(true);
 		CGUI.setState5(false);
 		if (changed) {
@@ -85,10 +85,10 @@ public class cgCTL {
 
 	public void saveGrade(float asg1, float asg2, float exam) {
 
-		UnitInterface u = UnitManager.getInstance().getUnit(cuc);
-		StudentInterface s = StudentManager.get().getStudent(currentStudentID);
+		UnitInterface u = UnitManager.getInstance().findUnit(cuc);
+		StudentInterface s = StudentManager.getInstance().findStudent(currentStudentID);
 
-		IStudentUnitRecord r = s.getUnitRecord(cuc);
+		IStudentUnitRecord r = s.findUnitRecord(cuc);
 		r.setAsg1(asg1);
 		r.setAsg2(asg2);
 		r.setExam(exam);

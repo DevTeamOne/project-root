@@ -88,7 +88,7 @@ public interface UnitInterface {
    * @param assignment2: The assignment 2 grade to be retrieved.
    * @param exam: The exam grade to be retrieved.
    */ 
-  public String getGrade (float assignment1, float assignment2, float exam);
+  public String getGrade (float assignment1, float assignment2, float assignment3, float exam);
   
   
   
@@ -97,7 +97,7 @@ public interface UnitInterface {
    * 
    * @param studentNumber: The student number be retrieved.
    */ 
-  public IStudentUnitRecord getStudentRecord (int studentNo);
+  public IStudentUnitRecord findStudentRecord (int studentNo);
   
   
   
@@ -153,7 +153,7 @@ public interface UnitInterface {
    * @param assessment2: The second assessment weight to set.
    * @param exam: The exam weight to set.
    */
-  public void setAssessmentWeights (int assessment1, int assessment2, int exam);
+  public void setAssessmentWeights (int assessment1, int assessment2, int assessment3, int exam);
 
   
   

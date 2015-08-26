@@ -22,7 +22,7 @@ public class ListStudentsControl {
    * Constructor of the class ListStudentsControl.
    */ 
   public ListStudentsControl() {
-    studentManager = StudentManager.get();
+    studentManager = StudentManager.getInstance();
   }
   
   
@@ -36,7 +36,7 @@ public class ListStudentsControl {
   public void listStudents (IStudentLister lister, String code) {
     lister.clearStudents();
     
-    StudentMap student = studentManager.getStudentsByUnit (code);
+    StudentMap student = studentManager.findStudentsByUnit (code);
     
     for (Integer number : student.keySet())
       lister.addStudent(student.get (number));

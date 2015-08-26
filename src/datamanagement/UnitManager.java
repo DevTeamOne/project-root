@@ -48,9 +48,9 @@ public class UnitManager {
    * @param unitCode: The unit code to retrieve
    * @return unit or create new unit if null.
    */
-  public UnitInterface getUnit (String findUnitCode) {
-    UnitInterface unit = unitManager.get(findUnitCode);
-    return unit != null ? unit : createUnit(findUnitCode);
+  public UnitInterface findUnit (String unitCode) {
+    UnitInterface unit = unitManager.get(unitCode);
+    return unit != null ? unit : createUnit(unitCode);
 
   }
 
@@ -103,9 +103,9 @@ public class UnitManager {
             element.getAttribute("Additional Exam")).floatValue(), Integer.valueOf(
             element.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
             element.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
-            element.getAttribute("Exam weight")).intValue(), 
-            StudentUnitRecordManager.instance().
-            getRecordsByUnit (unitCode));
+            element.getAttribute("Assignment 3 weight")).intValue(), Integer.valueOf(
+            element.getAttribute("Exam weight")).intValue(),
+            StudentUnitRecordManager.instance().getRecordsByUnit (unitCode));
         unitManager.put(unit_.getUnitCode(), unit_);
         return unit_;
       }

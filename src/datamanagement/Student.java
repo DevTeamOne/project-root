@@ -18,7 +18,7 @@ public class Student
   /** 
    * Private variables for class Student.
    */
-  private Integer studentNo;
+  private Integer studentNumber;
   private String firstName;
   private String lastName;
   private StudentUnitRecordList studentUnit;
@@ -37,7 +37,7 @@ public class Student
    */
   public Student (Integer number, String first, 
       String last, StudentUnitRecordList record) {
-    this.studentNo = number;
+    this.studentNumber = number;
     this.firstName = first;
     this.lastName = last;
     this.studentUnit = record == null ? new StudentUnitRecordList() : record;
@@ -51,7 +51,7 @@ public class Student
    * @return The student number.
    */ 
   public Integer getStudentNumber() {
-    return this.studentNo;
+    return this.studentNumber;
   }
   
   
@@ -96,9 +96,11 @@ public class Student
    * @return Retrieve unit record.
    * @return Null.
    */ 
-  public IStudentUnitRecord getUnitRecord (String findCode) {
-    for (IStudentUnitRecord record : studentUnit) {
-      if (record.getUnitCode().equals(findCode))
+  public IStudentUnitRecord findUnitRecord (String unitCode) {
+    for (IStudentUnitRecord record : studentUnit) {  
+      boolean unitRecord = record.getUnitCode().equals (unitCode);
+      
+      if (unitRecord)
         return record;
     }
     return null;
