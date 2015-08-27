@@ -17,7 +17,7 @@ public class StudentUnitRecordAdapter {
   private static final String STUDENT_ID_ATTRIBUTE = "sid";
   private static final String UNIT_CODE_ATTRIBUTE = "uid";
   private static final String STUDENT_UNIT_RECORD_NODE = "studentUnitRecordTable";
-  private static final String RECORD_NODE = "studentUnitRecordTable";
+  private static final String RECORD_NODE = "record";
 
   private static StudentUnitRecordAdapter studentUnitRecordManager_ = null;
 
@@ -126,6 +126,13 @@ public class StudentUnitRecordAdapter {
    */
   @SuppressWarnings("unchecked")
 private List<Element> loadStudentUnitRecordElementsFromFile() {
+	  List<Element> tst = (List<Element>) XmlManager.
+		        getInstance().
+		        getDocument().
+		        getRootElement().
+		        getChild(STUDENT_UNIT_RECORD_NODE).
+		        getChildren(RECORD_NODE);
+	  
     return (List<Element>) XmlManager.
         getInstance().
         getDocument().
@@ -277,8 +284,8 @@ private List<Element> loadStudentUnitRecordElementsFromFile() {
       String unitCode = getAttributeAsString(element, UNIT_CODE_ATTRIBUTE);
       Integer studentId = getAttributeAsInteger(element, STUDENT_ID_ATTRIBUTE);
 
-      if (studentIDToFind.toString().equals(studentId)) {
-
+      if (studentIDToFind.toString().equals(element.getAttributeValue("sid"))) {
+      
         StudentUnitRecordProxy studentUnitRecordProxy = 
             new StudentUnitRecordProxy(studentId, unitCode);
         studentUnitRecords.add(studentUnitRecordProxy);

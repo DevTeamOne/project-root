@@ -16,7 +16,7 @@ import java.io.IOException;
  * XMLManager is a singleton class for managing an xml data store.
  */
 public class XmlManager {
-  private static XmlManager self_ = new XmlManager();
+  private static XmlManager self_;
   private Document document;
   
 
@@ -33,6 +33,8 @@ public class XmlManager {
    * @return The singleton instance of the xmlManager
    */
   static XmlManager getInstance() {
+	if (self_ == null ) 
+		self_ = new XmlManager(); 
     return self_;
   }
   

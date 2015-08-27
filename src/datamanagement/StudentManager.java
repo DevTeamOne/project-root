@@ -7,7 +7,7 @@ package datamanagement;
  * Assessment: Assignment 2
  * Description: This class manages and creates new element of a student.
  */
-import org.w3c.dom.Element;
+import org.jdom.Element;
 
 import java.util.List;
 
@@ -70,7 +70,7 @@ private Element findStudentElement (Integer studentNumber) {
       getChildren("student")) {
       
       boolean string = studentNumber.toString().equals(
-          element.getAttribute("studentNumber"));
+          element.getAttributeValue("sid"));
       
       if (string)
         return element;
@@ -127,9 +127,9 @@ private Element findStudentElement (Integer studentNumber) {
           findStudentUnitRecordsById(studentNumber);
       
       individualStudent_ = new Student(new Integer(
-          element_.getAttribute("Student Number")),
-          element_.getAttribute("First Name"), 
-          element_.getAttribute("Last Name"), recordList);
+          element_.getAttributeValue("sid")),
+          element_.getAttributeValue("fname"), 
+          element_.getAttributeValue("lname"), recordList);
 
       studentManager.put(individualStudent_.
           getStudentId(), 
@@ -155,8 +155,8 @@ private Element findStudentElement (Integer studentNumber) {
 
     if (element_ != null) {
       return new StudentProxy(studentNumber, 
-          element_.getAttribute("First Name"), 
-          element_.getAttribute("Last Name"));
+          element_.getAttributeValue("fname"), 
+          element_.getAttributeValue("lname"));
     }
     throw new RuntimeException("DBMD: createStudent : student not in file");
   }

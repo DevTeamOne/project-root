@@ -153,7 +153,7 @@ public interface UnitInterface {
    * @param assessment2: The second assessment weight to set.
    * @param exam: The exam weight to set.
    */
-  public void setAssessmentWeights (int assessment1, int assessment2, int assessment3, int exam);
+  public void setAssessmentWeights (int assessment1, int assessment2, int exam);
 
   
   

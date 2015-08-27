@@ -23,7 +23,7 @@ public class Unit
   private float distinctionRange;
   private float highDistinctionRange;
   private float additionalExamRange;
-  private int assignment1, assignment2, assignment3, exam;
+  private int assignment1, assignment2, exam;
   private StudentUnitRecordList recordStudent;
 
   
@@ -46,7 +46,7 @@ public class Unit
    */
   public Unit (String code, String name, float range1, float range2, 
     float range3, float range4, float range5, int assessment1Weight, int assessment2Weight, 
-    int assessment3Weight, int examWeight, StudentUnitRecordList recordList) {
+    int examWeight, StudentUnitRecordList recordList) {
 
     this.unitCode = code;
     this.unitName = name;
@@ -55,7 +55,7 @@ public class Unit
     this.distinctionRange = range3;
     this.highDistinctionRange = range4;
     this.additionalExamRange = range5;
-    this.setAssessmentWeights(assessment1Weight, assessment2Weight, assessment3Weight, examWeight);
+    this.setAssessmentWeights(assessment1Weight, assessment2Weight, examWeight);
     recordStudent = recordList == null ? new StudentUnitRecordList() : recordList;
   }
 
@@ -206,15 +206,14 @@ public class Unit
   public String getGrade (float assignment1, 
     float assignment2, float exam) {
     
-    float totalMarks = assignment1 + assignment2 + assignment3;
+    float totalMarks = assignment1 + assignment2 + exam;
     
     boolean assignment1ValidRange = assignment1 >=0 && assignment1 <= 100;
     boolean assignment2ValidRange = assignment2 >=0 && assignment2 <= 100;
-    boolean assignment3ValidRange = assignment3 >=0 && assignment3 <= 100;
     boolean examValidRange = exam >=0 && exam <= 100;
     
-    if (assignment1ValidRange && assignment2ValidRange && 
-        assignment3ValidRange && examValidRange)
+    if (!(assignment1ValidRange && assignment2ValidRange && 
+        examValidRange))
       throw new RuntimeException(
           "marks cannot be less than zero or greater than assessment weights");
     else if (totalMarks < additionalExamRange)
@@ -299,19 +298,17 @@ public class Unit
    * @throw exception on weight total.
    */
   public void setAssessmentWeights (int assignment1, 
-    int assignment2, int assignment3, int exam) {
+    int assignment2, int exam) {
         
     boolean isAssignment1WeightInBounds = assignment1 >=0 && assignment1 <= 100;
     boolean isAssignment2WeightInBounds = assignment2 >=0 && assignment2 <= 100;
-    boolean isAssignment3WeightInBounds = assignment3 >=0 && assignment3 <= 100;
     boolean isExamWeightInBounds = exam >=0 && exam <= 100;
     
     if (isAssignment1WeightInBounds && isAssignment2WeightInBounds && 
-        isAssignment3WeightInBounds && isExamWeightInBounds) {
+        isExamWeightInBounds) {
       
       this.assignment1 = assignment1;
       this.assignment2 = assignment2;
-      this.assignment3 = assignment3;
       this.exam = exam;
     }
     else

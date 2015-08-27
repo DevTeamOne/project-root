@@ -236,9 +236,9 @@ public class UnitProxy
    * @param exam: The range of the exam item to be set.
    */ 
   public void setAssessmentWeights (int assessment1, 
-      int assessment2, int assessment3, int exam) {
+      int assessment2,int exam) {
     unitManager.findUnit (unitCode).setAssessmentWeights (
-        assessment1, assessment2, assessment3, exam);
+        assessment1, assessment2, exam);
   }
   
   

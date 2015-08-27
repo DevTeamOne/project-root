@@ -9,7 +9,7 @@ package datamanagement;
  */
 import java.util.List;
 
-import org.w3c.dom.Element;
+import org.jdom.Element;
 
 public class UnitManager {
   
@@ -71,10 +71,10 @@ public UnitMap getUnitMap() {
         getDocument().
         getRootElement().
         getChild("unitTable").
-        getChildren("Unit")) {
+        getChildren("unit")) {
       
-      unit = new UnitProxy(element.getAttribute("Unit ID"),
-          element.getAttribute("Name"));
+      unit = new UnitProxy(element.getAttributeValue("uid"),
+          element.getAttributeValue("name"));
       
       unitManager.put(unit.getUnitCode(), unit);
     } // unit maps are filled with PROXY units
@@ -90,26 +90,26 @@ private UnitInterface createUnit (String unitCode) {
     for (Element element : (List<Element>) XmlManager.getInstance().
         getDocument().
         getRootElement().
-        getChild("Unit Table").
-        getChildren("Unit"))
-      if (unitCode.equals(element.getAttribute("Unit ID"))) {
+        getChild("unitTable").
+        getChildren("unit"))
+      if (unitCode.equals(element.getAttributeValue("uid"))) {
 
-        unit_ = new Unit(element.getAttribute("Unit ID"),
-          element.getAttribute("Name"), Float.valueOf(
-            element.getAttribute("Pass")).floatValue(), Float.valueOf(
-            element.getAttribute("Credit")).floatValue(), Float.valueOf(
-            element.getAttribute("Distinction")).floatValue(), Float.valueOf(
-            element.getAttribute("High Distinction")).floatValue(), Float.valueOf(
-            element.getAttribute("Additional Exam")).floatValue(), Integer.valueOf(
-            element.getAttribute("Assignment 1 weight")).intValue(), Integer.valueOf(
-            element.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
-            element.getAttribute("Assignment 3 weight")).intValue(), Integer.valueOf(
-            element.getAttribute("Exam weight")).intValue(),
+        unit_ = new Unit(element.getAttributeValue("uid"),
+          element.getAttributeValue("name"), Float.valueOf(
+            element.getAttributeValue("ps")).floatValue(), Float.valueOf(
+            element.getAttributeValue("cr")).floatValue(), Float.valueOf(
+            element.getAttributeValue("di")).floatValue(), Float.valueOf(
+            element.getAttributeValue("hd")).floatValue(), Float.valueOf(
+            element.getAttributeValue("ae")).floatValue(), Integer.valueOf(
+            element.getAttributeValue("asg1wgt")).intValue(), Integer.valueOf(
+            element.getAttributeValue("asg2wgt")).intValue(), Integer.valueOf(
+            element.getAttributeValue("examwgt")).intValue(),
             StudentUnitRecordAdapter.getInstance().getRecordsByUnit (unitCode));
         unitManager.put(unit_.getUnitCode(), unit_);
         return unit_;
       }
 
+  
     throw new RuntimeException("DBMD: createUnit : unit not in file");
   }
 }
