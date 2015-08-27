@@ -1,77 +1,162 @@
 package datamanagement;
 
-import org.jdom.*;
+/**
+ * Author: Evan Watkins
+ * Student Number: 11537439
+ * Class: ITC515
+ * Assessment: Assignment 2
+ * Description: This class manages and creates new element of a student.
+ */
+import org.w3c.dom.Element;
+
 import java.util.List;
+
 public class StudentManager {
-    private static StudentManager self = null;
+  
+  
+  
+  /** 
+   * Declare class variables.
+   */
+  private static StudentManager self_ = null;
+  private StudentMap studentManager;
+  private java.util.HashMap<String, StudentMap> unitManager;
 
+  
+  
+  private StudentManager() {
+    studentManager = new StudentMap();
+    unitManager = new java.util.HashMap<>();
+  }
+  
+  
+  
+  /**
+   * Retrieve student unit record.   
+   * 
+   * @return create new self.
+   * @return self.
+   */ 
+  public static StudentManager getInstance() {
+    if (self_ == null)
+      self_ = new StudentManager();
     
-    private StudentMap sm;private java.util.HashMap<String, StudentMap> um;
-public static StudentManager get() {
-        if (self == null) 
-            
-self = new StudentManager(); return self; }
-private StudentManager() {
+    return self_;
+  }
 
+  
+  
+  /**
+   * Retrieve individual student using their student number.   
+   * 
+   * @param studentNumber: The student number to retrieve.
+   * @return individual student or create new student if null.
+   */   
+  public StudentInterface findStudent (Integer studentNo) {
+    StudentInterface individualStudent = studentManager.get(studentNo);
     
-            sm = new StudentMap();
-        um = new java.util.HashMap<>();}
-        public IStudent getStudent(Integer id) {
-IStudent is = sm.get(id);
-    return is != null ? is : createStudent(id);
+    return individualStudent != null ? 
+      individualStudent : createStudent(studentNo);
+  }
+  
+  
+  
+  private Element findStudentElement (Integer studentNumber) {
+    for (Element element : (List<Element>) XMLManager.getXML().
+      getDocument().
+      getRootElement().
+      getChild("studentTable").
+      getChildren("student")) {
+      
+      boolean string = studentNumber.toString().equals(
+          element.getAttribute("studentNumber"));
+      
+      if (string)
+        return element;
+    }
+    return null;
+  }
+  
+  
+  
+  /**
+   * Retrieve individual student using a unit code. 
+   *   
+   * @param code: The code number to lookup student.
+   * @return student record attached to unit code.
+   */ 
+  public StudentMap findStudentsByUnit(String code) {
+    StudentMap student = unitManager.get(code);
+    
+    if (student != null) {
+      return student;
     }
 
-private Element getStudentElement(Integer id) {
-        for (Element el : (List<Element>) XmlManager.getInstance().getDocument().getRootElement().getChild("studentTable").getChildren("student")) 
-            if (id.toString().equals(el.getAttributeValue("sid"))) 
-return el;return null;
-                }
-                private IStudent createStudent(Integer id) {
-                    IStudent is;
-        Element el = getStudentElement(id);
-        if (el != null) {
-            StudentUnitRecordList rlist = StudentUnitRecordAdapter.getInstance().findStudentUnitRevordsById(id);
-    is = new Student(new Integer(el.getAttributeValue("sid")),el.getAttributeValue("fname"),el.getAttributeValue("lname"),rlist);
-
+    student = new StudentMap();
+    StudentInterface individualStudent;
+    StudentUnitRecordList unitRecords = StudentUnitRecordManager.getInstance().
+      getRecordsByUnit(code);
     
-    sm.put(is.getID(), is);
-        return is; }
-throw new RuntimeException("DBMD: createStudent : student not in file");}
-    private IStudent createStudentProxy(Integer id) {
-        Element el = getStudentElement(id);
-        
-        
-        
-        
-        
-        
-        if (el != null) return new StudentProxy(id, el.getAttributeValue("fname"), el.getAttributeValue("lname"));
-        throw new RuntimeException("DBMD: createStudent : student not in file");}
+    for (IStudentUnitRecord unitRecord : unitRecords) {
+      individualStudent = createStudentProxy(new Integer(unitRecord.
+        getStudentNumber()));
+      student.put(individualStudent.getStudentNumber(), individualStudent);
+    }
 
-        public StudentMap getStudentsByUnit(String uc) {
-        StudentMap s = um.get(uc);
-        if (s != null) 
-{
-
+    unitManager.put(code, student);
     
-    return s;
-                }
+    return student;
+  }
+  
+  
+  
+  /**
+   * Create a new student element.   
+   * 
+   * @param studentNumber: The student number assigned to a new student element.
+   * @return individual student created.
+   * @throws runtime exception if student is not in file.
+   */ 
+  private StudentInterface createStudent(Integer studentNumber) {
+    StudentInterface individualStudent_;
+    Element element_ = findStudentElement(studentNumber);
+    
+    if (element_ != null) {
+      StudentUnitRecordList recordList = StudentUnitRecordManager.getInstance().
+          getRecordsByStudent(studentNumber);
+      
+      individualStudent_ = new Student(new Integer(
+          element_.getAttribute("Student Number")),
+          element_.getAttribute("First Name"), 
+          element_.getAttribute("Last Name"), recordList);
 
-s = new StudentMap();
-IStudent is;
-    StudentUnitRecordList ur = StudentUnitRecordAdapter.getInstance().getRecordsByUnit(uc);
-        for (IStudentUnitRecord S : ur) {
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            is = createStudentProxy(new Integer(S.getStudentID()));
-    s.put(is.getID(), is);}
-    um.put( uc, s);
-        return s;
-}}
+      studentManager.put(individualStudent_.
+          getStudentNumber(), 
+          individualStudent_);
+      
+      return individualStudent_;
+    }
+    
+    throw new RuntimeException("DBMD: createStudent : student not in file");
+  }
+
+  
+  
+  /**
+   * Create a new student proxy.   
+   * 
+   * @param studentNumber: The studentNumber to be retrieved.
+   * @return student element using student number..
+   * @throws runtime exception if student is not in file.
+   */ 
+  private StudentInterface createStudentProxy(Integer studentNumber) {
+    Element element_ = findStudentElement(studentNumber);
+
+    if (element_ != null) {
+      return new StudentProxy(studentNumber, 
+          element_.getAttribute("First Name"), 
+          element_.getAttribute("Last Name"));
+    }
+    throw new RuntimeException("DBMD: createStudent : student not in file");
+  }
+}

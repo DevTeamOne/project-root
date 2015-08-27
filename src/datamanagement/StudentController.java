@@ -83,9 +83,9 @@ public class StudentController {
     }
 
     else {
-      IStudent student = StudentManager.get().getStudent (studentIdentifier);
+      StudentInterface student = StudentManager.getInstance().getStudent (studentIdentifier);
 
-      IStudentUnitRecord studentUnitRecord = student.getUnitRecord(unitCode);
+      IStudentUnitRecord studentUnitRecord = student.findUnitRecord(unitCode);
 
       studentManagementUserInterface.addStudentRecord (studentUnitRecord);
       studentManagementUserInterface.enableCheckGradeButton(true);
@@ -109,7 +109,7 @@ public class StudentController {
    */
   public String checkGrade(float assignment1Result, float assignment2Result,
       float examResult) {
-    IUnit unit = UnitManager.UM().getUnit (unitCode);
+    UnitInterface unit = UnitManager.getInstance().findUnit(unitCode);
     String grade = unit.getGrade (assignment1Result, assignment2Result,
         examResult);
     studentManagementUserInterface.enableChangeButton(true);
@@ -148,12 +148,12 @@ public class StudentController {
   public void saveGrade(float assignment1Result, float assignment2Result,
       float examResult) {
 
-    IUnit unit = UnitManager.UM().getUnit(unitCode);
+    UnitInterface unit = UnitManager.getInstance().findUnit(unitCode);
     IStudent student = StudentManager.get().
         getStudent (currentStudentIdentifier);
 
     
-    IStudentUnitRecord unitRecord = student.getUnitRecord (unitCode);
+    IStudentUnitRecord unitRecord = student.findUnitRecord (unitCode);
     unitRecord.setAssignment1Result (assignment1Result);
     unitRecord.setAssignment2Result (assignment2Result);
     unitRecord.setExamResult (examResult);
