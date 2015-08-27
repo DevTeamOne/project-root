@@ -1,2 +1,6 @@
 package datamanagement;
-public class StudentUnitRecordMap extends java.util.HashMap<String, IStudentUnitRecord>{}
+ 
+@SuppressWarnings("serial")
+public class StudentUnitRecordMap extends
+    java.util.HashMap<String, IStudentUnitRecord> {
+}

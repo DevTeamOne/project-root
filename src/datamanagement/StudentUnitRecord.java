@@ -1,67 +1,167 @@
 package datamanagement;
 
-public class StudentUnitRecord implements IStudentUnitRecord {
-	private Integer sid;
-	private String uc;
-	private float a1, a2, ex;
 
-	public StudentUnitRecord(Integer id, String code, float asg1, float asg2,
-			float exam) {
-		this.sid = id;
-		this.uc = code;
-		this.setAsg1(asg1);
-		this.setAsg2(asg2);
-		this.setExam(exam);
-	}
+/**
+ * Represents the per subject results for a student.
+ */
+public class StudentUnitRecord 
+	implements IStudentUnitRecord {
+  private static final String ERROR_MESSAGE = "Mark cannot be less than zero or greater than assessment weight";
+  private Integer studentId;
+  private String unitCode;
+  private float assignment1Result, assignment2Result, examResult;
+  
 
-	public Integer getStudentID() {
-		return sid;
-	}
+  /** 
+   * Constructor for the Student Unit Record
+   * 
+   * @param studentId
+   * @param unitCode
+   * @param assignment1Result
+   * @param assignment2Result
+   * @param examResult
+   */
+  public StudentUnitRecord(Integer studentId, String unitCode, 
+      float assignment1Result, float assignment2Result, float examResult) {
+    this.studentId = studentId;
+    this.unitCode = unitCode;
+    this.setAssignment1Result(assignment1Result);
+    this.setAssignment2Result(assignment2Result);
+    this.setExamResult(examResult);
+  }
 
-	public String getUnitCode() {
-		return uc;
-	}
+  
+  
+  /**
+   * Student ID Accessor.
+   * 
+   * @return Integer, The student ID.
+   */
+  public Integer getStudentId() {
+    return studentId;
+  }
 
-	public void setAsg1(float a1) {
-		if (a1 < 0 ||
-			a1 > UnitManager.UM().getUnit(uc).getAsg1Weight()) {
-			throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
-		}
-		this.a1 = a1;
-	}
+  
+  
+  /**
+   * Unit Code Accessor.
+   * 
+   * @return String, The unit code.
+   */
+  public String getUnitCode() {
+    return unitCode;
+  }
 
-	public float getAsg1() {
+  
+  
+  /**
+   * Assignment 1 result Accessor,
+   * 
+   * @return float, Assignment 1 result.
+   */
+  public float getAssignment1Result() {
+    return assignment1Result;
+  }
+  
+  
+  
+  private boolean isAssignment1ResultWithinBounds(float assignment1Result) {
+    return
+      WeightRange.
+        getInstance().
+          withUpperBoundExpression(x -> 
+            UnitManager.getInstance().findUnit(unitCode).getFirstAssignmentWeight()).
+          testValue(assignment1Result).
+          isWithinBounds(ERROR_MESSAGE);
+  }
+  
+  
+  
+  private boolean isAssignment2ResultWithinBounds(float assignment2Result) {
+    return
+      WeightRange.
+        getInstance().
+          withUpperBoundExpression(x -> 
+            UnitManager.getInstance().findUnit(unitCode).getSecondAssignmentWeight()).
+          testValue(assignment2Result).
+          isWithinBounds(ERROR_MESSAGE);
+  }
+  
+  
+  
+  private boolean isExamResultWithinBounds(float examResult) {
+    return
+      WeightRange.
+        getInstance().
+          withUpperBoundExpression(x -> 
+            UnitManager.getInstance().findUnit(unitCode).getExamWeight()).
+          testValue(examResult).
+          isWithinBounds(ERROR_MESSAGE);
+  }
+  
+  
+  
+  /**
+   * Mutator, setting the assignment 1 results,
+   * checking if it is within range
+   * 
+   * @param assignemnt1Result, the result to set.
+   * @throws runtimeException if outside range.
+   */
+  public void setAssignment1Result(float assignment1Result) {
+    if (isAssignment1ResultWithinBounds(assignment1Result))
+      this.assignment1Result = assignment1Result;
+  }
 
-		return a1;
-	}
 
-	public void setAsg2(float a2) {
-		if (a2 < 0 ||
-			a2 > UnitManager.UM().getUnit(uc).getAsg2Weight()) {
-			throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
-		}
-		this.a2 = a2;
+  
+  /**
+   * Mutator, setting the assignment 2 results,
+   * checking if it is within range
+   * 
+   * @param assignemnt2Result, the result to set.
+   * @throws runtimeException if outside range.
+   */
+  public void setAssignment2Result(float assignment2Result) {
+    if (isAssignment2ResultWithinBounds(assignment2Result))
+      this.assignment2Result = assignment2Result;
+  }
 
-	}
+  
+  
+  /**
+   * Mutator, setting the exam result,
+   * checking if it is within range
+   * 
+   * @param exam, the result to set.
+   * @throws runtimeException if outside range.
+   */
+  public void setExamResult(float examResult) {
+    if(isExamResultWithinBounds(examResult))
+      this.examResult = examResult;
+  }
+  
+  
+  /**
+   * Accessor, gets the assignment 2 results.
+   */
+  public float getAssignment2Result() {
+    return assignment2Result;
+  }
 
-	public float getAsg2() {
-		return a2;
-	}
+  
+  
+  /**
+   * Accessor, gets the exam result.
+   */
+  public float getExamResult() {
+    return examResult;
+  }
 
-	public void setExam(float ex) {
-		if (ex < 0 ||
-				ex > UnitManager.UM().getUnit(uc).getExamWeight()) {
-				throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
-			}
-		this.ex = ex;
-	}
-
-	public float getExam() {
-		return ex;
-	}
-
-	public float getTotal() {
-		return a1 + a2 + ex;
-
-	}
+  
+  
+  public float getTotal() {
+    return assignment1Result + assignment2Result + examResult;
+  }
 }
+
