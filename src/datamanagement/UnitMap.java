@@ -7,6 +7,7 @@ package datamanagement;
  * Assessment: Assignment 2
  * Description: Class Map of unit codes to ensure each unit has a unique code.
  */
+@SuppressWarnings("serial")
 public class UnitMap extends 
     java.util.HashMap<String, UnitInterface> {
 }

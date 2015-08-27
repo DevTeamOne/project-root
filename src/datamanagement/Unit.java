@@ -147,7 +147,7 @@ public class Unit
    */
   public IStudentUnitRecord findStudentRecord (int studentNumber) {
     for (IStudentUnitRecord record : recordStudent) {
-      if (record.getStudentNumber() == studentNumber)
+      if (record.getStudentId() == studentNumber)
         return record;
     }
     return null;
@@ -204,7 +204,7 @@ public class Unit
    * @return string.
    */
   public String getGrade (float assignment1, 
-    float assignment2, float assignment3, float exam) {
+    float assignment2, float exam) {
     
     float totalMarks = assignment1 + assignment2 + assignment3;
     
@@ -321,29 +321,6 @@ public class Unit
   
   
 
-  private void validateAssignmentRange (float pass, float credit, 
-    float distinction, float highDistinction, float additionalExam) {
-    
-    boolean testRange = pass < 0 || pass > 100 || 
-        credit < 0 || credit > 100 || 
-        distinction < 0 || distinction > 100 || 
-        highDistinction <= 0 || highDistinction > 100 || 
-        additionalExam < 0 || additionalExam > 100;
-        
-    if (testRange)
-      throw new RuntimeException(
-          "Assessment range cant be less than zero or greater than 100");
-    else if (additionalExam >= pass)
-      throw new RuntimeException("Alternative Exit range must be less than Pass range");
-    else if (pass >= credit)
-      throw new RuntimeException("Pass range must be less than Credit range");
-    else if (credit >= distinction)
-      throw new RuntimeException("Credit range must be less than Distinction range");
-    else if (distinction >= highDistinction)
-      throw new RuntimeException("Distinction range must be less than High Distinction range");
-  }
-
-  
   
   /**
    * Add a record of a unit to the student record.

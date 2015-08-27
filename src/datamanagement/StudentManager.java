@@ -61,8 +61,9 @@ public class StudentManager {
   
   
   
-  private Element findStudentElement (Integer studentNumber) {
-    for (Element element : (List<Element>) XMLManager.getXML().
+  @SuppressWarnings("unchecked")
+private Element findStudentElement (Integer studentNumber) {
+    for (Element element : (List<Element>) XmlManager.getInstance().
       getDocument().
       getRootElement().
       getChild("studentTable").
@@ -94,13 +95,13 @@ public class StudentManager {
 
     student = new StudentMap();
     StudentInterface individualStudent;
-    StudentUnitRecordList unitRecords = StudentUnitRecordManager.getInstance().
+    StudentUnitRecordList unitRecords = StudentUnitRecordAdapter.getInstance().
       getRecordsByUnit(code);
     
     for (IStudentUnitRecord unitRecord : unitRecords) {
       individualStudent = createStudentProxy(new Integer(unitRecord.
-        getStudentNumber()));
-      student.put(individualStudent.getStudentNumber(), individualStudent);
+        getStudentId()));
+      student.put(individualStudent.getStudentId(), individualStudent);
     }
 
     unitManager.put(code, student);
@@ -122,8 +123,8 @@ public class StudentManager {
     Element element_ = findStudentElement(studentNumber);
     
     if (element_ != null) {
-      StudentUnitRecordList recordList = StudentUnitRecordManager.getInstance().
-          getRecordsByStudent(studentNumber);
+      StudentUnitRecordList recordList = StudentUnitRecordAdapter.getInstance().
+          findStudentUnitRecordsById(studentNumber);
       
       individualStudent_ = new Student(new Integer(
           element_.getAttribute("Student Number")),
@@ -131,7 +132,7 @@ public class StudentManager {
           element_.getAttribute("Last Name"), recordList);
 
       studentManager.put(individualStudent_.
-          getStudentNumber(), 
+          getStudentId(), 
           individualStudent_);
       
       return individualStudent_;

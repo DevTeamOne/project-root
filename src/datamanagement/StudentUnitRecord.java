@@ -4,7 +4,8 @@ package datamanagement;
 /**
  * Represents the per subject results for a student.
  */
-public class StudentUnitRecord implements IStudentUnitRecord {
+public class StudentUnitRecord 
+	implements IStudentUnitRecord {
   private static final String ERROR_MESSAGE = "Mark cannot be less than zero or greater than assessment weight";
   private Integer studentId;
   private String unitCode;
@@ -36,7 +37,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
    * 
    * @return Integer, The student ID.
    */
-  public Integer getStudentID() {
+  public Integer getStudentId() {
     return studentId;
   }
 
@@ -69,7 +70,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
       WeightRange.
         getInstance().
           withUpperBoundExpression(x -> 
-            UnitManager.UM().getUnit(unitCode).getAsg1Weight()).
+            UnitManager.getInstance().findUnit(unitCode).getFirstAssignmentWeight()).
           testValue(assignment1Result).
           isWithinBounds(ERROR_MESSAGE);
   }
@@ -81,7 +82,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
       WeightRange.
         getInstance().
           withUpperBoundExpression(x -> 
-            UnitManager.UM().getUnit(unitCode).getAsg2Weight()).
+            UnitManager.getInstance().findUnit(unitCode).getSecondAssignmentWeight()).
           testValue(assignment2Result).
           isWithinBounds(ERROR_MESSAGE);
   }
@@ -93,7 +94,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
       WeightRange.
         getInstance().
           withUpperBoundExpression(x -> 
-            UnitManager.UM().getUnit(unitCode).getExamWeight()).
+            UnitManager.getInstance().findUnit(unitCode).getExamWeight()).
           testValue(examResult).
           isWithinBounds(ERROR_MESSAGE);
   }

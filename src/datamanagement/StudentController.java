@@ -54,8 +54,8 @@ public class StudentController {
     if (unitCode.equals("NONE"))
       studentManagementUserInterface.enableStudentCombo(false);
     else {
-      ListStudentsController listStudentsController = 
-          new ListStudentsController();
+      ListStudentsControl listStudentsController = 
+          new ListStudentsControl();
       listStudentsController.listStudents (studentManagementUserInterface,
           unitCode);
       this.unitCode = unitCode;
@@ -83,7 +83,7 @@ public class StudentController {
     }
 
     else {
-      StudentInterface student = StudentManager.getInstance().getStudent (studentIdentifier);
+      StudentInterface student = StudentManager.getInstance().findStudent (studentIdentifier);
 
       IStudentUnitRecord studentUnitRecord = student.findUnitRecord(unitCode);
 
@@ -148,9 +148,8 @@ public class StudentController {
   public void saveGrade(float assignment1Result, float assignment2Result,
       float examResult) {
 
-    UnitInterface unit = UnitManager.getInstance().findUnit(unitCode);
-    IStudent student = StudentManager.get().
-        getStudent (currentStudentIdentifier);
+    StudentInterface student = StudentManager.getInstance().
+        findStudent (currentStudentIdentifier);
 
     
     IStudentUnitRecord unitRecord = student.findUnitRecord (unitCode);

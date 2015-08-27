@@ -7,6 +7,7 @@ package datamanagement;
  * Assessment: Assignment 2
  * Description: Class Map of student numbers to ensure each student has a unique number.
  */
+@SuppressWarnings("serial")
 public class StudentMap extends 
     java.util.HashMap<Integer, StudentInterface> { 
 }

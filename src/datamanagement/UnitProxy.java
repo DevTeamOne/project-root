@@ -122,8 +122,8 @@ public class UnitProxy
    * @param third: The unit code to retrieve grade
    * @return unit grade.
    */
-  public String getGrade (float assignment1, float assignment2, float assignment3, float exam) {
-    return unitManager.findUnit (unitCode).getGrade (assignment1, assignment2, assignment3, exam);
+  public String getGrade (float assignment1, float assignment2, float exam) {
+    return unitManager.findUnit (unitCode).getGrade (assignment1, assignment2, exam);
   }
   
   

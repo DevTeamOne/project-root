@@ -50,7 +50,7 @@ public interface StudentInterface {
   /**
    * Retrieve student number.
    */ 
-  public Integer getStudentNumber();
+  public Integer getStudentId();
   
   
   

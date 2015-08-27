@@ -12,8 +12,10 @@ import java.awt.Font;
  * CheckGradeUserInterface renders the main user interface for the 
  * application.
  */
-public class CheckGradeUserInterface extends javax.swing.JFrame implements
-    IUnitLister, IStudentLister {
+@SuppressWarnings("serial")
+public class CheckGradeUserInterface 
+	extends javax.swing.JFrame 
+	implements IUnitLister, IStudentLister {
   private StudentController studentControl;
   private javax.swing.DefaultComboBoxModel<String> unitModel;
   private javax.swing.DefaultComboBoxModel<String> studentModel;
@@ -31,8 +33,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
    */
   public CheckGradeUserInterface(StudentController studentControl) {
     this.studentControl = studentControl;
-    unitModel = new javax.swing.DefaultComboBoxModel(new String[0]);
-    studentModel = new javax.swing.DefaultComboBoxModel(new String[0]);
+    unitModel = new javax.swing.DefaultComboBoxModel<String>(new String[0]);
+    studentModel = new javax.swing.DefaultComboBoxModel<String>(new String[0]);
     initComponents();
     unitComboBox.setModel(unitModel);
     studentComboBox.setModel(studentModel);
@@ -483,7 +485,7 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
    * (non-Javadoc)
    * @see datamanagement.IUnitLister#addUnit(datamanagement.IUnit)
    */
-  public void addUnit(IUnit unit) {
+  public void addUnit(UnitInterface unit) {
     unitModel.addElement(unit.getUnitCode());
   }
 
@@ -515,8 +517,8 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
  * 
  * @param IStudent: The student record to add to the model.
  */
-  public void addStudent(IStudent student) {
-    studentModel.addElement(student.getID().toString() + " : " + student.getFirstName()
+  public void addStudent(StudentInterface student) {
+    studentModel.addElement(student.getStudentId().toString() + " : " + student.getFirstName()
         + " " + student.getLastName());
   }
 
@@ -632,4 +634,5 @@ public class CheckGradeUserInterface extends javax.swing.JFrame implements
   private javax.swing.JTextField assignment1Field;
   private javax.swing.JTextField assignment2Field;
   private javax.swing.JTextField examField;
+
 }

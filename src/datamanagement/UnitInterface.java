@@ -88,7 +88,7 @@ public interface UnitInterface {
    * @param assignment2: The assignment 2 grade to be retrieved.
    * @param exam: The exam grade to be retrieved.
    */ 
-  public String getGrade (float assignment1, float assignment2, float assignment3, float exam);
+  public String getGrade (float assignment1, float assignment2, float exam);
   
   
   

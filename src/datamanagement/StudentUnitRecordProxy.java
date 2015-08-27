@@ -33,7 +33,7 @@ public class StudentUnitRecordProxy
 	 * 
 	 * @return the studentID.
 	 */
-	public Integer getStudentID() {
+	public Integer getStudentId() {
 		return studentID;
 	}
 	

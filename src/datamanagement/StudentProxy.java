@@ -40,7 +40,7 @@ public class StudentProxy
    * 
    * @return The student number.
    */ 
-  public Integer getStudentNumber() {
+  public Integer getStudentId() {
     return studentNo;
   }
   

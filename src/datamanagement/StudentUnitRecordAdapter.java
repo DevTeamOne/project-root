@@ -1,6 +1,7 @@
 package datamanagement;
 
 import org.jdom.Element;
+
 import java.util.List;
 
 
@@ -112,7 +113,7 @@ public class StudentUnitRecordAdapter {
   private String buildCompositeKeyAsString (
       IStudentUnitRecord studentUnitRecord) {
     
-      return studentUnitRecord.getStudentID().toString() +
+      return studentUnitRecord.getStudentId().toString() +
            studentUnitRecord.getUnitCode();
   }
 
@@ -123,7 +124,8 @@ public class StudentUnitRecordAdapter {
    * 
    * @return: List of XML Elements.
    */
-  private List<Element> loadStudentUnitRecordElementsFromFile() {
+  @SuppressWarnings("unchecked")
+private List<Element> loadStudentUnitRecordElementsFromFile() {
     return (List<Element>) XmlManager.
         getInstance().
         getDocument().
@@ -259,7 +261,7 @@ public class StudentUnitRecordAdapter {
    * @param studentID: The student Id indicating records to be returned.
    * @return: StudentUnitRecords list of records for the given student Id.
    */
-  public StudentUnitRecordList findStudentUnitRevordsById(Integer studentIDToFind) {
+  public StudentUnitRecordList findStudentUnitRecordsById(Integer studentIDToFind) {
 
     // Return any existing studentUnitRecords for the given student ID.
     StudentUnitRecordList studentUnitRecords = 
@@ -300,7 +302,7 @@ public class StudentUnitRecordAdapter {
   public void saveRecord(IStudentUnitRecord studentUnitRecord) {
     for (Element element : loadStudentUnitRecordElementsFromFile()) {
 
-      if (isMatch(element, studentUnitRecord.getStudentID(),
+      if (isMatch(element, studentUnitRecord.getStudentId(),
           studentUnitRecord.getUnitCode())) {
 
         element.setAttribute(ASSIGNMENT1_ATTRIBUTE,

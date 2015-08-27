@@ -8,6 +8,6 @@ public interface IUnitLister {
 
 	
 	
-	public void addUnit (IUnit unit);
+	public void addUnit (UnitInterface unit);
  
 }

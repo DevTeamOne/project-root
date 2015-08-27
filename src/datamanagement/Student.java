@@ -18,7 +18,7 @@ public class Student
   /** 
    * Private variables for class Student.
    */
-  private Integer studentNumber;
+  private Integer studentId;
   private String firstName;
   private String lastName;
   private StudentUnitRecordList studentUnit;
@@ -37,7 +37,7 @@ public class Student
    */
   public Student (Integer number, String first, 
       String last, StudentUnitRecordList record) {
-    this.studentNumber = number;
+    this.studentId = number;
     this.firstName = first;
     this.lastName = last;
     this.studentUnit = record == null ? new StudentUnitRecordList() : record;
@@ -48,10 +48,10 @@ public class Student
   /**
    * Retrieve a student number.
    * 
-   * @return The student number.
+   * @return The student id.
    */ 
-  public Integer getStudentNumber() {
-    return this.studentNumber;
+  public Integer getStudentId() {
+    return this.studentId;
   }
   
   
@@ -137,5 +137,6 @@ public class Student
    */
   public void addUnitRecord (IStudentUnitRecord record) {
     studentUnit.add(record);
-  } 
+  }
+
 }

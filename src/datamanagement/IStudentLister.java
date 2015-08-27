@@ -12,5 +12,5 @@ public interface IStudentLister {
     
     
     
-    public void addStudent(IStudent student);
+    public void addStudent(StudentInterface student);
 }

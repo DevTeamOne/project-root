@@ -61,12 +61,13 @@ public class UnitManager {
    * 
    * @return unit manager.
    */ 
-  public UnitMap getUnitMap() {
+  @SuppressWarnings("unchecked")
+public UnitMap getUnitMap() {
     UnitMap unitManager;
     UnitInterface unit;
 
     unitManager = new UnitMap();
-    for (Element element : (List<Element>) XMLManager.getInstance().
+    for (Element element : (List<Element>) XmlManager.getInstance().
         getDocument().
         getRootElement().
         getChild("unitTable").
@@ -82,18 +83,17 @@ public class UnitManager {
   
   
 
-  private UnitInterface createUnit (String unitCode) {
+  @SuppressWarnings("unchecked")
+private UnitInterface createUnit (String unitCode) {
     UnitInterface unit_;
 
-    for (Element element : (List<Element>) XMLManager.getInstance().
+    for (Element element : (List<Element>) XmlManager.getInstance().
         getDocument().
         getRootElement().
         getChild("Unit Table").
         getChildren("Unit"))
       if (unitCode.equals(element.getAttribute("Unit ID"))) {
-        StudentUnitRecordList studentList;
 
-        studentList = null;
         unit_ = new Unit(element.getAttribute("Unit ID"),
           element.getAttribute("Name"), Float.valueOf(
             element.getAttribute("Pass")).floatValue(), Float.valueOf(
@@ -105,7 +105,7 @@ public class UnitManager {
             element.getAttribute("Assignment 2 weight")).intValue(), Integer.valueOf(
             element.getAttribute("Assignment 3 weight")).intValue(), Integer.valueOf(
             element.getAttribute("Exam weight")).intValue(),
-            StudentUnitRecordAdapter.instance().getRecordsByUnit (unitCode));
+            StudentUnitRecordAdapter.getInstance().getRecordsByUnit (unitCode));
         unitManager.put(unit_.getUnitCode(), unit_);
         return unit_;
       }

@@ -2,7 +2,7 @@ package datamanagement;
 
 public interface IStudentUnitRecord {
 
-    public Integer getStudentNumber();
+    public Integer getStudentId();
 
 	
 	
