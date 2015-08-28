@@ -126,13 +126,6 @@ public class StudentUnitRecordAdapter {
    */
   @SuppressWarnings("unchecked")
 private List<Element> loadStudentUnitRecordElementsFromFile() {
-	  List<Element> tst = (List<Element>) XmlManager.
-		        getInstance().
-		        getDocument().
-		        getRootElement().
-		        getChild(STUDENT_UNIT_RECORD_NODE).
-		        getChildren(RECORD_NODE);
-	  
     return (List<Element>) XmlManager.
         getInstance().
         getDocument().
